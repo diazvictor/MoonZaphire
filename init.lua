@@ -25,3 +25,16 @@ local ui = builder.objects
 local main_window = ui.main_window -- invoco la ventana con el id main_window
 local about_window = ui.about_window -- invoco la ventana con el id about_window
 local login_window = ui.login_window -- invoco la ventana con el id login_window
+
+local  mensajes        		= builder:get_object("mensajes") -- invoco al TextView con el id mensajes
+
+local  entry_mensaje 		= ui.entry_mensaje
+local  entry_user    		= ui.entry_user
+local  entry_password    	= ui.entry_password
+local  entry_broker 		= ui.entry_broker
+local  entry_port	    	= ui.entry_port
+local  buffer          		= ui.buffer_mensajes
+
+local  btn_enviar       	= ui.btn_enviar
+local  btn_login 	      	= ui.btn_login
+local  btn_cancel       	= ui.btn_cancel
