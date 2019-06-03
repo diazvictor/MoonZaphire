@@ -28,13 +28,21 @@ local login_window = ui.login_window -- invoco la ventana con el id login_window
 
 local  mensajes        		= builder:get_object("mensajes") -- invoco al TextView con el id mensajes
 
-local  entry_mensaje 		= ui.entry_mensaje
-local  entry_user    		= ui.entry_user
-local  entry_password    	= ui.entry_password
-local  entry_broker 		= ui.entry_broker
-local  entry_port	    	= ui.entry_port
-local  buffer          		= ui.buffer_mensajes
+local  entry_mensaje = ui.entry_mensaje
+local  entry_user = ui.entry_user
+local  entry_password = ui.entry_password
+local  entry_broker = ui.entry_broker
+local  entry_port	= ui.entry_port
+local  buffer = ui.buffer_mensajes
 
-local  btn_enviar       	= ui.btn_enviar
-local  btn_login 	      	= ui.btn_login
-local  btn_cancel       	= ui.btn_cancel
+local  btn_enviar = ui.btn_enviar
+local  btn_login = ui.btn_login
+local  btn_cancel	= ui.btn_cancel
+
+local broker 	= "localhost" -- El servidor
+local port 		= 1883 -- El puerto
+local keepalive	= 60 -- Si me desconecto, ¿Cuanto tiempo esperar antes de recoenctar?
+local qos 		= 2 -- Acuse de recibo
+--local retain 	= true
+local mqtt_user     = "usuario"
+local mqtt_password = ""
