@@ -173,6 +173,14 @@ GLib.timeout_add (
 	end
 )
 
+function entry_message:on_key_release_event(env)
+	-- al presionar la tecla Enter/Return
+    if ( env.keyval  == Gdk.KEY_Return ) then
+		-- llamo a la funcion de submit que envia un mensaje
+		submit()
+    end
+end
+
 function btn_submit:on_clicked()
     submit()
 end
