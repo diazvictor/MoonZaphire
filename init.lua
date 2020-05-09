@@ -55,3 +55,24 @@ local usuarios = {}
 
 user, pass = nil, nil
 
+function btn_login:on_clicked()
+	login_window:hide()
+	main_window:show_all()
+end
+
+
+function login_window:on_destroy()
+	Gtk.main_quit()
+end
+
+function btn_cancel:on_clicked()
+	Gtk.main_quit()
+end
+
+function main_window:on_destroy()
+    client:disconnect()
+    Gtk.main_quit()
+end
+
+login_window:show_all()
+Gtk.main()
