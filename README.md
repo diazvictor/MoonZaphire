@@ -2,19 +2,19 @@
 
 Chateando is a gui frontend for mqtt.
 This software require:
-* [Lua5.1](https://www.lua.org/download.html)
-* [Lgi](https://github.com/pavouk/lgi)
-* [Lua MQTT](https://github.com/geekscape/mqtt_lua)
-* [Mosquitto/MQTT](http://mqtt.org/)
+* [lua5.1](https://www.lua.org/download.html)
+* [lgi](https://github.com/pavouk/lgi)
+* [mosquitto/mqtt](http://mqtt.org/)
+* [lua-mosquitto](https://github.com/flukso/lua-mosquitto/)
 
 ## ScreenShot
 ![Screenshot](screenshot.png "1.0")
 
 ## Contacts
-- Email: diaz.victor@openmailbox.org 
-- Facebook: https://www.facebook.com/DiazUrbanejaVictor
-- Github: https://github.com/diazvictor/
+- Email: [victor.vector008@gmail.com](mailto:victor.vector008@gmail.com)
+- Website: [https://diazvictor.gitlab.io](https://diazvictor.gitlab.io)
+- Telegram: [https://t.me/diazvictor](https://t.me/diazvictor)
 
 ## Run
 
-Execute: init.lua
+Execute: `init.lua`
