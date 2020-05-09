@@ -150,6 +150,29 @@ function submit()
     entry_message:grab_focus()											-- lo mantengo siempre en estado focus (activo)
 end
 
+local mark = buffer:create_mark( nil, buffer:get_end_iter(), false )
+GLib.timeout_add (
+    GLib.PRIORITY_DEFAULT, 300,
+	function ()
+		if msg then
+			if (msg.user == '') then
+				buffer:insert(buffer:get_iter_at_mark(mark),
+					'\n' ..
+					('%s %s'):format(msg.time, msg.msg), -- esto es el mensaje recibido
+				-1)
+			else
+				buffer:insert(buffer:get_iter_at_mark(mark),
+					'\n' ..
+					('%s [%s]: %s'):format(msg.time, msg.user, msg.msg), -- esto es el mensaje recibido
+				-1)
+			end
+			messages:scroll_mark_onscreen(mark)
+			msg = nil
+		end
+		return true
+	end
+)
+
 function btn_submit:on_clicked()
     submit()
 end
