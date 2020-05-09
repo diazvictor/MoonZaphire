@@ -133,6 +133,26 @@ function btn_login:on_clicked()
 	main_window:show_all()
 end
 
+entry_message:grab_focus()												-- al iniciar lo mantengo en estado focus (activo)
+-- cuando se presione Enviar
+
+function submit()
+    local msje = tostring(entry_message.text)
+    if ( msje ~= '' ) then                  							-- solo envio si hay mensaje
+		local info = {
+			user = user,
+			msg = msje,
+			time = os.date('%H:%M:%S')
+		}
+        client:publish( channel, tostring( json:encode( info ) ) )		-- mando el mensaje
+        entry_message.text = '' 										--limpio el entry
+    end
+    entry_message:grab_focus()											-- lo mantengo siempre en estado focus (activo)
+end
+
+function btn_submit:on_clicked()
+    submit()
+end
 
 function login_window:on_destroy()
 	Gtk.main_quit()
