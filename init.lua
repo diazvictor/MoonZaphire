@@ -125,7 +125,7 @@ function validate_logIn()
 	        msg = json:decode(payload)
 	    end
 	end
-    
+
 	client:loop_start()
 	channel = entry_topic.text
 
@@ -202,6 +202,11 @@ GLib.timeout_add (
 
 function btn_submit:on_clicked()
     submit()
+end
+
+function btn_about:on_clicked()
+	about_window:run()
+	about_window:hide()
 end
 
 local visible = false
