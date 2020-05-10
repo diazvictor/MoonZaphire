@@ -8,7 +8,8 @@
     <property name="program_name">Chateando</property>
     <property name="version">2.4</property>
     <property name="copyright" translatable="yes">Copyright 2019 Díaz Urbaneja Víctor Eduardo Diex</property>
-    <property name="authors"> Díaz Urbaneja Víctor Eduardo Diex &lt;diaz.victor@openmailbox.org&gt;</property>
+    <property name="authors"> Díaz Urbaneja Víctor Eduardo Diex &lt;diaz.victor@openmailbox.org&gt;
+Díaz Urbaneja Víctor Diego Alejandro (Sodomon) &lt;sodomon2@gmail.com&gt;</property>
     <property name="logo">screenshot/chat-mqtt-lua.png</property>
     <property name="license_type">lgpl-3-0</property>
     <child>
