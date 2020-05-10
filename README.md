@@ -8,7 +8,8 @@ This software require:
 * [lua-mosquitto](https://github.com/flukso/lua-mosquitto/)
 
 ## ScreenShot
-![Screenshot](screenshot.png "1.0")
+![Screenshot](screenshot/chat.png "Chat")
+![Screenshot](screenshot/login.png "Login")
 
 ## Contacts
 - Email: [victor.vector008@gmail.com](mailto:victor.vector008@gmail.com)
