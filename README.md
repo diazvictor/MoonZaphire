@@ -1,6 +1,7 @@
 # Chateando
 
 Chateando is a gtk frontend for mqtt written in lua.
+
 This software requires:
 * [lua5.1](https://www.lua.org/download.html)
 * [lgi](https://github.com/pavouk/lgi)
@@ -9,6 +10,7 @@ This software requires:
 
 ## Screenshots
 ![Screenshot](screenshot/chat.png "Chat")
+
 ![Screenshot](screenshot/login.png "Login")
 
 ## Contacts
