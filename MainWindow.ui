@@ -9,7 +9,7 @@
     <property name="version">2.4</property>
     <property name="copyright" translatable="yes">Copyright 2019 Díaz Urbaneja Víctor Eduardo Diex</property>
     <property name="authors"> Díaz Urbaneja Víctor Eduardo Diex &lt;diaz.victor@openmailbox.org&gt;</property>
-    <property name="logo_icon_name">applications-internet</property>
+    <property name="logo">screenshot/chat-mqtt-lua.png</property>
     <property name="license_type">lgpl-3-0</property>
     <child>
       <placeholder/>
@@ -470,5 +470,10 @@
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkStatusIcon" id="mqtt_tray">
+    <property name="pixbuf">screenshot/chat-mqtt-lua.png</property>
+    <property name="has_tooltip">True</property>
+    <property name="tooltip_text" translatable="yes">Chateando</property>
   </object>
 </interface>
