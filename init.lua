@@ -55,6 +55,15 @@ local usuarios = {}
 
 user, pass = nil, nil
 
+function user_list()
+	list_users:clear()
+	for i, item in pairs(usuarios) do
+		list_users:append({
+			item
+		})
+	end
+end
+
 function validate_logIn()
 	username = entry_user.text
 	password = entry_password.text
@@ -180,6 +189,15 @@ function entry_message:on_key_release_event(env)
 		submit()
     end
 end
+
+-- poblar lista cada un segundo
+GLib.timeout_add (
+    GLib.PRIORITY_DEFAULT, 1000,
+	function ()
+		user_list()
+		return true
+	end
+)
 
 function btn_submit:on_clicked()
     submit()
