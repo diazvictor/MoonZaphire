@@ -95,16 +95,16 @@ function validate_logIn()
 
 	if ( broker ~= '' and port ~= '' ) then
 		print( 'conectado a ' .. broker .. ' con el puerto ' .. port )
-		client:connect( broker, tonumber(port), keepalive )
+		client:connect_async( broker, tonumber(port), keepalive )
 	elseif ( broker ~= '' and port == '') then
 		print( 'conectado a ' .. broker .. ' por defecto con el puerto ' .. port_default )
-		client:connect( broker, tonumber(port_default), keepalive )
+		client:connect_async( broker, tonumber(port_default), keepalive )
 	elseif ( port ~= '' and broker == '' ) then
 		print( 'conectado a ' .. broker_default .. ' por defecto con el puerto ' .. port )
-		client:connect( broker_default, tonumber(port), keepalive )
+		client:connect_async( broker_default, tonumber(port), keepalive )
 	elseif ( broker == '' and port == '') then
 		print( 'conectado al ' .. broker_default .. ' por defecto con el puerto ' .. port_default ..  ' por defecto' )
-		client:connect( broker_default, tonumber(port_default), keepalive )
+		client:connect_async( broker_default, tonumber(port_default), keepalive )
 	else
 		return false, 'fallo y no se por que'
 	end
