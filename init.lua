@@ -1,10 +1,10 @@
 #!/usr/bin/lua5.1
 --[[--
- @package   Mosquitto
+ @package   Chateando
  @filename  init.lua
- @version   1.0
- @autor     Díaz Urbaneja Víctor Eduardo Diex <diaz.victor@openmailbox.org>
- @date      15:40:38 -04 2019
+ @version   2.4
+ @autor     Díaz Urbaneja Víctor Eduardo Diex <victor.vector008@gmail.com>
+ @date      14:26:45 -04 06.05.2020
 ]]
 
 require('lib.middleclass')              						                -- la libreria middleclass me da soporte a OOP
