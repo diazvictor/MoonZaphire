@@ -49,7 +49,7 @@ local port_default = '1883'   													-- el puerto por defecto
 local keepalive = 60     														-- si me desconecto, ¿Cuanto tiempo esperar antes de recoenctar?
 local qos = 2        															-- acuse de recibo
 local username_default = 'mqtt_user' .. math.random(1, 100) 					-- usuario por defecto
-entry_user.text = username_default												-- añadir texto al input de usuario
+entry_user.text = username_default												-- mostrar usuario aleatorio
 local password_default = ''														-- contraseña por defecto
 msg = nil
 
