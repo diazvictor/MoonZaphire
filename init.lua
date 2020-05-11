@@ -66,22 +66,20 @@ function user_list()
 end
 
 function validate_logIn()
-	username = entry_user.text
-	password = entry_password.text
+	username, password = entry_user.text, entry_password.text
 
-	broker = entry_broker.text
-	port = entry_port.text
+	broker, port = entry_broker.text, entry_port.text
 
-	if ( username ~= '' and password ~= '') then
+	if ( username ~= '' ) and ( password ~= '') then
 		user, pass = username, password
 		print( 'logeado con el usuario ' .. username .. ' y la contraseña ' .. password )
-	elseif ( username ~= '' and password == '' ) then
+	elseif ( username ~= '' ) and ( password == '' ) then
 		user, pass = username, password_default
 		print( 'logeado con el usuario ' .. username .. ' y la contraseña ' .. password_default )
-	elseif ( password ~= '' and username == '' ) then
+	elseif ( password ~= '' ) and ( username == '' ) then
 		user, pass = username_default, password
 		print( 'logeado con el usuario ' .. username_default .. ' y la contraseña ' .. password )
-	elseif ( username == '' and password == '' or username == '' or password == '' ) then
+	elseif ( username == '' ) and ( password == '' ) or ( username == '' ) or ( password == '' ) then
 		user, pass = username_default, password_default
 		print( 'logeado con el usuario aleatorio ' .. username_default .. ' y la contraseña ' .. password_default .. ' por defecto' )
 	else
@@ -89,40 +87,48 @@ function validate_logIn()
 	end
 
 	client = mqtt.new( user .. '-lua', false )	--[[ La instancia de comunicacion  MQTT]]--
-	if (pass) then
+	if ( pass ) then
 		client:login_set( user, pass )
 	end
 
-	if ( broker ~= '' and port ~= '' ) then
+	if ( broker ~= '' ) and ( port ~= '' ) then
 		print( 'conectado a ' .. broker .. ' con el puerto ' .. port )
-		client:connect_async( broker, tonumber(port), keepalive )
-	elseif ( broker ~= '' and port == '') then
+		client:connect_async( broker, tonumber( port ), keepalive )
+	elseif ( broker ~= '' ) and ( port == '') then
 		print( 'conectado a ' .. broker .. ' por defecto con el puerto ' .. port_default )
-		client:connect_async( broker, tonumber(port_default), keepalive )
-	elseif ( port ~= '' and broker == '' ) then
+		client:connect_async( broker, tonumber( port_default ), keepalive )
+	elseif ( port ~= '' ) and ( broker == '' ) then
 		print( 'conectado a ' .. broker_default .. ' por defecto con el puerto ' .. port )
 		client:connect_async( broker_default, tonumber(port), keepalive )
-	elseif ( broker == '' and port == '') then
+	elseif ( broker == '') and ( port == '' ) then
 		print( 'conectado al ' .. broker_default .. ' por defecto con el puerto ' .. port_default ..  ' por defecto' )
-		client:connect_async( broker_default, tonumber(port_default), keepalive )
+		client:connect_async( broker_default, tonumber( port_default ), keepalive )
 	else
 		return false, 'fallo y no se por que'
 	end
 
 	client.ON_MESSAGE = function ( mid, topic, payload )
 		local connect = 'users/connect'
-		if (topic == connect) then
-			template_user = '@'.. payload
-			table.insert( usuarios, template_user )
-			local info = {
+		local disconnect = 'users/disconnect'
+		if ( topic == connect ) then
+			table.insert( usuarios, payload )
+			local message_connect = {
 				user = '',
-				msg = user .. ' has joined the chat',
-				time = os.date('%H:%M:%S')
+				msg = user .. ' se ha unido al chat',
+				time = os.date( '%H:%M:%S' )
 			}
-			client:publish( channel, json:encode(info) )
+			client:publish( channel, json:encode( message_connect ) )
 		end
-	    if (payload ~= 'my payload' and topic ~= connect) then
-	        msg = json:decode(payload)
+		if ( topic == disconnect ) then
+		    local message_disconnect = {
+				user = '',
+				msg = user .. ' ha dejado el chat',
+				time = os.date( '%H:%M:%S' )
+			}
+			client:publish( channel, json:encode( message_disconnect ) )
+		end
+	    if ( payload ~= 'my payload' ) and ( topic ~= connect ) and ( topic ~= disconnect ) then
+	        msg = json:decode( payload )
 	    end
 	end
 
@@ -233,6 +239,9 @@ function btn_cancel:on_clicked()
 end
 
 function main_window:on_destroy()
+	client:subscribe( 'users/disconnect', 0 )
+	client:publish( 'users/disconnect', user )
+
     client:disconnect()
     Gtk.main_quit()
 end
