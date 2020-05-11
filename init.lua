@@ -110,11 +110,12 @@ function validate_logIn()
 	client.ON_MESSAGE = function ( mid, topic, payload )
 		local connect = 'users/connect'
 		local disconnect = 'users/disconnect'
+
 		if ( topic == connect ) then
 			table.insert( usuarios, payload )
 			local message_connect = {
 				user = '',
-				msg = user .. ' se ha unido al chat',
+				msg = payload .. ' se ha unido al chat',
 				time = os.date( '%H:%M:%S' )
 			}
 			client:publish( channel, json:encode( message_connect ) )
@@ -122,9 +123,14 @@ function validate_logIn()
 		if ( topic == disconnect ) then
 		    local message_disconnect = {
 				user = '',
-				msg = user .. ' ha dejado el chat',
+				msg = payload .. ' ha dejado el chat',
 				time = os.date( '%H:%M:%S' )
 			}
+			for k, v in pairs(usuarios) do
+				if ( v == payload ) then
+					table.remove(usuarios, k)
+				end
+			end
 			client:publish( channel, json:encode( message_disconnect ) )
 		end
 	    if ( payload ~= 'my payload' ) and ( topic ~= connect ) and ( topic ~= disconnect ) then
@@ -241,6 +247,11 @@ end
 function main_window:on_destroy()
 	client:subscribe( 'users/disconnect', 0 )
 	client:publish( 'users/disconnect', user )
+
+	client:unsubscribe( 'users/disconnect', 0 )
+	client:unsubscribe( 'users/connect', 0 )
+
+	client:unsubscribe( channel, 0 )
 
     client:disconnect()
     Gtk.main_quit()
