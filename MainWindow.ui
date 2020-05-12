@@ -483,6 +483,7 @@
   </object>
   <object class="GtkStatusIcon" id="mqtt_tray">
     <property name="pixbuf">images/trayicon.svg</property>
+    <property name="visible">False</property>
     <property name="has_tooltip">True</property>
   </object>
 </interface>

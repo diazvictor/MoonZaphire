@@ -148,6 +148,7 @@ function btn_login:on_clicked()
 
 	login_window:hide()
 	main_window:show_all()
+	mqtt_tray.visible = true
 end
 
 entry_message:grab_focus()												-- al iniciar lo mantengo en estado focus (activo)
@@ -220,11 +221,9 @@ local visible = false
 
 function tray()
 	visible = not visible
-    if login_window.is_active then
-       main_window:hide()
-    else
-        if visible then
-            main_window:show_all()
+    if ( login_window.is_active == true ) or ( login_window.is_active == false ) then
+		if ( visible ) then
+			main_window:show_all()
         else
             main_window:hide()
         end
