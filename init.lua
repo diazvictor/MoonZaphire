@@ -114,12 +114,6 @@ function validate_logIn()
 
 		if ( topic == connect ) then
 			table.insert( usuarios, payload )
-			local message_connect = {
-				user = '',
-				msg = payload .. ' se ha unido al chat',
-				time = os.date( '%H:%M:%S' )
-			}
-			client:publish( channel, json:encode( message_connect ) )
 		end
 		if ( topic == disconnect ) then
 			for k, v in pairs(usuarios) do
@@ -141,6 +135,12 @@ function validate_logIn()
 
     client:subscribe( 'users/connect', 0 )
 	client:publish( 'users/connect', user )
+	local message_connect = {
+		user = '',
+		msg = user .. ' se ha unido al chat',
+		time = os.date( '%H:%M:%S' )
+	}
+	client:publish( channel, json:encode( message_connect ) )
 end
 
 function btn_login:on_clicked()
