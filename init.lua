@@ -226,11 +226,15 @@ local visible = false
 
 function tray()
 	visible = not visible
-	if visible then
-		main_window:show_all()
-	else
-		main_window:hide()
-	end
+    if login_window.is_active then
+       main_window:hide()
+    else
+        if visible then
+            main_window:show_all()
+        else
+            main_window:hide()
+        end
+    end
 end
 
 function mqtt_tray:on_activate()
