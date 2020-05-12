@@ -122,17 +122,11 @@ function validate_logIn()
 			client:publish( channel, json:encode( message_connect ) )
 		end
 		if ( topic == disconnect ) then
-		    local message_disconnect = {
-				user = '',
-				msg = payload .. ' ha dejado el chat',
-				time = os.date( '%H:%M:%S' )
-			}
 			for k, v in pairs(usuarios) do
 				if ( v == payload ) then
 					table.remove(usuarios, k)
 				end
 			end
-			client:publish( channel, json:encode( message_disconnect ) )
 		end
 	    if ( payload ~= 'my payload' ) and ( topic ~= connect ) and ( topic ~= disconnect ) then
 	        msg = json:decode( payload )
@@ -248,6 +242,12 @@ end
 function main_window:on_destroy()
 	client:subscribe( 'users/disconnect', 0 )
 	client:publish( 'users/disconnect', user )
+	local message_disconnect = {
+		user = '',
+		msg = user .. ' ha dejado el chat',
+		time = os.date( '%H:%M:%S' )
+	}
+	client:publish( channel, json:encode( message_disconnect ) )
 
 	client:unsubscribe( 'users/disconnect', 0 )
 	client:unsubscribe( 'users/connect', 0 )
