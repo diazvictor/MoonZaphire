@@ -2,14 +2,20 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <object class="GtkMenu">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+  </object>
   <object class="GtkAboutDialog" id="about_window">
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
     <property name="program_name">Chateando</property>
     <property name="version">2.4</property>
     <property name="copyright" translatable="yes">Copyright 2019 Díaz Urbaneja Víctor Eduardo Diex</property>
-    <property name="authors"> Díaz Urbaneja Víctor Eduardo Diex &lt;diaz.victor@openmailbox.org&gt;</property>
-    <property name="logo_icon_name">applications-internet</property>
+    <property name="comments" translatable="yes">Chateando is a gtk frontend for mqtt written in lua.</property>
+    <property name="website">https://github.com/diazvictor/chat-mqtt-lua</property>
+    <property name="authors"> Díaz Urbaneja Víctor Eduardo Diex &lt;victor.vector008@gmail.com&gt;</property>
+    <property name="logo_icon_name">x-office-address-book</property>
     <property name="license_type">lgpl-3-0</property>
     <child>
       <placeholder/>
@@ -476,7 +482,7 @@
     </child>
   </object>
   <object class="GtkStatusIcon" id="mqtt_tray">
-    <property name="visible">False</property>
+    <property name="icon_name">x-office-address-book</property>
     <property name="has_tooltip">True</property>
   </object>
 </interface>
