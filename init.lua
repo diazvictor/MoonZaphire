@@ -7,10 +7,14 @@
  @date      14:26:45 -04 06.05.2020
 ]]
 
-require('lib.middleclass')              						                -- la libreria middleclass me da soporte a OOP
+CSD_ENABLED = true
+if CSD_ENABLED then win = 'MainCSD.ui' else win = 'MainNoCSD.ui' end
+
+      class   = require('lib.middleclass')              						-- la libreria middleclass me da soporte a OOP
 local mqtt    = require('mosquitto')     						                -- la libreria que soporta el protocolo
 local json    = require('lib.json')     						                -- la libreria que soporta json
 local lgi     = require('lgi')            						                -- requiero esta libreria que me permitira usar GTK
+				require('languages.init')										-- esta es la libreria de lenguajes
 
 local GObject = lgi.GObject             						                -- parte de lgi
 local GLib    = lgi.GLib                  						                -- para el treeview
@@ -20,7 +24,9 @@ local Gtk     = lgi.require('Gtk', '3.0')						                -- el objeto GTK
 local assert  = lgi.assert
 local builder = Gtk.Builder()
 
-assert(builder:add_from_file('MainWindow.ui'), "error al cargar el archivo") 	-- hago un debugger, si este archivo existe (true) enlaso el archivo ejemplo.ui, si no existe (false) imprimo un error
+assert(builder:add_from_file(win), "The window file failed loading!") 	-- hago un debugger, si este archivo existe (true) enlaso el archivo ejemplo.ui, si no existe (false) imprimo un error
+
+setLang("en_us")
 
 local main_window     = builder:get_object('main_window')          				-- invoco la ventana con el id main_window
 local about_window    = builder:get_object('about_window')        			    -- invoco la ventana con el id about_window
@@ -38,18 +44,21 @@ local  entry_port     = builder:get_object('entry_port')       					-- invoco al
 local  entry_topic    = builder:get_object('entry_topic')     					-- invoco al boton con el id load_choser
 local  buffer         = builder:get_object('buffer_mensajes')     				-- invoco al boton con el id btn_correr
 
-local  btn_submit     = builder:get_object('btn_enviar')          				-- invoco al boton con el id btn_cerrar
+local  btn_submit     = builder:get_object('btn_submit')          				-- invoco al boton con el id btn_cerrar
 local  btn_about      = builder:get_object('btn_about')          				-- invoco al boton con el id btn_cerrar
 local  btn_login      = builder:get_object('btn_login')          				-- invoco al boton con el id btn_cerrar
 local  btn_cancel     = builder:get_object('btn_cancel')        				-- invoco al boton con el id btn_cerrar
 local  mqtt_tray      = builder:get_object('mqtt_tray')        					-- invoco al boton con el id btn_cerrar
 
+local possible_characters = 'abcdefghijklmnopqrstuvwyxz1234567890'              -- caracteres posibles para el generador de passwords
 local broker_default = 'broker.mqtt.cool'  										-- el servidor por defecto
 local port_default = '1883'   													-- el puerto por defecto
 local keepalive = 60     														-- si me desconecto, ¿Cuanto tiempo esperar antes de recoenctar?
 local qos = 2        															-- acuse de recibo
-local username_default = 'mqtt_user' .. math.random(1, 100) 					-- usuario por defecto
+local username_default = 'MoonZaphire' .. math.random(1, 999) 					-- usuario por defecto
+local topic_default = "users/chat"
 entry_user.text = username_default												-- mostrar usuario aleatorio
+entry_topic.text = topic_default
 local password_default = ''														-- contraseña por defecto
 msg = nil
 
@@ -66,47 +75,81 @@ function user_list()
 	end
 end
 
+
+	--/////////////////////////////////////////////////////////////////////////////////////////////--
+
+		builder:get_object('btn_submit').label = getLINE("send")
+		builder:get_object('btn_login').label = getLINE("login")
+		builder:get_object('btn_cancel').label = getLINE("cancel")
+
+		builder:get_object('usuarios').title = getLINE("users")
+		builder:get_object('label_user').label = getLINE("user")
+		builder:get_object('label_pass').label = getLINE("password")
+		builder:get_object('label_broker').label = getLINE("broker")
+		builder:get_object('label_port').label = getLINE("port")
+		builder:get_object('label_topic').label = getLINE("topic")
+
+		builder:get_object('entry_user').placeholder_text = username_default
+		builder:get_object('entry_password').placeholder_text = getLINE("funny_pasw") --this doesnt works for some reason
+
+		builder:get_object('login_window').title = getLINE("login")
+
+	--/////////////////////////////////////////////////////////////////////////////////////////////--
+
+local function superpass()
+	math.randomseed(os.time())
+	local str = ""
+	for x = 1, 16 do
+		local rand = math.random(1, #possible_characters)
+		local randUpper = math.random(1,2)
+		if (randUpper == 2) then
+			str = str .. possible_characters:sub(rand, rand):upper()
+		else
+			str = str .. possible_characters:sub(rand, rand):lower()
+		end
+	end 
+	return str
+end
+
 function validate_logIn()
-	username, password = entry_user.text, entry_password.text
+	username, password = entry_user.text:gsub("%s", ""):gsub(" ", ""), entry_password.text
 
 	broker, port = entry_broker.text, entry_port.text
 
-	if ( username ~= '' ) and ( password ~= '') then
-		user, pass = username, password
-		print( 'logeado con el usuario ' .. username .. ' y la contraseña ' .. password )
-	elseif ( username ~= '' ) and ( password == '' ) then
-		user, pass = username, password_default
-		print( 'logeado con el usuario ' .. username .. ' y la contraseña ' .. password_default )
-	elseif ( password ~= '' ) and ( username == '' ) then
-		user, pass = username_default, password
-		print( 'logeado con el usuario ' .. username_default .. ' y la contraseña ' .. password )
-	elseif ( username == '' ) and ( password == '' ) or ( username == '' ) or ( password == '' ) then
-		user, pass = username_default, password_default
-		print( 'logeado con el usuario aleatorio ' .. username_default .. ' y la contraseña ' .. password_default .. ' por defecto' )
-	else
-		return false, 'fallo y no se por que'
+	local _e = false
+	if (#username < 1) then 
+		username = username_default 
+		local _e = getLINE("default")
+	end 
+	if (#password < 1) then 
+		password = superpass()
+		local _e = _e or getLINE("default")
 	end
+
+	user, pass = username, password
+	print(getLINE("logged_as", {username, password, _e or " "}))
+
+	--/////////////////////////////////////////////////////////////////////////////////////////////--
 
 	client = mqtt.new( user .. '-lua', false )	--[[ La instancia de comunicacion  MQTT]]--
 	if ( pass ) then
 		client:login_set( user, pass )
 	end
 
-	if ( broker ~= '' ) and ( port ~= '' ) then
-		print( 'conectado a ' .. broker .. ' con el puerto ' .. port )
-		client:connect_async( broker, tonumber( port ), keepalive )
-	elseif ( broker ~= '' ) and ( port == '') then
-		print( 'conectado a ' .. broker .. ' por defecto con el puerto ' .. port_default )
-		client:connect_async( broker, tonumber( port_default ), keepalive )
-	elseif ( port ~= '' ) and ( broker == '' ) then
-		print( 'conectado a ' .. broker_default .. ' por defecto con el puerto ' .. port )
-		client:connect_async( broker_default, tonumber(port), keepalive )
-	elseif ( broker == '') and ( port == '' ) then
-		print( 'conectado al ' .. broker_default .. ' por defecto con el puerto ' .. port_default ..  ' por defecto' )
-		client:connect_async( broker_default, tonumber( port_default ), keepalive )
-	else
-		return false, 'fallo y no se por que'
+	local _e = false
+	if (#broker < 1) then 
+		broker = broker_default
+		local _e = getLINE("default")
+	end 
+	if (#tostring(tonumber(port) or "") < 1) then 
+		port = port_default
+		local _e = _e or getLINE("default")
 	end
+
+	client:connect_async( broker, tonumber(port), keepalive )
+	print(getLINE("connected_to", {broker, port, _e or " "}))
+
+	--/////////////////////////////////////////////////////////////////////////////////////////////--
 
 	client.ON_MESSAGE = function ( mid, topic, payload )
 		local connect = 'users/connect'
@@ -131,13 +174,17 @@ function validate_logIn()
 	channel = entry_topic.text
 
     client:subscribe( channel, 0 )
-	header_bar.title = '#' .. channel
+	if CSD_ENABLED then 
+		header_bar.title = '#' .. channel
+	else
+		main_window.title = '#' .. channel
+	end
 
     client:subscribe( 'users/connect', 0 )
 	client:publish( 'users/connect', user )
 	local message_connect = {
 		user = '',
-		msg = user .. ' se ha unido al chat',
+		msg = getLINE("joined", {user}),
 		time = os.date( '%H:%M:%S' )
 	}
 	client:publish( channel, json:encode( message_connect ) )
@@ -247,7 +294,7 @@ function main_window:on_destroy()
 	client:publish( 'users/disconnect', user )
 	local message_disconnect = {
 		user = '',
-		msg = user .. ' ha dejado el chat',
+		msg = getLINE("left", {user}),
 		time = os.date( '%H:%M:%S' )
 	}
 	client:publish( channel, json:encode( message_disconnect ) )
