@@ -1,12 +1,14 @@
 # Chateando
+Chateando is a GTK3 frontend for MQTT written in Lua.
 
-Chateando is a gtk frontend for mqtt written in lua.
-
-This software requires:
-* [lua5.1](https://www.lua.org/download.html)
+## This software requires:
+* [lua5.1](https://www.lua.org/download.html) or [luajit2.0.5](https://luajit.org/)
 * [lgi](https://github.com/pavouk/lgi)
 * [mosquitto/mqtt](http://mqtt.org/)
 * [lua-mosquitto](https://github.com/flukso/lua-mosquitto/)
+
+## Run
+Execute: `init.lua` with Lua5.1 (or LuaJIT)
 
 ## Screenshots
 ![Screenshot](screenshot/chat.png "Chat")
@@ -17,6 +19,3 @@ This software requires:
 - Email: [victor.vector008@gmail.com](mailto:victor.vector008@gmail.com)
 - Website: [https://diazvictor.gitlab.io](https://diazvictor.gitlab.io)
 - Telegram: [https://t.me/diazvictor](https://t.me/diazvictor)
-
-## Run
-Execute: `init.lua` with Lua5.1.
