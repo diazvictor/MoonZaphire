@@ -6,15 +6,15 @@ lang = {
     left                 = "'$1' ha dejado a el chat!";
     default              = "(Por defecto)";
 
-    send            = "Enviar";
-    about           = "Acerca de";
-    login           = "Iniciar Sesion";
-    cancel          = "Cancelar";
-    users           = "Usuarios:";
-    user            = "Usuario:";
-    password        = "Contraseña:";
-    broker          = "Broker:";
-    port            = "Puerto:";
-    topic           = "Topic:";
+    send                 = "Enviar";
+    about                = "Acerca de";
+    login                = "Iniciar Sesion";
+    cancel               = "Cancelar";
+    users                = "Usuarios:";
+    user                 = "Usuario:";
+    password             = "Contraseña:";
+    broker               = "Broker:";
+    port                 = "Puerto:";
+    topic                = "Topic:";
 }
 return lang
