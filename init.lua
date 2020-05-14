@@ -1,53 +1,62 @@
 #!/usr/bin/lua5.1
 --[[--
- @package   Mosquitto
+ @package   Chateando
  @filename  init.lua
- @version   1.0
- @autor     Díaz Urbaneja Víctor Eduardo Diex <diaz.victor@openmailbox.org>
- @date      15:40:38 -04 2019
+ @version   2.4
+ @autor     Díaz Urbaneja Víctor Eduardo Diex <victor.vector008@gmail.com>
+ @date      14:26:45 -04 06.05.2020
 ]]
 
-require('lib.middleclass')              										-- la libreria middleclass me da soporte a OOP
-local mqtt = require('mosquitto')     											-- la libreria que soporta el protocolo
-local json = require('lib.json')     											-- la libreria que soporta json
-local lgi = require('lgi')            											-- requiero esta libreria que me permitira usar GTK
+CSD_ENABLED = true
+if CSD_ENABLED then win = 'MainCSD.ui' else win = 'MainNoCSD.ui' end
 
-local GObject = lgi.GObject             										-- parte de lgi
-local GLib = lgi.GLib                  											-- para el treeview
-local Gdk = lgi.Gdk                  											-- para el treeview
-local Gtk = lgi.require('Gtk', '3.0')											-- el objeto GTK
+      class   = require('lib.middleclass')              						-- la libreria middleclass me da soporte a OOP
+local mqtt    = require('mosquitto')     						                -- la libreria que soporta el protocolo
+local json    = require('lib.json')     						                -- la libreria que soporta json
+local lgi     = require('lgi')            						                -- requiero esta libreria que me permitira usar GTK
+				require('languages.init')										-- esta es la libreria de lenguajes
 
-local assert = lgi.assert
+local GObject = lgi.GObject             						                -- parte de lgi
+local GLib    = lgi.GLib                  						                -- para el treeview
+local Gdk     = lgi.Gdk                  						                -- para el treeview
+local Gtk     = lgi.require('Gtk', '3.0')						                -- el objeto GTK
+
+local assert  = lgi.assert
 local builder = Gtk.Builder()
 
-assert(builder:add_from_file('MainWindow.ui'), "error al cargar el archivo") 	-- hago un debugger, si este archivo existe (true) enlaso el archivo ejemplo.ui, si no existe (false) imprimo un error
+assert(builder:add_from_file(win), "The window file failed loading!") 	-- hago un debugger, si este archivo existe (true) enlaso el archivo ejemplo.ui, si no existe (false) imprimo un error
 
-local main_window = builder:get_object('main_window')          					-- invoco la ventana con el id main_window
-local about_window = builder:get_object('about_window')        					-- invoco la ventana con el id about_window
-local login_window = builder:get_object('login_window')        					-- invoco la ventana con el id login_window
+setLang("en_us")
 
-local header_bar = builder:get_object('header_bar')
-local list_users = builder:get_object('list_users')
+local main_window     = builder:get_object('main_window')          				-- invoco la ventana con el id main_window
+local about_window    = builder:get_object('about_window')        			    -- invoco la ventana con el id about_window
+local login_window    = builder:get_object('login_window')        				-- invoco la ventana con el id login_window
 
-local  messages = builder:get_object('mensajes')            					-- invoco al
-local  entry_message = builder:get_object('entry_mensaje')      				-- invoco al boton con el id load_choser
-local  entry_user = builder:get_object('entry_user')       						-- invoco al boton con el id load_choser
+local header_bar      = builder:get_object('header_bar')
+local list_users      = builder:get_object('list_users')
+
+local  messages       = builder:get_object('mensajes')            				-- invoco al
+local  entry_message  = builder:get_object('entry_mensaje')      				-- invoco al boton con el id load_choser
+local  entry_user     = builder:get_object('entry_user')       					-- invoco al boton con el id load_choser
 local  entry_password = builder:get_object('entry_password')    				-- invoco al boton con el id load_choser
-local  entry_broker = builder:get_object('entry_broker')       					-- invoco al boton con el id load_choser
-local  entry_port = builder:get_object('entry_port')       						-- invoco al boton con el id load_choser
-local  entry_topic = builder:get_object('entry_topic')     						-- invoco al boton con el id load_choser
-local  buffer = builder:get_object('buffer_mensajes')     						-- invoco al boton con el id btn_correr
+local  entry_broker   = builder:get_object('entry_broker')       				-- invoco al boton con el id load_choser
+local  entry_port     = builder:get_object('entry_port')       					-- invoco al boton con el id load_choser
+local  entry_topic    = builder:get_object('entry_topic')     					-- invoco al boton con el id load_choser
+local  buffer         = builder:get_object('buffer_mensajes')     				-- invoco al boton con el id btn_correr
 
-local  btn_submit = builder:get_object('btn_enviar')          					-- invoco al boton con el id btn_cerrar
-local  btn_about = builder:get_object('btn_about')          					-- invoco al boton con el id btn_cerrar
-local  btn_login = builder:get_object('btn_login')          					-- invoco al boton con el id btn_cerrar
-local  btn_cancel = builder:get_object('btn_cancel')        					-- invoco al boton con el id btn_cerrar
+local  btn_submit     = builder:get_object('btn_submit')          				-- invoco al boton con el id btn_cerrar
+local  btn_about      = builder:get_object('btn_about')          				-- invoco al boton con el id btn_cerrar
+local  btn_login      = builder:get_object('btn_login')          				-- invoco al boton con el id btn_cerrar
+local  btn_cancel     = builder:get_object('btn_cancel')        				-- invoco al boton con el id btn_cerrar
+local  mqtt_tray      = builder:get_object('mqtt_tray')        					-- invoco al boton con el id btn_cerrar
 
+local possible_characters = 'abcdefghijklmnopqrstuvwyxz1234567890'              -- caracteres posibles para el generador de passwords
 local broker_default = 'broker.mqtt.cool'  										-- el servidor por defecto
 local port_default = '1883'   													-- el puerto por defecto
 local keepalive = 60     														-- si me desconecto, ¿Cuanto tiempo esperar antes de recoenctar?
 local qos = 2        															-- acuse de recibo
-local username_default = 'mqtt_user' .. math.random(1, 100) 					-- usuario por defecto
+local username_default = 'moonZaphire' .. math.random(1, 999) 					-- usuario por defecto
+entry_user.text = username_default												-- mostrar usuario aleatorio
 local password_default = ''														-- contraseña por defecto
 msg = nil
 
@@ -64,64 +73,93 @@ function user_list()
 	end
 end
 
+
+	--/////////////////////////////////////////////////////////////////////////////////////////////--
+
+		builder:get_object('btn_submit').label = getLINE("send")
+		builder:get_object('btn_login').label = getLINE("login")
+		builder:get_object('btn_cancel').label = getLINE("cancel")
+
+		builder:get_object('usuarios').title = getLINE("users")
+		builder:get_object('label_user').label = getLINE("user")
+		builder:get_object('label_pass').label = getLINE("password")
+		builder:get_object('label_broker').label = getLINE("broker")
+		builder:get_object('label_port').label = getLINE("port")
+		builder:get_object('label_topic').label = getLINE("topic")
+
+	--/////////////////////////////////////////////////////////////////////////////////////////////--
+
+local function superpass()
+	math.randomseed(os.time())
+	local str = ""
+	for x = 1, 16 do
+		local rand = math.random(1, #possible_characters)
+		local randUpper = math.random(1,2)
+		if (randUpper == 2) then
+			str = str .. possible_characters:sub(rand, rand):upper()
+		else
+			str = str .. possible_characters:sub(rand, rand):lower()
+		end
+	end 
+	return str
+end
+
 function validate_logIn()
-	username = entry_user.text
-	password = entry_password.text
+	username, password = entry_user.text:gsub("%s", ""):gsub(" ", ""), entry_password.text
 
-	broker = entry_broker.text
-	port = entry_port.text
+	broker, port = entry_broker.text, entry_port.text
 
-	if ( username ~= '' and password ~= '') then
-		user, pass = username, password
-		print( 'logeado con el usuario ' .. username .. ' y la contraseña ' .. password )
-	elseif ( username ~= '' and password == '' ) then
-		user, pass = username, password_default
-		print( 'logeado con el usuario ' .. username .. ' y la contraseña ' .. password_default )
-	elseif ( password ~= '' and username == '' ) then
-		user, pass = username_default, password
-		print( 'logeado con el usuario ' .. username_default .. ' y la contraseña ' .. password )
-	elseif ( username == '' and password == '' or username == '' or password == '' ) then
-		user, pass = username_default, password_default
-		print( 'logeado con el usuario aleatorio ' .. username_default .. ' y la contraseña ' .. password_default .. ' por defecto' )
-	else
-		return false, 'fallo y no se por que'
+	local _e = false
+	if (#username < 1) then 
+		username = username_default 
+		local _e = getLINE("default")
+	end 
+	if (#password < 1) then 
+		password = superpass()
+		local _e = _e or getLINE("default")
 	end
 
+	user, pass = username, password
+	print(getLINE("logged_as", {username, password, _e or " "}))
+
+	--/////////////////////////////////////////////////////////////////////////////////////////////--
+
 	client = mqtt.new( user .. '-lua', false )	--[[ La instancia de comunicacion  MQTT]]--
-	if (pass) then
+	if ( pass ) then
 		client:login_set( user, pass )
 	end
 
-	if ( broker ~= '' and port ~= '' ) then
-		print( 'conectado a ' .. broker .. ' con el puerto ' .. port )
-		client:connect( broker, tonumber(port), keepalive )
-	elseif ( broker ~= '' and port == '') then
-		print( 'conectado a ' .. broker .. ' por defecto con el puerto ' .. port_default )
-		client:connect( broker, tonumber(port_default), keepalive )
-	elseif ( port ~= '' and broker == '' ) then
-		print( 'conectado a ' .. broker_default .. ' por defecto con el puerto ' .. port )
-		client:connect( broker_default, tonumber(port), keepalive )
-	elseif ( broker == '' and port == '') then
-		print( 'conectado al ' .. broker_default .. ' por defecto con el puerto ' .. port_default ..  ' por defecto' )
-		client:connect( broker_default, tonumber(port_default), keepalive )
-	else
-		return false, 'fallo y no se por que'
+	local _e = false
+	if (#broker < 1) then 
+		broker = broker_default
+		local _e = getLINE("default")
+	end 
+	if (#(tonumber(port) or "") < 1) then 
+		port = port_default
+		local _e = _e or getLINE("default")
 	end
+
+	client:connect_async( broker, tonumber(port), keepalive )
+	print(getLINE("connected_to", {broker, port, _e or " "}))
+
+	--/////////////////////////////////////////////////////////////////////////////////////////////--
 
 	client.ON_MESSAGE = function ( mid, topic, payload )
 		local connect = 'users/connect'
-		if (topic == connect) then
-			template_user = '@'.. payload
-			table.insert( usuarios, template_user )
-			local info = {
-				user = '',
-				msg = user .. ' has joined the chat',
-				time = os.date('%H:%M:%S')
-			}
-			client:publish( channel, json:encode(info) )
+		local disconnect = 'users/disconnect'
+
+		if ( topic == connect ) then
+			table.insert( usuarios, payload )
 		end
-	    if (payload ~= 'my payload' and topic ~= connect) then
-	        msg = json:decode(payload)
+		if ( topic == disconnect ) then
+			for k, v in pairs(usuarios) do
+				if ( v == payload ) then
+					table.remove(usuarios, k)
+				end
+			end
+		end
+	    if ( payload ~= 'my payload' ) and ( topic ~= connect ) and ( topic ~= disconnect ) then
+	        msg = json:decode( payload )
 	    end
 	end
 
@@ -129,10 +167,20 @@ function validate_logIn()
 	channel = entry_topic.text
 
     client:subscribe( channel, 0 )
-	header_bar.title = '#' .. channel
+	if CSD_ENABLED then 
+		header_bar.title = '#' .. channel
+	else
+		main_window.title = '#' .. channel
+	end
 
     client:subscribe( 'users/connect', 0 )
 	client:publish( 'users/connect', user )
+	local message_connect = {
+		user = '',
+		msg = getLINE("joined", {user}),
+		time = os.date( '%H:%M:%S' )
+	}
+	client:publish( channel, json:encode( message_connect ) )
 end
 
 function btn_login:on_clicked()
@@ -140,6 +188,7 @@ function btn_login:on_clicked()
 
 	login_window:hide()
 	main_window:show_all()
+	mqtt_tray.visible = true
 end
 
 entry_message:grab_focus()												-- al iniciar lo mantengo en estado focus (activo)
@@ -203,6 +252,28 @@ function btn_submit:on_clicked()
     submit()
 end
 
+function btn_about:on_clicked()
+	about_window:run()
+	about_window:hide()
+end
+
+local visible = false
+
+function tray()
+	visible = not visible
+    if ( login_window.is_active == true ) or ( login_window.is_active == false ) then
+		if ( visible ) then
+			main_window:show_all()
+        else
+            main_window:hide()
+        end
+    end
+end
+
+function mqtt_tray:on_activate()
+	tray()
+end
+
 function login_window:on_destroy()
 	Gtk.main_quit()
 end
@@ -212,6 +283,20 @@ function btn_cancel:on_clicked()
 end
 
 function main_window:on_destroy()
+	client:subscribe( 'users/disconnect', 0 )
+	client:publish( 'users/disconnect', user )
+	local message_disconnect = {
+		user = '',
+		msg = getLINE("left", {user}),
+		time = os.date( '%H:%M:%S' )
+	}
+	client:publish( channel, json:encode( message_disconnect ) )
+
+	client:unsubscribe( 'users/disconnect', 0 )
+	client:unsubscribe( 'users/connect', 0 )
+
+	client:unsubscribe( channel, 0 )
+
     client:disconnect()
     Gtk.main_quit()
 end
