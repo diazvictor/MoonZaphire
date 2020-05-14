@@ -5,6 +5,7 @@ lang = {
     joined               = "'$1' se ha unido a el chat!";
     left                 = "'$1' ha dejado a el chat!";
     default              = "(Por defecto)";
+    funny_passw          = "c0ntr4zenya_"; -- jaajaja q divertido, me muero de la risa :|
 
     send                 = "Enviar";
     about                = "Acerca de";

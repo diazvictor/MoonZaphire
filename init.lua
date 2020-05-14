@@ -55,8 +55,10 @@ local broker_default = 'broker.mqtt.cool'  										-- el servidor por defecto
 local port_default = '1883'   													-- el puerto por defecto
 local keepalive = 60     														-- si me desconecto, ¿Cuanto tiempo esperar antes de recoenctar?
 local qos = 2        															-- acuse de recibo
-local username_default = 'moonZaphire' .. math.random(1, 999) 					-- usuario por defecto
+local username_default = 'MoonZaphire' .. math.random(1, 999) 					-- usuario por defecto
+local topic_default = "users/chat"
 entry_user.text = username_default												-- mostrar usuario aleatorio
+entry_topic.text = topic_default
 local password_default = ''														-- contraseña por defecto
 msg = nil
 
@@ -86,6 +88,11 @@ end
 		builder:get_object('label_broker').label = getLINE("broker")
 		builder:get_object('label_port').label = getLINE("port")
 		builder:get_object('label_topic').label = getLINE("topic")
+
+		builder:get_object('entry_user').placeholder_text = username_default
+		builder:get_object('entry_password').placeholder_text = getLINE("funny_pasw") --this doesnt works for some reason
+
+		builder:get_object('login_window').title = getLINE("login")
 
 	--/////////////////////////////////////////////////////////////////////////////////////////////--
 
@@ -134,7 +141,7 @@ function validate_logIn()
 		broker = broker_default
 		local _e = getLINE("default")
 	end 
-	if (#(tonumber(port) or "") < 1) then 
+	if (#tostring(tonumber(port) or "") < 1) then 
 		port = port_default
 		local _e = _e or getLINE("default")
 	end
