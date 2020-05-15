@@ -1,10 +1,10 @@
 #!/usr/bin/lua5.1
 --[[--
- @package   Chateando
+ @package   MoonZaphire
  @filename  init.lua
- @version   2.4
+ @version   2.8
  @autor     Díaz Urbaneja Víctor Eduardo Diex <victor.vector008@gmail.com>
- @date      14:26:45 -04 06.05.2020
+ @date      14.05.2020 21:25:45 -04
 ]]
 
 CSD_ENABLED = true
@@ -107,7 +107,7 @@ local function superpass()
 		else
 			str = str .. possible_characters:sub(rand, rand):lower()
 		end
-	end 
+	end
 	return str
 end
 
@@ -117,11 +117,11 @@ function validate_logIn()
 	broker, port = entry_broker.text, entry_port.text
 
 	local _e = false
-	if (#username < 1) then 
-		username = username_default 
+	if (#username < 1) then
+		username = username_default
 		local _e = getLINE("default")
-	end 
-	if (#password < 1) then 
+	end
+	if (#password < 1) then
 		password = superpass()
 		local _e = _e or getLINE("default")
 	end
@@ -137,11 +137,11 @@ function validate_logIn()
 	end
 
 	local _e = false
-	if (#broker < 1) then 
+	if (#broker < 1) then
 		broker = broker_default
 		local _e = getLINE("default")
-	end 
-	if (#tostring(tonumber(port) or "") < 1) then 
+	end
+	if (#tostring(tonumber(port) or "") < 1) then
 		port = port_default
 		local _e = _e or getLINE("default")
 	end
@@ -174,7 +174,7 @@ function validate_logIn()
 	channel = entry_topic.text
 
     client:subscribe( channel, 0 )
-	if CSD_ENABLED then 
+	if CSD_ENABLED then
 		header_bar.title = '#' .. channel
 	else
 		main_window.title = '#' .. channel

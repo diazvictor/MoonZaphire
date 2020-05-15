@@ -1,5 +1,5 @@
-# Chateando
-Chateando is a GTK3 frontend for MQTT written in Lua.
+# MoonZaphire
+MoonZaphire is a GTK3 frontend for MQTT written in Lua.
 
 ## This software requires:
 * [lua5.1](https://www.lua.org/download.html) or [luajit2.0.5](https://luajit.org/)

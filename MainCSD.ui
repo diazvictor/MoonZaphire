@@ -5,11 +5,11 @@
   <object class="GtkAboutDialog" id="about_window">
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
-    <property name="program_name">Chateando</property>
-    <property name="version">2.4</property>
+    <property name="program_name">MoonZaphire</property>
+    <property name="version">2.8</property>
     <property name="copyright" translatable="yes">Copyright (c) 2019-2020 Díaz Urbaneja Víctor Eduardo Diex</property>
-    <property name="comments" translatable="yes">Chateando is a gtk frontend for mqtt written in lua.</property>
-    <property name="website">https://github.com/diazvictor/chat-mqtt-lua</property>
+    <property name="comments" translatable="yes">MoonZaphire is a gtk frontend for mqtt written in lua.</property>
+    <property name="website">https://github.com/diazvictor/MoonZaphire</property>
     <property name="license" translatable="yes">zlib License
 
 /* zlib.h -- interface of the 'zlib' general purpose compression library
