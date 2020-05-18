@@ -7,7 +7,7 @@
  @date      14.05.2020 21:25:45 -04
 ]]
 
-CSD_ENABLED = false
+CSD_ENABLED = true
 if CSD_ENABLED then win = 'view/MainCSD.ui' else win = 'view/MainNoCSD.ui' end
 
       class   = require('lib.middleclass')              						-- la libreria middleclass me da soporte a OOP
