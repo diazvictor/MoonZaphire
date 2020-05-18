@@ -1,7 +1,7 @@
 # MoonZaphire
 MoonZaphire is a GTK3 frontend for MQTT written in Lua.
 
-*Read this in other languages: [Español](README.ES.md) 
+*Read this in other languages: [Español](README.ES.md)*
 
 ## This software requires:
 * [lua5.1](https://www.lua.org/download.html) or [luajit2.0.5](https://luajit.org/)
