@@ -16,6 +16,6 @@ Ejecute: `init.lua` con Lua5.1 (o LuaJIT)
 ![Screenshot](screenshot/login.png "Login")
 
 ## Contactos
-- Email: [victor.vector008@gmail.com](mailto:victor.vector008@gmail.com)
-- Website: [https://diazvictor.gitlab.io](https://diazvictor.gitlab.io)
+- Correo: [victor.vector008@gmail.com](mailto:victor.vector008@gmail.com)
+- Sitio Web: [https://diazvictor.gitlab.io](https://diazvictor.gitlab.io)
 - Telegram: [https://t.me/diazvictor](https://t.me/diazvictor)
