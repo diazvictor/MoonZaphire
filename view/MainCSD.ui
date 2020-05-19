@@ -38,7 +38,7 @@
 
 */ </property>
     <property name="authors"> Díaz Urbaneja Víctor Eduardo Diex &lt;victor.vector008@gmail.com&gt;</property>
-    <property name="logo">images/image.svg</property>
+    <property name="logo">../images/image.svg</property>
     <property name="wrap_license">True</property>
     <property name="license_type">custom</property>
     <child>
@@ -261,11 +261,15 @@
   </object>
   <object class="GtkDialog" id="login_window">
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Login</property>
     <property name="resizable">False</property>
     <property name="type_hint">dialog</property>
     <child type="titlebar">
-      <placeholder/>
+      <object class="GtkHeaderBar">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="title">Log In</property>
+        <property name="spacing">1</property>
+      </object>
     </child>
     <child internal-child="vbox">
       <object class="GtkBox">
@@ -275,18 +279,15 @@
         <child internal-child="action_area">
           <object class="GtkButtonBox">
             <property name="can_focus">False</property>
-            <property name="margin_left">37</property>
-            <property name="hexpand">True</property>
+            <property name="homogeneous">True</property>
+            <property name="layout_style">expand</property>
             <child>
               <object class="GtkButton" id="btn_login">
                 <property name="label" translatable="yes">Entrar</property>
-                <property name="width_request">100</property>
+                <property name="width_request">123</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="halign">start</property>
-                <property name="hexpand">True</property>
-                <signal name="clicked" handler="on_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -297,14 +298,9 @@
             <child>
               <object class="GtkButton" id="btn_cancel">
                 <property name="label" translatable="yes">Cancelar</property>
-                <property name="width_request">100</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="halign">end</property>
-                <property name="hexpand">True</property>
-                <property name="image_position">right</property>
-                <signal name="clicked" handler="on_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -314,165 +310,189 @@
             </child>
           </object>
           <packing>
-            <property name="expand">True</property>
+            <property name="expand">False</property>
             <property name="fill">False</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
-          <object class="GtkGrid">
+          <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_top">10</property>
+            <property name="orientation">vertical</property>
             <child>
-              <object class="GtkLabel" id="label_user">
+              <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes">Escriba un nombre</property>
-                <property name="margin_bottom">10</property>
-                <property name="label" translatable="yes">Usuario:</property>
-                <property name="width_chars">14</property>
-                <attributes>
-                  <attribute name="weight" value="bold"/>
-                </attributes>
+                <property name="margin_top">11</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkGrid">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkLabel" id="label_user">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Escriba un nombre</property>
+                        <property name="margin_bottom">10</property>
+                        <property name="label" translatable="yes">Usuario:</property>
+                        <property name="width_chars">14</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label_pass">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_bottom">10</property>
+                        <property name="label" translatable="yes">Contraseña:</property>
+                        <property name="width_chars">14</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="entry_user">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="margin_bottom">10</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="entry_password">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="margin_bottom">10</property>
+                        <property name="visibility">False</property>
+                        <property name="placeholder_text" translatable="yes">Contraseña</property>
+                        <property name="input_purpose">password</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="entry_port">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="margin_bottom">10</property>
+                        <property name="max_length">4</property>
+                        <property name="placeholder_text" translatable="yes">1883</property>
+                        <property name="input_purpose">number</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label_broker">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_bottom">10</property>
+                        <property name="label" translatable="yes">Broker:</property>
+                        <property name="width_chars">14</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label_port">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_bottom">10</property>
+                        <property name="label" translatable="yes">Puerto:</property>
+                        <property name="width_chars">14</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="entry_broker">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="margin_bottom">10</property>
+                        <property name="placeholder_text" translatable="yes">broker.mqtt.cool</property>
+                        <property name="input_purpose">url</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label_topic">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_bottom">10</property>
+                        <property name="label" translatable="yes">Topic:</property>
+                        <property name="width_chars">14</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="entry_topic">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="margin_bottom">10</property>
+                        <property name="placeholder_text" translatable="yes">users/chat</property>
+                        <property name="input_purpose">number</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">4</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
               </object>
               <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label_pass">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_bottom">10</property>
-                <property name="label" translatable="yes">Contraseña:</property>
-                <property name="width_chars">14</property>
-                <attributes>
-                  <attribute name="weight" value="bold"/>
-                </attributes>
-              </object>
-              <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="entry_user">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="margin_bottom">10</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="entry_password">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="margin_bottom">10</property>
-                <property name="visibility">False</property>
-                <property name="placeholder_text" translatable="yes">Contraseña</property>
-                <property name="input_purpose">password</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="entry_port">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="margin_bottom">10</property>
-                <property name="max_length">4</property>
-                <property name="placeholder_text" translatable="yes">1883</property>
-                <property name="input_purpose">number</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">3</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label_broker">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_bottom">10</property>
-                <property name="label" translatable="yes">Broker:</property>
-                <property name="width_chars">14</property>
-                <attributes>
-                  <attribute name="weight" value="bold"/>
-                </attributes>
-              </object>
-              <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label_port">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_bottom">10</property>
-                <property name="label" translatable="yes">Puerto:</property>
-                <property name="width_chars">14</property>
-                <attributes>
-                  <attribute name="weight" value="bold"/>
-                </attributes>
-              </object>
-              <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">3</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="entry_broker">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="margin_bottom">10</property>
-                <property name="placeholder_text" translatable="yes">broker.mqtt.cool</property>
-                <property name="input_purpose">url</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label_topic">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_bottom">10</property>
-                <property name="label" translatable="yes">Topic:</property>
-                <property name="width_chars">14</property>
-                <attributes>
-                  <attribute name="weight" value="bold"/>
-                </attributes>
-              </object>
-              <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">4</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="entry_topic">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="margin_bottom">10</property>
-                <property name="placeholder_text" translatable="yes">users/chat</property>
-                <property name="input_purpose">number</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">4</property>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
               </packing>
             </child>
           </object>
           <packing>
-            <property name="expand">False</property>
+            <property name="expand">True</property>
             <property name="fill">True</property>
             <property name="position">1</property>
           </packing>
@@ -481,7 +501,7 @@
     </child>
   </object>
   <object class="GtkStatusIcon" id="mqtt_tray">
-    <property name="pixbuf">images/trayicon.svg</property>
+    <property name="pixbuf">../images/trayicon.svg</property>
     <property name="visible">False</property>
     <property name="has_tooltip">True</property>
   </object>

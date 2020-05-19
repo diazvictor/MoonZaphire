@@ -8,7 +8,7 @@
 ]]
 
 CSD_ENABLED = true
-if CSD_ENABLED then win = 'MainCSD.ui' else win = 'MainNoCSD.ui' end
+if CSD_ENABLED then win = 'view/MainCSD.ui' else win = 'view/MainNoCSD.ui' end
 
       class   = require('lib.middleclass')              						-- la libreria middleclass me da soporte a OOP
 local mqtt    = require('mosquitto')     						                -- la libreria que soporta el protocolo
@@ -24,7 +24,7 @@ local Gtk     = lgi.require('Gtk', '3.0')						                -- el objeto GTK
 local assert  = lgi.assert
 local builder = Gtk.Builder()
 
-assert(builder:add_from_file(win), "The window file failed loading!") 	-- hago un debugger, si este archivo existe (true) enlaso el archivo ejemplo.ui, si no existe (false) imprimo un error
+assert(builder:add_from_file(win), "The window file failed loading!") 	        -- hago un debugger, si este archivo existe (true) enlaso el archivo ejemplo.ui, si no existe (false) imprimo un error
 
 setLang("en_us")
 
