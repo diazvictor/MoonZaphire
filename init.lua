@@ -45,7 +45,12 @@ local  entry_topic    = builder:get_object('entry_topic')     					-- invoco al 
 local  buffer         = builder:get_object('buffer_mensajes')     				-- invoco al boton con el id btn_correr
 
 local  btn_submit     = builder:get_object('btn_submit')          				-- invoco al boton con el id btn_cerrar
-local  btn_about      = builder:get_object('btn_about')          				-- invoco al boton con el id btn_cerrar
+if CSD_ENABLED then
+	btn_about		  = builder:get_object('btn_about')          				-- invoco al boton con el id btn_cerrar
+else
+	menu_about  	  = builder:get_object('about_submenu')          			-- invoco al boton con el id btn_cerrar
+	menu_quit  		  = builder:get_object('quit_submenu')          			-- invoco al boton con el id btn_cerrar
+end
 local  btn_login      = builder:get_object('btn_login')          				-- invoco al boton con el id btn_cerrar
 local  btn_cancel     = builder:get_object('btn_cancel')        				-- invoco al boton con el id btn_cerrar
 local  mqtt_tray      = builder:get_object('mqtt_tray')        					-- invoco al boton con el id btn_cerrar
@@ -259,9 +264,38 @@ function btn_submit:on_clicked()
     submit()
 end
 
-function btn_about:on_clicked()
-	about_window:run()
-	about_window:hide()
+function disconnect()
+	client:subscribe( 'users/disconnect', 0 )
+	client:publish( 'users/disconnect', user )
+	local message_disconnect = {
+		user = '',
+		msg = getLINE("left", {user}),
+		time = os.date( '%H:%M:%S' )
+	}
+	client:publish( channel, json:encode( message_disconnect ) )
+
+	client:unsubscribe( 'users/disconnect', 0 )
+	client:unsubscribe( 'users/connect', 0 )
+
+	client:unsubscribe( channel, 0 )
+
+    client:disconnect()
+end
+
+if CSD_ENABLED then
+	function btn_about:on_clicked()
+		about_window:run()
+		about_window:hide()
+	end
+else
+	function menu_about:on_button_press_event()
+		about_window:run()
+		about_window:hide()
+	end
+	function menu_quit:on_button_press_event()
+		quit_app()
+	    Gtk.main_quit()
+	end
 end
 
 local visible = false
@@ -290,21 +324,7 @@ function btn_cancel:on_clicked()
 end
 
 function main_window:on_destroy()
-	client:subscribe( 'users/disconnect', 0 )
-	client:publish( 'users/disconnect', user )
-	local message_disconnect = {
-		user = '',
-		msg = getLINE("left", {user}),
-		time = os.date( '%H:%M:%S' )
-	}
-	client:publish( channel, json:encode( message_disconnect ) )
-
-	client:unsubscribe( 'users/disconnect', 0 )
-	client:unsubscribe( 'users/connect', 0 )
-
-	client:unsubscribe( channel, 0 )
-
-    client:disconnect()
+	disconnect()
     Gtk.main_quit()
 end
 
