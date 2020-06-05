@@ -137,6 +137,8 @@ function validate_logIn()
 	--/////////////////////////////////////////////////////////////////////////////////////////////--
 
 	client = mqtt.new( user .. '-lua', false )	--[[ La instancia de comunicacion  MQTT]]--
+	client:will_set( 'users/disconnect', user , 0)
+
 	if ( pass ) then
 		client:login_set( user, pass )
 	end
@@ -162,8 +164,7 @@ function validate_logIn()
 
 		if ( topic == connect ) then
 			table.insert( usuarios, payload )
-		end
-		if ( topic == disconnect ) then
+		elseif ( topic == disconnect ) then
 			for k, v in pairs(usuarios) do
 				if ( v == payload ) then
 					table.remove(usuarios, k)
@@ -186,6 +187,8 @@ function validate_logIn()
 	end
 
     client:subscribe( 'users/connect', 0 )
+	client:subscribe( 'users/disconnect', 0 )
+
 	client:publish( 'users/connect', user )
 	local message_connect = {
 		user = '',
@@ -264,24 +267,6 @@ function btn_submit:on_clicked()
     submit()
 end
 
-function disconnect()
-	client:subscribe( 'users/disconnect', 0 )
-	client:publish( 'users/disconnect', user )
-	local message_disconnect = {
-		user = '',
-		msg = getLINE("left", {user}),
-		time = os.date( '%H:%M:%S' )
-	}
-	client:publish( channel, json:encode( message_disconnect ) )
-
-	client:unsubscribe( 'users/disconnect', 0 )
-	client:unsubscribe( 'users/connect', 0 )
-
-	client:unsubscribe( channel, 0 )
-
-    client:disconnect()
-end
-
 if CSD_ENABLED then
 	function btn_about:on_clicked()
 		about_window:run()
@@ -324,7 +309,6 @@ function btn_cancel:on_clicked()
 end
 
 function main_window:on_destroy()
-	disconnect()
     Gtk.main_quit()
 end
 
