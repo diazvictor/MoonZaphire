@@ -27,3 +27,4 @@ assert(builder:add_from_file(template), "The window file failed loading!")
 ui = builder.objects
 
 users = {}
+local message_content = nil
