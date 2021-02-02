@@ -26,6 +26,9 @@ print("|----- 'lgi.Gdk' loaded successfully.")
 require 'init'
 print("Libraries loaded!\n")
 
+-- MoonZaphire
+require('src.login')
+
 function ui.menu_about:on_clicked()
     ui.about_window:run()
     ui.about_window:hide()
