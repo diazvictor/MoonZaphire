@@ -9,7 +9,8 @@
     <property name="program_name">MoonZaphire</property>
     <property name="version">3.0</property>
     <property name="copyright" translatable="yes">Copyright (c) 2019-2021 Díaz Urbaneja Víctor Eduardo Diex</property>
-    <property name="comments" translatable="yes">MoonZaphire is a gtk frontend for mqtt written in lua.</property>
+    <property name="comments" translatable="yes">MoonZaphire is a GTK frontend for Mosquitto written in Lua.
+</property>
     <property name="website">https://github.com/diazvictor/MoonZaphire</property>
     <property name="license" translatable="yes">zlib License
 
