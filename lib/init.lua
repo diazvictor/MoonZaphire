@@ -16,9 +16,14 @@ print("| 'json' loaded successfully.")
 utils = require 'utils'
 print("| 'utils' loaded successfully.")
 
+mqtt = require 'mosquitto'
+print("| 'mosquitto' loaded successfully.")
+
 local assert  = lgi.assert
 local builder = Gtk.Builder()
 local template = 'data/gtk/MoonZaphire.ui'
 
 assert(builder:add_from_file(template), "The window file failed loading!")
 ui = builder.objects
+
+users = {}
