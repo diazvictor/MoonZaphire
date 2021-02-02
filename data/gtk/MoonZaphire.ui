@@ -4,6 +4,7 @@
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkAboutDialog" id="about_window">
     <property name="can_focus">False</property>
+    <property name="icon">../images/MoonZaphire.svg</property>
     <property name="type_hint">dialog</property>
     <property name="program_name">MoonZaphire</property>
     <property name="version">3.0</property>
@@ -38,7 +39,7 @@
 
 */ </property>
     <property name="authors"> Díaz Urbaneja Víctor Eduardo Diex &lt;victor.vector008@gmail.com&gt;</property>
-    <property name="logo">../images/image.svg</property>
+    <property name="logo">../images/MoonZaphire.svg</property>
     <property name="wrap_license">True</property>
     <property name="license_type">custom</property>
     <child type="titlebar">
@@ -84,7 +85,7 @@
         <child>
           <object class="GtkModelButton" id="menu_setting">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
             <property name="text" translatable="yes">Preferences</property>
           </object>
@@ -108,7 +109,7 @@
         <child>
           <object class="GtkModelButton" id="menu_about">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
             <property name="text" translatable="yes">About</property>
           </object>
@@ -132,7 +133,7 @@
         <child>
           <object class="GtkModelButton" id="menu_quit">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
             <property name="text" translatable="yes">Quit</property>
           </object>
@@ -150,6 +151,7 @@
     <property name="window_position">center</property>
     <property name="default_width">600</property>
     <property name="default_height">400</property>
+    <property name="icon">../images/MoonZaphire.svg</property>
     <child type="titlebar">
       <object class="GtkHeaderBar" id="header_bar">
         <property name="visible">True</property>
@@ -160,7 +162,7 @@
         <child>
           <object class="GtkMenuButton" id="menu_button">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="focus_on_click">False</property>
             <property name="receives_default">True</property>
             <property name="use_popover">False</property>
