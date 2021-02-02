@@ -28,6 +28,7 @@ print("Libraries loaded!\n")
 
 -- MoonZaphire
 require('src.login')
+require('src.chat')
 
 function ui.menu_about:on_clicked()
     ui.about_window:run()
