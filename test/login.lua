@@ -19,3 +19,11 @@ end
 function ui.btn_login:on_clicked()
 	ui.pages:set_visible_child_name('chat')
 end
+
+function ui.btn_go_login:on_clicked()
+	ui.pages:set_visible_child_name('login')
+end
+
+function ui.btn_go_register:on_clicked()
+	utils:show_alert('El modulo de registro se encuentra en desarrollo')
+end

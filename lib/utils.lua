@@ -54,4 +54,44 @@ function utils:trim(value)
 	return (string.gsub(value, "%s+$", ""):gsub("^%s+", ""))
 end
 
+function utils:addClass(widget, classname)
+	if (not widget) then
+		return false
+	end
+	local element = widget:get_style_context()
+    element:add_class(classname)
+    return true
+end
+
+function utils:removeClass(widget, classname)
+	if (not widget) then
+		return false
+	end
+	local element = widget:get_style_context()
+    element:remove_class(classname)
+    return true
+end
+
+--- Muestro una alerta
+-- @param message string: El mensaje
+-- @param seconds number: Los segundos antes de ocultar
+function utils:show_alert(message, seconds)
+	seconds = seconds or 3
+	ui.alert:add_overlay (
+		Gtk.Label {
+			visible = true,
+			id = 'alert_label',
+			label = message
+		}
+	)
+	utils:addClass(ui.alert.child.alert_label, 'alert-dialog')
+	GLib.timeout_add_seconds(
+		GLib.PRIORITY_DEFAULT, seconds,
+		function()
+			ui.alert.child.alert_label:destroy()
+			return false
+		end
+	)
+end
+
 return utils

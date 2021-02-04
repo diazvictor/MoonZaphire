@@ -15,6 +15,12 @@ scrolledwindow {
     border: none;
 }
 
+.alert-dialog {
+	font-size: 20px;
+	background-color: rgba(0, 0, 0, 0.9);
+	transition: background .2s ease-out;
+}
+
 /* LIST-CHAT STYLES */
 list.list {
 	background: transparent;
