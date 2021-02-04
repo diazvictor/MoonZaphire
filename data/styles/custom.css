@@ -29,12 +29,25 @@ list.list row box label:first-child {
 }
 
 /* USER CHAT STYLE */
+/** TITLE **/
 stack.user-chat > box > box:nth-child(1) box label {
 	font-size: 16px;
 	font-weight: bold;
 }
 
+/** MESSAGE ENTRY **/
+stack.user-chat > box > box:last-child :last-child {
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+stack.user-chat > box > box:last-child :first-child {
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
 /* COMMENT STYLES */
+/*
 box.comment-this,
 box.comment-for-you {
 	background-color: #1E90FF;
@@ -43,5 +56,16 @@ box.comment-for-you {
 }
 box.comment-this label,
 box.comment-for-you label {
+	color: #FFFFFF;
+}
+*/
+
+stack.user-chat box > scrolledwindow > viewport > box > box {
+	background-color: #1E90FF;
+	padding: 10px 15px;
+	border-radius: 20px;
+}
+
+stack.user-chat box > scrolledwindow > viewport box > box {
 	color: #FFFFFF;
 }
