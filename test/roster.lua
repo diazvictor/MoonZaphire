@@ -101,6 +101,8 @@ end
 --- By clicking I delete a roster
 function ui.btn_delete_roster:on_clicked()
 	local listboxrow = ui.roster:get_selected_row()
+	local id_chat = ui.user_chat:get_visible_child_name()
+	ui.user_chat.child[id_chat]:destroy()
 	roster:delete_item(listboxrow)
 end
 

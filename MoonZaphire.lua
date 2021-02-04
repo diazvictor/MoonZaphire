@@ -30,7 +30,7 @@ print("Libraries loaded!\n")
 
 -- MoonZaphire
 require('test.login')
-list_chat = require('test.roster')
+roster = require('test.roster')
 user_chat = require('test.user-chat')
 
 function ui.menu_about:on_clicked()
