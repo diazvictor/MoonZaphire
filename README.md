@@ -1,6 +1,6 @@
 # MoonZaphire
 
-MoonZaphire is a GTK3 frontend for Mosquitto written in Lua.
+MoonZaphire is a GTK3 frontend for MQTT written in Lua with a lot of love.
 
 ## Dependencies
 
