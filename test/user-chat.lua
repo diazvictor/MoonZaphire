@@ -37,9 +37,12 @@ function user_chat:new_message(id_chat, message, origin)
 	ui.user_chat.child[id_chat].child.message_box:add(
 		message
 	)
-	-- @TODO: Esto no funciona correctamente
-	local scrollBottom = ui.user_chat.child[id_chat].child.scroll:get_vadjustment()
-	scrollBottom:set_value(scrollBottom:get_upper())
+	local scrollBottom = ui.user_chat.child[id_chat].child.scroll
+	local box_message = ui.user_chat.child[id_chat].child.message_box
+	function box_message:on_size_allocate()
+		local adj = scrollBottom:get_vadjustment()
+		adj:set_value(adj.upper - adj.page_size)
+	end
 end
 
 --- Method to create a chat
