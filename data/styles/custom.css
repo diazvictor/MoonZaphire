@@ -14,9 +14,10 @@
 scrolledwindow {
     border: none;
 }
+/* ALERT DIALOG STYLES */
 box.alert-dialog {
 	color: #FFFFFF;
-	background-color: rgba(0, 0, 0, 0.9);
+	background-color: rgba(0, 0, 0, 0.5);
 	transition: background .2s ease-out;
 }
 box.alert-dialog label.alert-title {
