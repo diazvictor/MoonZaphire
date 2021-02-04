@@ -82,7 +82,7 @@ function roster:delete_item(listboxrow)
 	if (not listboxrow) then
 		return false
 	end
-	ui.list_chat:remove(listboxrow)
+	ui.roster:remove(listboxrow)
 	return true
 end
 
