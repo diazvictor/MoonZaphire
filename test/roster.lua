@@ -1,17 +1,17 @@
 --[[--
  @package   MoonZaphire
- @filename  list-chat.lua
+ @filename  roster.lua
  @version   1.0
  @author    Díaz Urbaneja Víctor Eduardo Diex <victor.vector008@gmail.com>
  @date      03.02.2021 16:51:58 -04
 ]]
 
-math.randomseed(os.time())
-local list_chat = class('list_chat')
+local roster = class('roster')
 
 --- Random name generator
 -- @return name_random, id_random
-function name_generator()
+local function name_generator()
+	math.randomseed(os.time())
 	local random, name_random, id_random = math.random(1, 8)
 	if random == 1 then
 		name_random = 'Andreas Mann'
@@ -41,11 +41,10 @@ function name_generator()
 	return id_random, name_random
 end
 
---- Method to create a new chat
--- @param id_chat number: the chat id
+--- Method to create a new roster
 -- @param name_chat string: the name of the chat
-function list_chat:new_chat(id_chat, name_chat)
-	ui.list_chat:add(Gtk.ListBoxRow {
+function roster:new_item(id_chat, name_chat)
+	ui.roster:add(Gtk.ListBoxRow {
 		visible = true,
 		id = id_chat,
 		selectable = true,
@@ -73,12 +72,13 @@ function list_chat:new_chat(id_chat, name_chat)
 			}
 		}
 	})
+	return id_chat
 end
 
---- Method to delete a chat
+--- Method to delete a roster
 -- @param listboxrow userdata: the list row
 -- @return true or false
-function list_chat:delete_chat(listboxrow)
+function roster:delete_item(listboxrow)
 	if (not listboxrow) then
 		return false
 	end
@@ -86,18 +86,22 @@ function list_chat:delete_chat(listboxrow)
 	return true
 end
 
---- By clicking add a new chat
-function ui.btn_new_chat:on_clicked()
+--- By clicking add a new roster
+function ui.btn_new_roster:on_clicked()
 	local id_random, name_random = name_generator()
-	list_chat:new_chat(id_random, name_random)
-	user_chat:new_chat(id_random, name_random)
-	ui.user_chat:set_visible_child_name(id_random)
+	roster:new_item(id_random, name_random)
 end
 
---- By clicking I delete a chat
-function ui.btn_delete_chat:on_clicked()
-	local listboxrow = ui.list_chat:get_selected_row()
-	list_chat:delete_chat(listboxrow)
+function ui.roster:on_row_activated(self)
+	local id_chat = tostring(self.id)
+	user_chat:new_chat(id_chat, 'USER' .. id_chat)
+	ui.user_chat:set_visible_child_name(id_chat)
 end
 
-return list_chat
+--- By clicking I delete a roster
+function ui.btn_delete_roster:on_clicked()
+	local listboxrow = ui.roster:get_selected_row()
+	roster:delete_item(listboxrow)
+end
+
+return roster
