@@ -25,5 +25,7 @@ function ui.btn_go_login:on_clicked()
 end
 
 function ui.btn_go_register:on_clicked()
-	utils:show_alert('El modulo de registro se encuentra en desarrollo')
+	utils:show_alert({
+		message = 'The <b>registration</b> module is currently under development.'
+	})
 end

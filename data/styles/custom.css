@@ -14,13 +14,19 @@
 scrolledwindow {
     border: none;
 }
-
-.alert-dialog {
-	font-size: 20px;
+box.alert-dialog {
+	color: #FFFFFF;
 	background-color: rgba(0, 0, 0, 0.9);
 	transition: background .2s ease-out;
 }
-
+box.alert-dialog label.alert-title {
+	font-size: 30px;
+}
+box.alert-dialog label.alert-subtitle {
+	font-size: 15px;
+}
+box.alert-dialog label.alert-message {
+}
 /* LIST-CHAT STYLES */
 list.list {
 	background: transparent;

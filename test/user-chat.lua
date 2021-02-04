@@ -19,7 +19,7 @@ function user_chat:new_message(id_chat, message, origin)
 	end
 	local message = Gtk.Box {
 		visible = true,
-		id = 'message',
+		id = 'message1',
 		expand = false,
 		orientation = Gtk.Orientation.HORIZONTAL,
 		halign = origin,
@@ -189,7 +189,8 @@ function user_chat:new_chat(id_chat, name_chat)
 					expand = false,
 					on_clicked = function ()
 						local message = ui.user_chat.child[id_chat].child.message
-						if (message.text ~= '' and message.text ~= nil) then
+						if (message.text ~= '') then
+							print(message.text)
 							user_chat:new_message(
 								id_chat, tostring(message.text)
 							)

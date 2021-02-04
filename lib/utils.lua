@@ -73,25 +73,94 @@ function utils:removeClass(widget, classname)
 end
 
 --- Muestro una alerta
--- @param message string: El mensaje
--- @param seconds number: Los segundos antes de ocultar
-function utils:show_alert(message, seconds)
-	seconds = seconds or 3
-	ui.alert:add_overlay (
-		Gtk.Label {
+-- @param t table: Información para mostrar
+-- @return true or false
+-- @example:
+--	utils:show_alert({
+-- 		title = 'Title',
+-- 		subtitle = 'Subtitle',
+-- 		message = 'Message'
+-- 	})
+function utils:show_alert(t)
+	-- @TODO: esto puede mejorar
+	local t, title, subtitle = t or {}, Gtk.Label {
+		visible = false,
+	}, Gtk.Label {
+		visible = false,
+	}
+	if not t.message then
+		return false, 'Message is required'
+	end
+	if t.title then
+		title = Gtk.Label {
 			visible = true,
-			id = 'alert_label',
-			label = message
+			id = 'alert_title',
+			label = t.title
+		}
+	end
+	if t.subtitle then
+		subtitle = Gtk.Label {
+			visible = true,
+			id = 'alert_subtitle',
+			label = t.subtitle
+		}
+	end
+	ui.alert:add_overlay (
+		Gtk.Box {
+			visible = true,
+			id = 'alert_box',
+			orientation = Gtk.Orientation.VERTICAL,
+			-- expand = true,
+			Gtk.Box {
+				visible = true,
+				expand = false,
+				halign = Gtk.Align.END,
+				margin_top = 10,
+				margin_right = 10,
+				Gtk.Button {
+					visible = true,
+					id = 'btn_quit',
+					expand = true,
+					relief = Gtk.ReliefStyle.NONE,
+					Gtk.Image {
+						visible = true,
+						icon_name = 'document-close-symbolic'
+					},
+					on_clicked = function()
+						ui.alert.child.alert_box:destroy()
+					end
+				},
+			},
+			Gtk.Box {
+				visible = true,
+				spacing = 10,
+				orientation = Gtk.Orientation.VERTICAL,
+				expand = true,
+				halign = Gtk.Align.CENTER,
+				valign = Gtk.Align.CENTER,
+				title,
+				subtitle,
+				Gtk.Label {
+					visible = true,
+					id = 'alert_message',
+					halign = Gtk.Align.CENTER,
+					use_markup = true,
+					wrap = true,
+					lines = 1,
+					selectable = true,
+					label = t.message
+				}
+			}
 		}
 	)
-	utils:addClass(ui.alert.child.alert_label, 'alert-dialog')
-	GLib.timeout_add_seconds(
-		GLib.PRIORITY_DEFAULT, seconds,
-		function()
-			ui.alert.child.alert_label:destroy()
-			return false
-		end
-	)
+	utils:addClass(ui.alert.child.alert_box, 'alert-dialog')
+	if t.title then
+		utils:addClass(ui.alert.child.alert_title, 'alert-title')
+	end
+	if t.subtitle then
+		utils:addClass(ui.alert.child.alert_subtitle, 'alert-subtitle')
+	end
+	return true
 end
 
 return utils
