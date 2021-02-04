@@ -1,0 +1,47 @@
+/**!
+ * @package   MoonZaphire
+ * @filename  custom.css
+ * @version   1.0
+ * @author    Díaz Urbaneja Víctor Eduardo Diex <victor.vector008@gmail.com>
+ * @date      03.02.2021 15:56:32 -04
+ */
+
+* {
+	font-family: 'Open Sans';
+}
+
+/* GLOBAL STYLES */
+scrolledwindow {
+    border: none;
+}
+
+/* LIST-CHAT STYLES */
+list.list {
+	background: transparent;
+}
+/*
+@TODO: buscar la manera de usar las clases
+list.list row.list-item box.list-item-content label.list-item-title {
+*/
+list.list row box label:first-child {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+/* USER CHAT STYLE */
+stack.user-chat > box > box:nth-child(1) box label {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+/* COMMENT STYLES */
+box.comment-this,
+box.comment-for-you {
+	background-color: #1E90FF;
+	padding: 10px 15px;
+	border-radius: 20px;
+}
+box.comment-this label,
+box.comment-for-you label {
+	color: #FFFFFF;
+}
