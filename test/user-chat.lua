@@ -26,6 +26,7 @@ function user_chat:new_message(id_chat, message, origin)
 		Gtk.Label {
 			visible = true,
 			expand = false,
+			use_markup = true,
 			wrap = true,
 			lines = 1,
 			selectable = true,
@@ -112,6 +113,7 @@ function user_chat:new_chat(id_chat, name_chat)
 								visible = true,
 								id = 'btn_search',
 								expand = true,
+								focus_on_click = false,
 								relief = Gtk.ReliefStyle.NONE,
 								Gtk.Image {
 									visible = true,
@@ -122,6 +124,7 @@ function user_chat:new_chat(id_chat, name_chat)
 								visible = true,
 								id = 'btn_pane',
 								expand = true,
+								focus_on_click = false,
 								relief = Gtk.ReliefStyle.NONE,
 								Gtk.Image {
 									visible = true,
@@ -131,6 +134,7 @@ function user_chat:new_chat(id_chat, name_chat)
 							Gtk.MenuButton {
 								visible = true,
 								id = 'btn_more_menu',
+								focus_on_click = false,
 								relief = Gtk.ReliefStyle.NONE,
 								popover = popover_more,
 								Gtk.Image {

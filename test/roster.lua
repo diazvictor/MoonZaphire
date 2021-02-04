@@ -98,10 +98,80 @@ function ui.roster:on_row_activated(self)
 	ui.user_chat:set_visible_child_name(id_chat)
 end
 
---- By clicking I delete a roster
-function ui.btn_delete_roster:on_clicked()
-	local listboxrow = ui.roster:get_selected_row()
-	roster:delete_item(listboxrow)
+function ui.roster:on_button_press_event(event)
+	local x = tonumber(event.x)
+	local y = tonumber(event.y)
+	local pthinfo = self:get_row_at_y(y)
+	if (pthinfo and event.type == 'BUTTON_PRESS' and event.button == 3) then
+		local id_item = ui.roster:get_selected_row()
+		local menu = Gtk.Menu {
+			Gtk.ImageMenuItem {
+				id = "edit",
+				label = "Editar",
+				image = Gtk.Image {
+					icon_name = "edit-symbolic"
+				},
+				on_activate = function()
+					print(id_item)
+				end
+			},
+			Gtk.SeparatorMenuItem {},
+			Gtk.ImageMenuItem {
+				id = "delete",
+				label = "Borrar",
+				image = Gtk.Image {
+					icon_name = "edit-delete-symbolic"
+				},
+				on_activate = function()
+					roster:delete_item(id_item)
+				end
+			}
+		}
+		if id_item then
+			menu:attach_to_widget(ui.roster, null)
+			menu:show_all()
+			menu:popup(nil, nil, nil, event.button, event.time)
+		end
+	end
+end
+
+function ui.btn_show_menu:on_clicked ()
+	ui.alert:add_overlay(ui.menu)
+	utils:addClass(ui.menu, 'alert-dialog')
+end
+
+function ui.menu_items:on_row_activated (self)
+	if (self.name == 'item_new_group') then
+		utils:show_alert({
+			message = 'The <b>new group</b> module is currently under development.',
+			show_close = false,
+			timeout = 3
+		})
+	elseif (self.name == 'item_contacts') then
+		utils:show_alert({
+			message = 'The <b>contacts</b> module is currently under development.',
+			show_close = false,
+			timeout = 3
+		})
+	elseif (self.name == 'item_settings') then
+		utils:show_alert({
+			message = 'The <b>settings</b> module is currently under development.',
+			show_close = false,
+			timeout = 3
+		})
+	elseif (self.name == 'item_back') then
+		ui.alert:remove(ui.menu)
+	end
+end
+
+--- By clicking I search a roster
+function ui.btn_search_roster:on_toggled ()
+	if  (ui.btn_search_roster.active) then
+		ui.roster_search_box:set_reveal_child(true)
+		ui.roster_search:grab_focus()
+	else
+		ui.roster_search_box:set_reveal_child(false)
+	end
 end
 
 return roster

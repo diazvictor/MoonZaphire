@@ -79,13 +79,17 @@ end
 --	utils:show_alert({
 -- 		title = 'Title',
 -- 		subtitle = 'Subtitle',
--- 		message = 'Message'
+-- 		message = 'Message',
+--		show_close = true,	-- show close button. timeout must not be set.
+--		timeout = 5 		-- wait 5 seconds before closing the alert. show_close must be false
 -- 	})
 function utils:show_alert(t)
 	-- @TODO: esto puede mejorar
-	local t, title, subtitle = t or {}, Gtk.Label {
+	local t, title, subtitle, button_close = t or {}, Gtk.Label {
 		visible = false,
 	}, Gtk.Label {
+		visible = false,
+	}, Gtk.Box {
 		visible = false,
 	}
 	if not t.message then
@@ -105,32 +109,34 @@ function utils:show_alert(t)
 			label = t.subtitle
 		}
 	end
+	if (t.show_close and not t.timeout) then
+		button_close = Gtk.Box {
+			visible = true,
+			expand = false,
+			halign = Gtk.Align.END,
+			margin_top = 10,
+			margin_right = 10,
+			Gtk.Button {
+				visible = true,
+				id = 'btn_quit',
+				expand = true,
+				relief = Gtk.ReliefStyle.NONE,
+				Gtk.Image {
+					visible = true,
+					icon_name = 'document-close-symbolic'
+				},
+				on_clicked = function()
+					ui.alert.child.alert_box:destroy()
+				end
+			}
+		}
+	end
 	ui.alert:add_overlay (
 		Gtk.Box {
 			visible = true,
 			id = 'alert_box',
 			orientation = Gtk.Orientation.VERTICAL,
-			-- expand = true,
-			Gtk.Box {
-				visible = true,
-				expand = false,
-				halign = Gtk.Align.END,
-				margin_top = 10,
-				margin_right = 10,
-				Gtk.Button {
-					visible = true,
-					id = 'btn_quit',
-					expand = true,
-					relief = Gtk.ReliefStyle.NONE,
-					Gtk.Image {
-						visible = true,
-						icon_name = 'document-close-symbolic'
-					},
-					on_clicked = function()
-						ui.alert.child.alert_box:destroy()
-					end
-				},
-			},
+			button_close,
 			Gtk.Box {
 				visible = true,
 				spacing = 10,
@@ -159,6 +165,15 @@ function utils:show_alert(t)
 	end
 	if t.subtitle then
 		utils:addClass(ui.alert.child.alert_subtitle, 'alert-subtitle')
+	end
+	if (t.timeout and not t.show_close) then
+		GLib.timeout_add_seconds(
+			GLib.PRIORITY_DEFAULT, t.timeout,
+			function()
+				ui.alert.child.alert_box:destroy()
+				return false
+			end
+		)
 	end
 	return true
 end
