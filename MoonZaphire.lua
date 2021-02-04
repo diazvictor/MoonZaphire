@@ -22,13 +22,20 @@ GLib = lgi.GLib
 print("|----- 'lgi.GLib' loaded successfully.")
 Gdk = lgi.Gdk
 print("|----- 'lgi.Gdk' loaded successfully.")
+Pango = lgi.Pango
+print("|----- 'lgi.Gdk' loaded successfully.")
 
 require 'init'
 print("Libraries loaded!\n")
 
 -- MoonZaphire
-require('src.login')
-require('src.chat')
+require('test.login')
+list_chat = require('test.list-chat')
+user_chat = require('test.user-chat')
+
+function ui.btn_test:on_clicked ()
+	-- ui.chat:set_visible_child_name('2')
+end
 
 function ui.menu_about:on_clicked()
     ui.about_window:run()
