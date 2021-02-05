@@ -59,7 +59,12 @@ function user_chat:new_chat(id_chat, name_chat)
 			Gtk.ModelButton {
 				visible = true,
 				id = 'delete_chat',
-				text = 'Eliminar chat'
+				text = 'Eliminar chat',
+				on_clicked = function()
+					local listboxrow = ui.roster:get_selected_row()
+					ui.user_chat.child[id_chat]:destroy()
+					roster:delete_item(listboxrow)
+				end
 			},
 			Gtk.Separator {
 				visible = true,
