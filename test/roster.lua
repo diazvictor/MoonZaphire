@@ -43,10 +43,11 @@ end
 
 --- Method to create a new roster
 -- @param name_chat string: the name of the chat
-function roster:new_item(id_chat, name_chat)
+function roster:new_member(info)
+	local info = info or {}
 	ui.roster:add(Gtk.ListBoxRow {
 		visible = true,
-		id = id_chat,
+		id = info.id_member,
 		selectable = true,
 		height_request = 60,
 		width_request = 100,
@@ -59,8 +60,8 @@ function roster:new_item(id_chat, name_chat)
 			margin_right = 10,
 			Gtk.Label {
 				visible = true,
-				id = 'name_chat',
-				label = name_chat,
+				id = 'name_member',
+				label = info.name_member,
 				halign = Gtk.Align.START,
 			},
 			Gtk.Label {
@@ -72,24 +73,28 @@ function roster:new_item(id_chat, name_chat)
 			}
 		}
 	})
-	return id_chat
+	return info.id_member
 end
 
---- Method to delete a roster
+--- Method to delete a member
 -- @param listboxrow userdata: the list row
 -- @return true or false
-function roster:delete_item(listboxrow)
-	if (not listboxrow) then
+function roster:delete_member(member)
+	if (not member) then
 		return false
 	end
-	ui.roster:remove(listboxrow)
+	ui.roster:remove(member)
+	ui.user_chat.child[tostring(member.id)]:destroy()
 	return true
 end
 
 --- By clicking add a new roster
 function ui.btn_new_roster:on_clicked()
 	local id_random, name_random = name_generator()
-	roster:new_item(id_random, name_random)
+	roster:new_member({
+		id_member = id_random,
+		name_member = name_random
+	})
 end
 
 function ui.roster:on_row_activated(self)
@@ -123,7 +128,7 @@ function ui.roster:on_button_press_event(event)
 					icon_name = "edit-delete-symbolic"
 				},
 				on_activate = function()
-					roster:delete_item(id_item)
+					roster:delete_member(id_item)
 				end
 			}
 		}

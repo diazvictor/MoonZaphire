@@ -61,9 +61,8 @@ function user_chat:new_chat(id_chat, name_chat)
 				id = 'delete_chat',
 				text = 'Eliminar chat',
 				on_clicked = function()
-					local listboxrow = ui.roster:get_selected_row()
-					ui.user_chat.child[id_chat]:destroy()
-					roster:delete_item(listboxrow)
+					local member = ui.roster:get_selected_row()
+					roster:delete_member(member)
 				end
 			},
 			Gtk.Separator {
