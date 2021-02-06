@@ -61,24 +61,14 @@ function MoonZaphire.Settings:_init()
 			})
 		elseif (item == 3) then
 			-- Toggle dark mode
-			dark_mode = not dark_mode
-			if dark_mode then
-				toggle_dark_mode:set_state(true)
-				settings.gtk_application_prefer_dark_theme = true
-			else
-				toggle_dark_mode:set_state(false)
-				settings.gtk_application_prefer_dark_theme = false
-			end
+			local dark_mode = not toggle_dark_mode.active
+			toggle_dark_mode:set_state(dark_mode)
+			settings.gtk_application_prefer_dark_theme = dark_mode
 		end
 	end
 
 	--- Toggle dark mode
-	toggle_dark_mode.on_notify['active'] = function (self)
-		local dark_mode = self.active
-		if (dark_mode) then
-			settings.gtk_application_prefer_dark_theme = true
-		else
-			settings.gtk_application_prefer_dark_theme = false
-		end
+	toggle_dark_mode.on_notify.active = function (self)
+		settings.gtk_application_prefer_dark_theme = self.active
 	end
 end
