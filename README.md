@@ -25,4 +25,7 @@ MoonZaphire is available under zlib License. You can find the details in the [LI
 ## Credits
 - Author: [diazvictor](https://github.com/diazvictor)
 - Artist: [darltrash](https://github.com/darltrash)
-- Contributor: [sodomon2](https://github.com/sodomon2)
+- Contributor: 
+    - [sodomon2](https://github.com/sodomon2)
+    - [vitronic](https://github.com/sodomon2)
+ 
