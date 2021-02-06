@@ -1,10 +1,17 @@
 /**!
  * @package   MoonZaphire
- * @filename  custom.css
+ * @filename  styles/custom.less
  * @version   1.0
- * @author    Díaz Urbaneja Víctor Eduardo Diex <victor.vector008@gmail.com>
+ * @autor     Díaz Urbaneja Víctor Eduardo Diex <victor.vector008@gmail.com>
  * @date      03.02.2021 15:56:32 -04
+ *
+ * Para compilar el archivo desde la consola de comandos es:
+ * lessc custom.less > custom.less.css
  */
+ 
+@define-color bg-light rgba(255, 255, 255, 1);
+@define-color bg-dark rgba(0, 0, 0, 0.8);
+@define-color color-dark rgba(0, 0, 0, 0.8);
 
 * {
 	font-family: 'Open Sans';
@@ -14,6 +21,10 @@
 scrolledwindow {
     border: none;
 }
+.b-none {
+	border: none;
+}
+
 /* ALERT DIALOG STYLES */
 box.alert-dialog {
 	color: #FFFFFF;
@@ -28,6 +39,69 @@ box.alert-dialog label.alert-subtitle {
 }
 box.alert-dialog label.alert-message {
 }
+/* MODAL */
+.modal .card {
+	background: #FFFFFF;
+	color: @color-dark;
+	border-radius: 3px;
+}
+.modal .card button.close {
+	border: none;
+	border-radius: 20px;
+	box-shadow: none;
+	background: transparent;
+	color: @color-dark;
+}
+.modal .card button.close:active {
+	background: #CCC;
+}
+.modal .card button.close image {
+	-gtk-icon-shadow: none;
+}
+.modal .card .titlebar {
+	background: transparent;
+	padding: 20px 10px;
+	color: @color-dark;
+}
+.modal .card .header {
+	padding: 10px 10px;
+}
+.modal .card .titlebar button,
+.modal .card .header button {
+	border: none;
+	box-shadow: none;
+	border-radius: 20px;
+	background: transparent;
+	-gtk-icon-shadow: none;
+	color: @color-dark;
+}
+.modal .card .titlebar button:active,
+.modal .card .header button:active {
+	background: #CCC;
+}
+.modal .card .list-item {
+	background: transparent;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.modal .card .list-item row box {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.modal .card .list-item row box image {
+	-gtk-icon-style: symbolic;
+}
+.modal .card .header button image {}
+.modal .card .header entry {
+	background: @bg-dark;
+	color: @bg-light;
+}
+.modal .card .footer {
+	padding: 10px 20px 10px 20px;
+}
+
+/* IMAGE STYLES */
+
 /* LIST-CHAT STYLES */
 list.list {
 	background: transparent;
@@ -60,7 +134,6 @@ stack.user-chat > box > box:last-child :first-child {
 }
 
 /* COMMENT STYLES */
-/*
 box.comment-this,
 box.comment-for-you {
 	background-color: #1E90FF;
@@ -69,16 +142,5 @@ box.comment-for-you {
 }
 box.comment-this label,
 box.comment-for-you label {
-	color: #FFFFFF;
-}
-*/
-
-stack.user-chat box > scrolledwindow > viewport > box > box {
-	background-color: #1E90FF;
-	padding: 10px 15px;
-	border-radius: 20px;
-}
-
-stack.user-chat box > scrolledwindow > viewport box > box {
 	color: #FFFFFF;
 }

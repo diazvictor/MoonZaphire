@@ -1,14 +1,14 @@
-#!/usr/bin/lua5.1
 --[[--
  @package   MoonZaphire
- @filename  src/init.lua
- @version   3.0
- @autor     Díaz Urbaneja Víctor Eduardo Diex <victor.vector008@gmail.com>
- @date      01.02.2021 16:49:49 -04
+ @filename  main.lua
+ @version   1.0
+ @author    Díaz Urbaneja Víctor Eduardo Diex <victor.vector008@gmail.com>
+ @date      05.02.2021 00:09:36 -04
 ]]
 
-package.path = package.path .. ';lib/?.lua'
+package.path = package.path .. ';lib/?.lua;src/?.lua'
 
+-- I require the libraries I depend on
 print("Loading libraries:")
 lgi = require 'lgi'
 print("| 'lgi' loaded successfully. (Thanks Pavouk!)")
@@ -28,23 +28,21 @@ print("|----- 'lgi.Gdk' loaded successfully.")
 require 'init'
 print("Libraries loaded!\n")
 
--- MoonZaphire
-require('test.login')
-roster = require('test.roster')
-user_chat = require('test.user-chat')
+--- I create a namespace (master class)
+MoonZaphire = lgi.package("MoonZaphire")
 
-function ui.menu_about:on_clicked()
-    ui.about_window:run()
-    ui.about_window:hide()
-end
+-- I require my modules
+require('app')
+require('start')
+require('login.auth_user')
+require('login.auth_host')
+require('settings.contacts')
+require('settings.general')
+require('chat.roster')
+require('window')
 
-function ui.menu_quit:on_clicked()
-    Gtk.main_quit()
-end
+--- Start the application
+local App = MoonZaphire.App()
+App:register()
 
-function ui.main_window:on_destroy()
-    Gtk.main_quit()
-end
-
-ui.main_window:show_all()
-Gtk.main()
+return App:run(arg)

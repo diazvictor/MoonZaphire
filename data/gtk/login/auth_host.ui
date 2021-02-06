@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<!-- interface-requires gtk+ 3.8 -->
+	<template class="MoonZaphireAuthHost" parent="GtkBox">
+		<property name="visible">True</property>
+		<property name="can_focus">False</property>
+		<property name="valign">center</property>
+		<property name="orientation">vertical</property>
+		<child>
+			<object class="GtkBox">
+				<property name="visible">True</property>
+				<property name="can_focus">False</property>
+				<property name="orientation">vertical</property>
+				<property name="spacing">10</property>
+				<child>
+					<object class="GtkFrame">
+						<property name="visible">True</property>
+						<property name="can_focus">False</property>
+						<property name="label_xalign">0</property>
+						<property name="shadow_type">none</property>
+						<child>
+							<object class="GtkEntry" id="hostname">
+								<property name="visible">True</property>
+								<property name="can_focus">True</property>
+								<property name="placeholder_text" translatable="yes">broker.mqtt.cool</property>
+							</object>
+						</child>
+						<child type="label">
+							<object class="GtkLabel">
+								<property name="visible">True</property>
+								<property name="can_focus">False</property>
+								<property name="margin_bottom">5</property>
+								<property name="label" translatable="yes">Host</property>
+								<attributes>
+									<attribute name="weight" value="bold" />
+									<attribute name="scale" value="1.1000000000000001" />
+								</attributes>
+							</object>
+						</child>
+					</object>
+					<packing>
+						<property name="expand">False</property>
+						<property name="fill">True</property>
+						<property name="position">0</property>
+					</packing>
+				</child>
+				<child>
+					<object class="GtkFrame">
+						<property name="visible">True</property>
+						<property name="can_focus">False</property>
+						<property name="label_xalign">0</property>
+						<property name="shadow_type">none</property>
+						<child>
+							<object class="GtkEntry" id="channel">
+								<property name="visible">True</property>
+								<property name="can_focus">True</property>
+								<property name="placeholder_text" translatable="yes">users/chat</property>
+							</object>
+						</child>
+						<child type="label">
+							<object class="GtkLabel">
+								<property name="visible">True</property>
+								<property name="can_focus">False</property>
+								<property name="margin_bottom">5</property>
+								<property name="label" translatable="yes">Channel</property>
+								<attributes>
+									<attribute name="weight" value="bold" />
+									<attribute name="scale" value="1.1000000000000001" />
+								</attributes>
+							</object>
+						</child>
+					</object>
+					<packing>
+						<property name="expand">False</property>
+						<property name="fill">True</property>
+						<property name="position">1</property>
+					</packing>
+				</child>
+				<child>
+					<object class="GtkRevealer" id="revealer">
+						<property name="visible">True</property>
+						<property name="can_focus">False</property>
+						<property name="transition_type">slide-up</property>
+						<property name="reveal_child">True</property>
+						<child>
+							<object class="GtkFrame">
+								<property name="visible">True</property>
+								<property name="can_focus">False</property>
+								<property name="label_xalign">0</property>
+								<property name="shadow_type">none</property>
+								<child>
+									<object class="GtkEntry" id="port">
+										<property name="visible">True</property>
+										<property name="can_focus">True</property>
+										<property name="placeholder_text" translatable="yes">1883</property>
+									</object>
+								</child>
+								<child type="label">
+									<object class="GtkLabel">
+										<property name="visible">True</property>
+										<property name="can_focus">False</property>
+										<property name="margin_bottom">5</property>
+										<property name="label" translatable="yes">Port</property>
+										<attributes>
+											<attribute name="weight" value="bold" />
+											<attribute name="scale" value="1.1000000000000001" />
+										</attributes>
+									</object>
+								</child>
+							</object>
+						</child>
+					</object>
+					<packing>
+						<property name="expand">False</property>
+						<property name="fill">True</property>
+						<property name="position">2</property>
+					</packing>
+				</child>
+			</object>
+			<packing>
+				<property name="expand">False</property>
+				<property name="fill">True</property>
+				<property name="position">0</property>
+			</packing>
+		</child>
+		<child>
+			<object class="GtkBox">
+				<property name="visible">True</property>
+				<property name="can_focus">False</property>
+				<property name="spacing">10</property>
+				<child>
+					<object class="GtkButton" id="btn_back">
+						<property name="label" translatable="yes">BACK</property>
+						<property name="height_request">60</property>
+						<property name="visible">True</property>
+						<property name="can_focus">True</property>
+						<property name="receives_default">True</property>
+					</object>
+					<packing>
+						<property name="expand">True</property>
+						<property name="fill">True</property>
+						<property name="position">0</property>
+					</packing>
+				</child>
+				<child>
+					<object class="GtkButton" id="btn_login">
+						<property name="label" translatable="yes">LOGIN</property>
+						<property name="height_request">60</property>
+						<property name="visible">True</property>
+						<property name="can_focus">True</property>
+						<property name="receives_default">True</property>
+					</object>
+					<packing>
+						<property name="expand">True</property>
+						<property name="fill">True</property>
+						<property name="position">1</property>
+					</packing>
+				</child>
+			</object>
+			<packing>
+				<property name="expand">False</property>
+				<property name="fill">True</property>
+				<property name="position">1</property>
+			</packing>
+		</child>
+	</template>
+</interface>

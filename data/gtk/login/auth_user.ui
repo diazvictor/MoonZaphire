@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<!-- interface-requires gtk+ 3.8 -->
+	<template class="MoonZaphireAuthUser" parent="GtkBox">
+		<property name="visible">True</property>
+		<property name="can_focus">False</property>
+		<property name="orientation">vertical</property>
+		<property name="spacing">10</property>
+		<child>
+			<object class="GtkBox">
+				<property name="visible">True</property>
+				<property name="can_focus">False</property>
+				<property name="orientation">vertical</property>
+				<property name="spacing">10</property>
+				<child>
+					<object class="GtkFrame">
+						<property name="visible">True</property>
+						<property name="can_focus">False</property>
+						<property name="label_xalign">0</property>
+						<property name="shadow_type">none</property>
+						<child>
+							<object class="GtkEntry" id="username">
+								<property name="visible">True</property>
+								<property name="can_focus">True</property>
+							</object>
+						</child>
+						<child type="label">
+							<object class="GtkLabel">
+								<property name="visible">True</property>
+								<property name="can_focus">False</property>
+								<property name="margin_bottom">5</property>
+								<property name="label" translatable="yes">Username</property>
+								<attributes>
+									<attribute name="weight" value="bold" />
+									<attribute name="scale" value="1.1000000000000001" />
+								</attributes>
+							</object>
+						</child>
+					</object>
+					<packing>
+						<property name="expand">False</property>
+						<property name="fill">True</property>
+						<property name="position">0</property>
+					</packing>
+				</child>
+				<child>
+					<object class="GtkFrame">
+						<property name="visible">True</property>
+						<property name="can_focus">False</property>
+						<property name="label_xalign">0</property>
+						<property name="shadow_type">none</property>
+						<child>
+							<object class="GtkEntry" id="password">
+								<property name="visible">True</property>
+								<property name="can_focus">True</property>
+							</object>
+						</child>
+						<child type="label">
+							<object class="GtkLabel">
+								<property name="visible">True</property>
+								<property name="can_focus">False</property>
+								<property name="margin_bottom">5</property>
+								<property name="label" translatable="yes">Password</property>
+								<attributes>
+									<attribute name="weight" value="bold" />
+									<attribute name="scale" value="1.1000000000000001" />
+								</attributes>
+							</object>
+						</child>
+					</object>
+					<packing>
+						<property name="expand">False</property>
+						<property name="fill">True</property>
+						<property name="position">1</property>
+					</packing>
+				</child>
+			</object>
+			<packing>
+				<property name="expand">False</property>
+				<property name="fill">True</property>
+				<property name="position">0</property>
+			</packing>
+		</child>
+		<child>
+			<object class="GtkButton" id="btn_next">
+				<property name="label" translatable="yes">NEXT</property>
+				<property name="height_request">60</property>
+				<property name="visible">True</property>
+				<property name="can_focus">True</property>
+				<property name="receives_default">True</property>
+				<property name="valign">end</property>
+			</object>
+			<packing>
+				<property name="expand">False</property>
+				<property name="fill">True</property>
+				<property name="position">1</property>
+			</packing>
+		</child>
+	</template>
+</interface>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<!-- interface-requires gtk+ 3.8 -->
+	<template class="MoonZaphireSettingsContacts" parent="GtkBox">
+		<property name="visible">True</property>
+		<property name="can_focus">False</property>
+		<property name="orientation">vertical</property>
+		<child>
+			<object class="GtkBox">
+				<property name="visible">True</property>
+				<property name="can_focus">False</property>
+				<property name="orientation">vertical</property>
+				<property name="spacing">10</property>
+				<child>
+					<object class="GtkBox">
+						<property name="visible">True</property>
+						<property name="can_focus">False</property>
+						<property name="spacing">50</property>
+						<child>
+							<object class="GtkBox">
+								<property name="visible">True</property>
+								<property name="can_focus">False</property>
+								<property name="spacing">10</property>
+								<child>
+									<object class="GtkButton" id="btn_back">
+										<property name="visible">True</property>
+										<property name="can_focus">True</property>
+										<property name="receives_default">True</property>
+										<property name="relief">none</property>
+										<child>
+											<object class="GtkImage">
+												<property name="visible">True</property>
+												<property name="can_focus">False</property>
+												<property name="icon_name">go-previous-symbolic</property>
+											</object>
+										</child>
+										<style>
+											<class name="b-none"/>
+										</style>
+									</object>
+									<packing>
+										<property name="expand">False</property>
+										<property name="fill">True</property>
+										<property name="position">0</property>
+									</packing>
+								</child>
+								<child>
+									<object class="GtkLabel">
+										<property name="visible">True</property>
+										<property name="can_focus">False</property>
+										<property name="label" translatable="yes">Contacts</property>
+										<attributes>
+											<attribute name="weight" value="bold" />
+											<attribute name="scale" value="1.2" />
+										</attributes>
+									</object>
+									<packing>
+										<property name="expand">False</property>
+										<property name="fill">True</property>
+										<property name="pack_type">end</property>
+										<property name="position">1</property>
+									</packing>
+								</child>
+							</object>
+							<packing>
+								<property name="expand">False</property>
+								<property name="fill">True</property>
+								<property name="position">0</property>
+							</packing>
+						</child>
+						<child>
+							<object class="GtkBox">
+								<property name="visible">True</property>
+								<property name="can_focus">False</property>
+								<property name="spacing">5</property>
+								<child>
+									<object class="GtkButton" id="btn_close">
+										<property name="visible">True</property>
+										<property name="can_focus">True</property>
+										<property name="receives_default">True</property>
+										<property name="relief">none</property>
+										<child>
+											<object class="GtkImage">
+												<property name="visible">True</property>
+												<property name="can_focus">False</property>
+												<property name="icon_name">window-close-symbolic</property>
+											</object>
+										</child>
+									</object>
+									<packing>
+										<property name="expand">False</property>
+										<property name="fill">True</property>
+										<property name="pack_type">end</property>
+										<property name="position">0</property>
+									</packing>
+								</child>
+								<child>
+									<object class="GtkButton" id="btn_new">
+										<property name="visible">True</property>
+										<property name="can_focus">True</property>
+										<property name="receives_default">True</property>
+										<property name="relief">none</property>
+										<child>
+											<object class="GtkImage">
+												<property name="visible">True</property>
+												<property name="can_focus">False</property>
+												<property name="icon_name">gtk-new-symbolic</property>
+											</object>
+										</child>
+									</object>
+									<packing>
+										<property name="expand">False</property>
+										<property name="fill">True</property>
+										<property name="position">1</property>
+									</packing>
+								</child>
+							</object>
+							<packing>
+								<property name="expand">False</property>
+								<property name="fill">True</property>
+								<property name="pack_type">end</property>
+								<property name="position">1</property>
+							</packing>
+						</child>
+					</object>
+					<packing>
+						<property name="expand">False</property>
+						<property name="fill">True</property>
+						<property name="position">0</property>
+					</packing>
+				</child>
+				<child>
+					<object class="GtkEntry" id="search">
+						<property name="visible">True</property>
+						<property name="can_focus">True</property>
+						<property name="primary_icon_name">search-symbolic</property>
+						<style>
+							<class name="textfield"/>
+						</style>
+					</object>
+					<packing>
+						<property name="expand">False</property>
+						<property name="fill">True</property>
+						<property name="position">1</property>
+					</packing>
+				</child>
+				<style>
+					<class name="header"/>
+				</style>
+			</object>
+			<packing>
+				<property name="expand">False</property>
+				<property name="fill">True</property>
+				<property name="position">2</property>
+			</packing>
+		</child>
+		<child>
+			<object class="GtkBox">
+				<property name="visible">True</property>
+				<property name="can_focus">False</property>
+				<property name="spacing">2</property>
+				<child>
+					<placeholder />
+				</child>
+				<style>
+					<class name="footer"/>
+				</style>
+			</object>
+			<packing>
+				<property name="expand">False</property>
+				<property name="fill">True</property>
+				<property name="pack_type">end</property>
+				<property name="position">2</property>
+			</packing>
+		</child>
+		<child>
+			<object class="GtkScrolledWindow">
+				<property name="visible">True</property>
+				<property name="can_focus">True</property>
+				<property name="shadow_type">in</property>
+				<child>
+					<object class="GtkViewport">
+						<property name="visible">True</property>
+						<property name="can_focus">False</property>
+						<child>
+							<object class="GtkListBox" id="list-contacts">
+								<property name="visible">True</property>
+								<property name="can_focus">False</property>
+								<style>
+									<class name="list-item"/>
+								</style>
+							</object>
+						</child>
+					</object>
+				</child>
+			</object>
+			<packing>
+				<property name="expand">True</property>
+				<property name="fill">True</property>
+				<property name="position">3</property>
+			</packing>
+		</child>
+		<style>
+			<class name="card"/>
+		</style>
+	</template>
+</interface>
