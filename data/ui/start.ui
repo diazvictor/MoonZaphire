@@ -9,10 +9,9 @@
 		<property name="orientation">vertical</property>
 		<property name="spacing">10</property>
 		<child>
-			<object class="GtkImage">
+			<object class="GtkImage" id="logo">
 				<property name="visible">True</property>
 				<property name="can_focus">False</property>
-				<property name="pixbuf">data/images/250x250.svg</property>
 			</object>
 			<packing>
 				<property name="expand">False</property>
