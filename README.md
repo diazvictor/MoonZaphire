@@ -6,6 +6,7 @@
 	<img src="https://img.shields.io/badge/version-3.0-blue">
 	<img src="https://img.shields.io/badge/state-development-lightgrey">
 	<img src="https://img.shields.io/badge/build%20linux-passing-green">
+	<img src="https://img.shields.io/badge/contributions-welcome-orange">
 	<a href="LICENSE"><img src="https://img.shields.io/badge/license-zlib-brightgreen"></a>
 </p>
 
