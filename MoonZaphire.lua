@@ -22,8 +22,10 @@ GLib = lgi.GLib
 print("|----- 'lgi.GLib' loaded successfully.")
 Gdk = lgi.Gdk
 print("|----- 'lgi.Gdk' loaded successfully.")
+GdkPixbuf 			= lgi.GdkPixbuf
+print("|----- 'lgi.GdkPixbuf' loaded successfully.")
 Pango = lgi.Pango
-print("|----- 'lgi.Gdk' loaded successfully.")
+print("|----- 'lgi.Pango' loaded successfully.")
 
 require 'init'
 print("Libraries loaded!\n")
