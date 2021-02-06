@@ -13,7 +13,7 @@ MoonZaphire:class('AuthHost', Gtk.Box)
 function MoonZaphire.AuthHost:_class_init(klass)
 	--- I load the template
 	klass:set_template_from_resource(
-		'/com/github/diazvictor/MoonZaphire/data/gtk/login/auth_host.ui'
+		'/com/github/diazvictor/MoonZaphire/data/ui/login/auth_host.ui'
 	)
 	--- I add the desired elements to the template
 	klass:bind_template_child_full('hostname', true, 0)

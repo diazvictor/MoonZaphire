@@ -13,7 +13,7 @@ MoonZaphire:class('Settings', Gtk.Box)
 function MoonZaphire.Settings:_class_init(klass)
 	--- I load the template
 	klass:set_template_from_resource(
-		'/com/github/diazvictor/MoonZaphire/data/gtk/settings/general.ui'
+		'/com/github/diazvictor/MoonZaphire/data/ui/settings/general.ui'
 	)
 	--- I add the desired elements to the template
 	klass:bind_template_child_full('settings_menu', true, 0)

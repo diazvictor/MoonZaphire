@@ -13,7 +13,7 @@ MoonZaphire:class('SettingsContacts', Gtk.Box)
 function MoonZaphire.SettingsContacts:_class_init(klass)
 	--- I load the template
 	klass:set_template_from_resource(
-		'/com/github/diazvictor/MoonZaphire/data/gtk/settings/contacts.ui'
+		'/com/github/diazvictor/MoonZaphire/data/ui/settings/contacts.ui'
 	)
 	--- I add the desired elements to the template
 	klass:bind_template_child_full('btn_close', true, 0)

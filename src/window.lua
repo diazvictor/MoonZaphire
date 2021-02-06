@@ -13,7 +13,7 @@ MoonZaphire:class("Window", Gtk.Window)
 function MoonZaphire.Window:_class_init(klass)
 	--- I load the template
 	klass:set_template_from_resource(
-		"/com/github/diazvictor/MoonZaphire/data/gtk/window.ui"
+		"/com/github/diazvictor/MoonZaphire/data/ui/window.ui"
 	)
 
 	--- I add the desired elements to the template

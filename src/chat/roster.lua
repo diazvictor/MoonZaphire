@@ -13,7 +13,7 @@ MoonZaphire:class('Roster', Gtk.Box)
 function MoonZaphire.Roster:_class_init(klass)
 	--- I load the template
 	klass:set_template_from_resource(
-		'/com/github/diazvictor/MoonZaphire/data/gtk/chat/roster.ui'
+		'/com/github/diazvictor/MoonZaphire/data/ui/chat/roster.ui'
 	)
 	--- I add the desired elements to the template
 	klass:bind_template_child_full('btn_show_menu', true, 0)
