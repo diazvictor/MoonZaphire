@@ -1,5 +1,5 @@
 <p align="center">
- <a href="https://github.com/diazvictor/MoonZaphire"><img src="https://github.com/diazvictor/MoonZaphire/raw/v3.0/data/images/MoonZaphire-logo.svg" alt="MoonZaphire Logo"></a>
+ <a href="https://github.com/diazvictor/MoonZaphire"><img src="https://github.com/diazvictor/MoonZaphire/raw/v3.0/logo.svg" alt="Logo"></a>
 </p>
 
 <p align="center">
@@ -21,10 +21,10 @@ MoonZaphire is a GTK3 frontend for MQTT written in Lua with a lot of love.
 
 ## Running steps
 
-Before running MoonZaphire, you'll need compile the `data/resources.xml` file:
+Before running MoonZaphire, you'll need compile the `data/com.github.diazvictor.MoonZaphire.xml` file:
 
 ```
-glib-compile-resources data/resources.xml
+glib-compile-resources data/com.github.diazvictor.MoonZaphire.xml
 ```
 
 Now all that remains is to run the application
