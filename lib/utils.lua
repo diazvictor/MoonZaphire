@@ -6,7 +6,7 @@
  @date      01.08.2020 19:22:11 -04
 --]]
 
-local utils = class('utils')
+local utils = {}
 
 function utils:split(str,sep)
     local sep, fields = sep or ":", {}
@@ -123,15 +123,15 @@ function utils:show_alert(t)
 				relief = Gtk.ReliefStyle.NONE,
 				Gtk.Image {
 					visible = true,
-					icon_name = 'document-close-symbolic'
+					icon_name = 'window-close-symbolic'
 				},
 				on_clicked = function()
-					ui.alert.child.alert_box:destroy()
+					background.child.alert_box:destroy()
 				end
 			}
 		}
 	end
-	ui.alert:add_overlay (
+	background:add_overlay (
 		Gtk.Box {
 			visible = true,
 			id = 'alert_box',
@@ -159,23 +159,36 @@ function utils:show_alert(t)
 			}
 		}
 	)
-	utils:addClass(ui.alert.child.alert_box, 'alert-dialog')
+	utils:addClass(background.child.alert_box, 'alert-dialog')
 	if t.title then
-		utils:addClass(ui.alert.child.alert_title, 'alert-title')
+		utils:addClass(background.child.alert_title, 'alert-title')
 	end
 	if t.subtitle then
-		utils:addClass(ui.alert.child.alert_subtitle, 'alert-subtitle')
+		utils:addClass(background.child.alert_subtitle, 'alert-subtitle')
 	end
 	if (t.timeout and not t.show_close) then
 		GLib.timeout_add_seconds(
 			GLib.PRIORITY_DEFAULT, t.timeout,
 			function()
-				ui.alert.child.alert_box:destroy()
+				background.child.alert_box:destroy()
 				return false
 			end
 		)
 	end
 	return true
+end
+
+--- I display a log message
+-- @param name string: The identifier
+-- @param type string: the types are shown below
+-- `message`
+-- `warning`
+-- `critical`
+-- `error`
+-- `debug`
+-- @param message string: The message
+function utils:show_log(name, type, message)
+	lgi.log.domain(name)[type](message)
 end
 
 return utils
