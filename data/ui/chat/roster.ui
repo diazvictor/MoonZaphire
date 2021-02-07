@@ -1,171 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
 	<!-- interface-requires gtk+ 3.8 -->
-	<template class="MoonZaphireRoster" parent="GtkBox">
-		<property name="width_request">250</property>
+	<template class="MoonZaphireRoster" parent="GtkScrolledWindow">
 		<property name="visible">True</property>
-		<property name="can_focus">False</property>
-		<property name="margin_right">10</property>
-		<property name="orientation">vertical</property>
-		<property name="spacing">10</property>
+		<property name="can_focus">True</property>
+		<property name="shadow_type">in</property>
 		<child>
-			<object class="GtkBox">
+			<object class="GtkViewport">
 				<property name="visible">True</property>
 				<property name="can_focus">False</property>
-				<property name="orientation">vertical</property>
 				<child>
-					<object class="GtkBox">
+					<object class="GtkListBox" id="roster">
 						<property name="visible">True</property>
 						<property name="can_focus">False</property>
-						<property name="margin_bottom">10</property>
-						<property name="spacing">10</property>
-						<child>
-							<object class="GtkButton" id="btn_show_menu">
-								<property name="visible">True</property>
-								<property name="can_focus">True</property>
-								<property name="focus_on_click">False</property>
-								<property name="receives_default">True</property>
-								<property name="relief">none</property>
-								<child>
-									<object class="GtkImage">
-										<property name="visible">True</property>
-										<property name="can_focus">False</property>
-										<property name="icon_name">document-properties-symbolic</property>
-									</object>
-								</child>
-							</object>
-							<packing>
-								<property name="expand">False</property>
-								<property name="fill">True</property>
-								<property name="position">0</property>
-							</packing>
-						</child>
-						<child>
-							<object class="GtkBox">
-								<property name="visible">True</property>
-								<property name="can_focus">False</property>
-								<property name="halign">end</property>
-								<property name="spacing">5</property>
-								<child>
-									<object class="GtkToggleButton" id="btn_search_roster">
-										<property name="visible">True</property>
-										<property name="can_focus">True</property>
-										<property name="focus_on_click">False</property>
-										<property name="receives_default">True</property>
-										<property name="relief">none</property>
-										<child>
-											<object class="GtkImage">
-												<property name="visible">True</property>
-												<property name="can_focus">False</property>
-												<property name="icon_name">search-symbolic</property>
-											</object>
-										</child>
-									</object>
-									<packing>
-										<property name="expand">False</property>
-										<property name="fill">True</property>
-										<property name="position">0</property>
-									</packing>
-								</child>
-								<child>
-									<object class="GtkButton" id="btn_new_member">
-										<property name="visible">True</property>
-										<property name="can_focus">True</property>
-										<property name="focus_on_click">False</property>
-										<property name="receives_default">True</property>
-										<property name="relief">none</property>
-										<child>
-											<object class="GtkImage">
-												<property name="visible">True</property>
-												<property name="can_focus">False</property>
-												<property name="icon_name">list-add-symbolic</property>
-											</object>
-										</child>
-									</object>
-									<packing>
-										<property name="expand">False</property>
-										<property name="fill">True</property>
-										<property name="position">1</property>
-									</packing>
-								</child>
-							</object>
-							<packing>
-								<property name="expand">False</property>
-								<property name="fill">True</property>
-								<property name="pack_type">end</property>
-								<property name="position">1</property>
-							</packing>
-						</child>
-					</object>
-					<packing>
-						<property name="expand">False</property>
-						<property name="fill">True</property>
-						<property name="position">0</property>
-					</packing>
-				</child>
-				<child>
-					<object class="GtkRevealer" id="roster_search_box">
-						<property name="visible">False</property>
-						<property name="can_focus">False</property>
-						<child>
-							<object class="GtkEntry" id="roster_search">
-								<property name="visible">True</property>
-								<property name="can_focus">True</property>
-								<property name="primary_icon_name">search-symbolic</property>
-								<property name="margin_bottom">10</property>
-							</object>
-						</child>
-					</object>
-					<packing>
-						<property name="expand">False</property>
-						<property name="fill">True</property>
-						<property name="position">1</property>
-					</packing>
-				</child>
-				<child>
-					<object class="GtkSeparator">
-						<property name="visible">True</property>
-						<property name="can_focus">False</property>
-					</object>
-					<packing>
-						<property name="expand">False</property>
-						<property name="fill">True</property>
-						<property name="position">2</property>
-					</packing>
-				</child>
-			</object>
-			<packing>
-				<property name="expand">False</property>
-				<property name="fill">True</property>
-				<property name="position">0</property>
-			</packing>
-		</child>
-		<child>
-			<object class="GtkScrolledWindow">
-				<property name="visible">True</property>
-				<property name="can_focus">True</property>
-				<property name="shadow_type">in</property>
-				<child>
-					<object class="GtkViewport">
-						<property name="visible">True</property>
-						<property name="can_focus">False</property>
-						<child>
-							<object class="GtkListBox" id="roster">
-								<property name="visible">True</property>
-								<property name="can_focus">False</property>
-								<style>
-									<class name="list"/>
-								</style>
-							</object>
-						</child>
+						<template class="MoonZaphireRosterMember" parent="GtkListBoxRow">
+							<property name="width_request">100</property>
+							<property name="height_request">70</property>
+							<property name="visible">True</property>
+							<property name="can_focus">True</property>
+							<property name="activatable">True</property>
+							<property name="selectable">True</property>
+						</template>
+						<style>
+							<class name="moon-zaphire"/><class name="list"/>
+						</style>
 					</object>
 				</child>
 			</object>
-			<packing>
-				<property name="expand">True</property>
-				<property name="fill">True</property>
-				<property name="position">1</property>
-			</packing>
 		</child>
 	</template>
 </interface>

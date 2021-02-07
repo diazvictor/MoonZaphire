@@ -20,6 +20,8 @@ function MoonZaphire.Window:_class_init(klass)
 	klass:bind_template_child_full('Background', true, 0)
 	klass:bind_template_child_full('Content', true, 0)
 	klass:bind_template_child_full('Login', true, 0)
+	klass:bind_template_child_full('search_members', true, 0)
+	klass:bind_template_child_full('btn_menu', true, 0)
 end
 
 --- When building the class
@@ -33,7 +35,27 @@ function MoonZaphire.Window:_init()
 	background = self:get_template_child(MoonZaphire.Window, 'Background')
 	content = self:get_template_child(MoonZaphire.Window, 'Content')
 	content_login = self:get_template_child(MoonZaphire.Window, 'Login')
+	local btn_menu = self:get_template_child(MoonZaphire.Window, 'btn_menu')
+	local search_members = self:get_template_child(MoonZaphire.Window, 'search_members')
 
+	btn_menu.on_clicked = function (self)
+		background:add_overlay(
+			MoonZaphire.Settings {
+				id = 'Modal'
+			}
+		)
+		utils:addClass(background.child.Modal, 'alert-dialog')
+	end
+
+	search_members.on_key_release_event = function (self, env)
+		if ( env.keyval  == Gdk.KEY_Return ) then
+			if (self.text ~= '') then
+				local id_member = tostring(os.time())
+				local member = MoonZaphire.Roster:add_member(id_member)
+				-- member.child.fullname.label = self.text
+			end
+		end
+	end
 	-- I load my css styles
 	local styles = Gtk.CssProvider()
 	styles:load_from_resource("/com/github/diazvictor/MoonZaphire/data/styles/custom.css")
