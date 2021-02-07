@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
 	<!-- interface-requires gtk+ 3.8 -->
-	<template class="MoonZaphireSettingsGeneral" parent="GtkBox">
+	<template class="MoonZaphireSettingsNewGroup" parent="GtkBox">
 		<property name="visible">True</property>
 		<property name="can_focus">False</property>
 		<property name="orientation">vertical</property>
 		<child>
-			<placeholder/>
+			<placeholder />
 		</child>
 	</template>
 </interface>
