@@ -6,112 +6,114 @@
  * @date      03.02.2021 15:56:32 -04
  *
  * Para compilar el archivo desde la consola de comandos es:
- * lessc custom.less > custom.less.css
+ * lessc custom.sass > custom.sass.css
  */
- 
-@define-color bg-light rgba(255, 255, 255, 1);
-@define-color bg-dark rgba(0, 0, 0, 0.8);
-@define-color color-dark rgba(0, 0, 0, 0.8);
+
+/* =============================================== */
+/* = Variables = */
+/* =============================================== */
+
+@define-color bg-black-opacity rgba(0, 0, 0, 0.5);
+@define-color bg-white-opacity rgba(255, 255, 255, 0.5);
+@define-color color-white #F1F1F1;
+@define-color color-black #1A1A1A;
+@define-color color-grey #BDBDBD;
+@define-color color-green #2FC62F;
+@define-color color-blue #1E90FF;
+
+/* =============================================== */
+/* = Global = */
+/* =============================================== */
 
 * {
-	font-family: 'Open Sans';
+	font-family: 'Open Sans', 'sans-serif';
 }
 
-/* GLOBAL STYLES */
 scrolledwindow {
     border: none;
 }
-.b-none {
-	border: none;
-}
 
-/* ALERT DIALOG STYLES */
-box.alert-dialog {
-	color: #FFFFFF;
-	background-color: rgba(0, 0, 0, 0.5);
+/* =============================================== */
+/* = Alert Dialog = */
+/* =============================================== */
+
+box.moon-zaphire.alert-dialog {
+	color: @color-white;
+	background-color: @bg-black-opacity;
 	transition: background .2s ease-out;
 }
-box.alert-dialog label.alert-title {
+box.moon-zaphire.alert-dialog > label.title {
 	font-size: 30px;
 }
-box.alert-dialog label.alert-subtitle {
+box.moon-zaphire.alert-dialog > label.subtitle {
 	font-size: 15px;
 }
-box.alert-dialog label.alert-message {
-}
-/* MODAL */
-.modal .card {
-	background: #FFFFFF;
-	color: @color-dark;
-	border-radius: 3px;
-}
-.modal .card button.close {
-	border: none;
-	border-radius: 20px;
-	box-shadow: none;
-	background: transparent;
-	color: @color-dark;
-}
-.modal .card button.close:active {
-	background: #CCC;
-}
-.modal .card button.close image {
-	-gtk-icon-shadow: none;
-}
-.modal .card .titlebar {
-	background: transparent;
-	padding: 20px 10px;
-	color: @color-dark;
-}
-.modal .card .header {
-	padding: 10px 10px;
-}
-.modal .card .titlebar button,
-.modal .card .header button {
-	border: none;
-	box-shadow: none;
-	border-radius: 20px;
-	background: transparent;
-	-gtk-icon-shadow: none;
-	color: @color-dark;
-}
-.modal .card .titlebar button:active,
-.modal .card .header button:active {
-	background: #CCC;
-}
-.modal .card .list-item {
-	background: transparent;
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-.modal .card .list-item row box {
-	margin-left: 10px;
-	margin-right: 10px;
-}
-.modal .card .list-item row box image {
-	-gtk-icon-style: symbolic;
-}
-.modal .card .header button image {}
-.modal .card .header entry {
-	background: @bg-dark;
-	color: @bg-light;
-}
-.modal .card .footer {
-	padding: 10px 20px 10px 20px;
+box.moon-zaphire.alert-dialog > label.message {
 }
 
-/* IMAGE STYLES */
+/* =============================================== */
+/* = ListBox = */
+/* =============================================== */
 
-/* LIST-CHAT STYLES */
-list.list {
+list.moon-zaphire.list {
 	background: transparent;
 }
+list.moon-zaphire.list box.content {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+list.moon-zaphire.list image.avatar {
 /*
-@TODO: buscar la manera de usar las clases
-list.list row.list-item box.list-item-content label.list-item-title {
+	color: @color-black;
 */
-list.list row box label:first-child {
-	font-size: 15px;
+}
+list.moon-zaphire.list label.title {
+	font-weight: bold;
+}
+list.moon-zaphire.list label.subtitle {
+	font-weight: 400;
+}
+list.moon-zaphire.list label.text {
+	color: @color-grey;
+}
+list.moon-zaphire.list image.online {
+	color: @color-blue;
+}
+
+/* =============================================== */
+/* = Card = */
+/* =============================================== */
+
+box.moon-zaphire .card {
+	border-radius: 3px;
+	background-color: #FFFFFF;
+}
+box.moon-zaphire .card box.header {
+	color: @color-black;
+	padding: 10px;
+}
+box.moon-zaphire .card box.header label.title {
+	font-size: 20px;
+	font-weight: bold;
+}
+box.moon-zaphire .card entry.textfield {
+	margin: 10px;
+}
+box.moon-zaphire .card box.head {
+	color: @color-black;
+	padding: 20px 10px;
+}
+box.moon-zaphire .card box.head label.title {
+	font-weight: bold;
+}
+box.moon-zaphire .card box.head label.subtitle {
+	font-weight: 400;
+}
+box.moon-zaphire .card box.foot {
+	color: @color-black;
+	padding: 10px;
+}
+box.moon-zaphire .card box.foot label.title {
 	font-weight: bold;
 }
 
