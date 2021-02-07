@@ -7,7 +7,12 @@
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/login/auth_user.ui</file>
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/login/auth_host.ui</file>
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/chat/roster.ui</file>
+		<file compressed="true" preprocess="xml-stripblanks">data/ui/chat/member.ui</file>
+		<file compressed="true" preprocess="xml-stripblanks">data/ui/settings/settings.ui</file>
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/settings/general.ui</file>
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/settings/contacts.ui</file>
+		<file compressed="true" preprocess="xml-stripblanks">data/ui/settings/new_group.ui</file>
+		<file compressed="true" preprocess="xml-stripblanks">data/ui/settings/languages.ui</file>
+		<file compressed="true" preprocess="xml-stripblanks">data/ui/settings/about.ui</file>
 	</gresource>
 </gresources>
