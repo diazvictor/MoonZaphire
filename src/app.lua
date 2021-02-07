@@ -22,7 +22,6 @@ function MoonZaphire.App:do_startup()
 	settings = Gtk.Settings.get_default()
 
 	-- Creates the window
-	settings.gtk_application_prefer_dark_theme = true
 	MoonZaphire.Window {
 		application = self
 	}
