@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<!-- interface-requires gtk+ 3.8 -->
+	<object class="MoonZaphireWindow" id="Window"></object>
+	<object class="MoonZaphireSettings" id="Sidebar"></object>
+</interface>

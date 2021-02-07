@@ -1,0 +1,146 @@
+/**!
+ * @package   MoonZaphire
+ * @filename  styles/custom.less
+ * @version   1.0
+ * @autor     Díaz Urbaneja Víctor Eduardo Diex <victor.vector008@gmail.com>
+ * @date      03.02.2021 15:56:32 -04
+ *
+ * Para compilar el archivo desde la consola de comandos es:
+ * lessc custom.less > custom.less.css
+ */
+ 
+@define-color bg-light rgba(255, 255, 255, 1);
+@define-color bg-dark rgba(0, 0, 0, 0.8);
+@define-color color-dark rgba(0, 0, 0, 0.8);
+
+* {
+	font-family: 'Open Sans';
+}
+
+/* GLOBAL STYLES */
+scrolledwindow {
+    border: none;
+}
+.b-none {
+	border: none;
+}
+
+/* ALERT DIALOG STYLES */
+box.alert-dialog {
+	color: #FFFFFF;
+	background-color: rgba(0, 0, 0, 0.5);
+	transition: background .2s ease-out;
+}
+box.alert-dialog label.alert-title {
+	font-size: 30px;
+}
+box.alert-dialog label.alert-subtitle {
+	font-size: 15px;
+}
+box.alert-dialog label.alert-message {
+}
+/* MODAL */
+.modal .card {
+	background: #FFFFFF;
+	color: @color-dark;
+	border-radius: 3px;
+}
+.modal .card button.close {
+	border: none;
+	border-radius: 20px;
+	box-shadow: none;
+	background: transparent;
+	color: @color-dark;
+}
+.modal .card button.close:active {
+	background: #CCC;
+}
+.modal .card button.close image {
+	-gtk-icon-shadow: none;
+}
+.modal .card .titlebar {
+	background: transparent;
+	padding: 20px 10px;
+	color: @color-dark;
+}
+.modal .card .header {
+	padding: 10px 10px;
+}
+.modal .card .titlebar button,
+.modal .card .header button {
+	border: none;
+	box-shadow: none;
+	border-radius: 20px;
+	background: transparent;
+	-gtk-icon-shadow: none;
+	color: @color-dark;
+}
+.modal .card .titlebar button:active,
+.modal .card .header button:active {
+	background: #CCC;
+}
+.modal .card .list-item {
+	background: transparent;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.modal .card .list-item row box {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.modal .card .list-item row box image {
+	-gtk-icon-style: symbolic;
+}
+.modal .card .header button image {}
+.modal .card .header entry {
+	background: @bg-dark;
+	color: @bg-light;
+}
+.modal .card .footer {
+	padding: 10px 20px 10px 20px;
+}
+
+/* IMAGE STYLES */
+
+/* LIST-CHAT STYLES */
+list.list {
+	background: transparent;
+}
+/*
+@TODO: buscar la manera de usar las clases
+list.list row.list-item box.list-item-content label.list-item-title {
+*/
+list.list row box label:first-child {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+/* USER CHAT STYLE */
+/** TITLE **/
+stack.user-chat > box > box:nth-child(1) box label {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+/** MESSAGE ENTRY **/
+stack.user-chat > box > box:last-child :last-child {
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+stack.user-chat > box > box:last-child :first-child {
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+/* COMMENT STYLES */
+box.comment-this,
+box.comment-for-you {
+	background-color: #1E90FF;
+	padding: 10px 15px;
+	border-radius: 20px;
+}
+box.comment-this label,
+box.comment-for-you label {
+	color: #FFFFFF;
+}

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<!-- interface-requires gtk+ 3.8 -->
+	<template class="MoonZaphireWindow">
+		<property name="can_focus">False</property>
+		<property name="window_position">center</property>
+		<property name="default_width">800</property>
+		<property name="default_height">600</property>
+		<child type="titlebar">
+			<placeholder/>
+		</child>
+		<child>
+			<object class="GtkOverlay" id="Background">
+				<property name="visible">True</property>
+				<property name="can_focus">False</property>
+				<child>
+					<object class="GtkStack" id="Content">
+						<property name="visible">True</property>
+						<property name="can_focus">False</property>
+						<property name="transition_type">slide-left-right</property>
+						<child>
+							<object class="MoonZaphireStart" id="Start"></object>
+							<packing>
+								<property name="name">start</property>
+							</packing>
+						</child>
+						<child>
+							<object class="GtkStack" id="Login">
+								<property name="width_request">300</property>
+								<property name="visible">True</property>
+								<property name="can_focus">False</property>
+								<property name="halign">center</property>
+								<property name="valign">center</property>
+								<property name="vhomogeneous">False</property>
+								<property name="transition_type">slide-left-right</property>
+
+								<child>
+									<object class="MoonZaphireAuthUser" id="AuthUser"></object>
+									<packing>
+										<property name="name">auth_user</property>
+									</packing>
+								</child>
+
+								<child>
+									<object class="MoonZaphireAuthHost" id="AuthHost"></object>
+									<packing>
+										<property name="name">auth_host</property>
+										<property name="position">1</property>
+									</packing>
+								</child>
+							</object>
+							<packing>
+								<property name="name">login</property>
+								<property name="position">1</property>
+							</packing>
+						</child>
+						<child>
+                            <object class="GtkStack" id="Chat">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="margin_left">10</property>
+                                <property name="margin_right">10</property>
+                                <property name="margin_top">10</property>
+                                <property name="margin_bottom">10</property>
+                                <property name="transition_type">slide-left-right</property>
+                                <child>
+                                    <object class="GtkPaned">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="margin_top">10</property>
+                                        <property name="margin_bottom">10</property>
+                                        <child>
+											<object class="MoonZaphireRoster" id="Roster"></object>
+                                            <packing>
+                                                <property name="resize">False</property>
+                                                <property name="shrink">False</property>
+                                            </packing>
+                                        </child>
+                                        <child>
+                                            <object class="GtkStack" id="user_chat">
+                                                <property name="width_request">500</property>
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="margin_left">10</property>
+                                                <child>
+													<object class="GtkLabel">
+														<property name="visible">True</property>
+														<property name="can_focus">False</property>
+														<property name="label" translatable="yes">Choose a chat (still under development)</property>
+														<attributes>
+															<attribute name="weight" value="bold"/>
+															<attribute name="scale" value="1.5"/>
+														</attributes>
+													</object>
+													<packing>
+														<property name="name">start-message</property>
+													</packing>
+												</child>
+                                                <style>
+                                                    <class name="user-chat"/>
+                                                </style>
+                                            </object>
+                                            <packing>
+                                                <property name="resize">True</property>
+                                                <property name="shrink">False</property>
+                                            </packing>
+                                        </child>
+                                    </object>
+                                    <packing>
+                                        <property name="name">chat</property>
+                                    </packing>
+                                </child>
+                            </object>
+                            <packing>
+                                <property name="name">chat</property>
+                                <property name="position">2</property>
+                            </packing>
+                        </child>
+					</object>
+				</child>
+			</object>			
+		</child>
+	</template>
+</interface>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+	<gresource prefix="/com/github/diazvictor/MoonZaphire">
+		<file compressed="true">data/styles/custom.css</file>
+		<file compressed="true" preprocess="xml-stripblanks">data/ui/window.ui</file>
+		<file compressed="true" preprocess="xml-stripblanks">data/ui/start.ui</file>
+		<file compressed="true" preprocess="xml-stripblanks">data/ui/login/auth_user.ui</file>
+		<file compressed="true" preprocess="xml-stripblanks">data/ui/login/auth_host.ui</file>
+		<file compressed="true" preprocess="xml-stripblanks">data/ui/chat/roster.ui</file>
+		<file compressed="true" preprocess="xml-stripblanks">data/ui/settings/general.ui</file>
+		<file compressed="true" preprocess="xml-stripblanks">data/ui/settings/contacts.ui</file>
+	</gresource>
+</gresources>

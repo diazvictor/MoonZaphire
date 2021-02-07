@@ -1,23 +1,44 @@
-# MoonZaphire
-MoonZaphire is a GTK3 frontend for MQTT written in Lua.
+<p align="center">
+	<a href="https://github.com/diazvictor/MoonZaphire"><img src="https://github.com/diazvictor/MoonZaphire/raw/v3.0/logo.svg" alt="Logo"></a>
+</p>
 
-*Read this in other languages: [Español](README.ES.md)*
+MoonZaphire is a GTK3 frontend for MQTT written in Lua with a lot of love.
 
-## This software requires:
-* [lua5.1](https://www.lua.org/download.html) or [luajit2.0.5](https://luajit.org/)
-* [lgi](https://github.com/pavouk/lgi)
-* [mosquitto/mqtt](http://mqtt.org/)
-* [lua-mosquitto](https://github.com/flukso/lua-mosquitto/)
+> **IMPORTANT:** This project is under active development, therefore many 
+> of the features are not yet available.
 
-## Run
-Execute: `init.lua` with Lua5.1 (or LuaJIT)
+## Dependencies
 
-## Screenshots
-![Screenshot](screenshot/chat.png "Chat")
+- [Lua5.1+](https://www.lua.org/download.html) (or [LuaJIT 2.0+](https://luajit.org/))
+- [LGI](https://github.com/pavouk/lgi)
 
-![Screenshot](screenshot/login.png "Login")
+## Running steps
 
-## Contacts
-- Email: [victor.vector008@gmail.com](mailto:victor.vector008@gmail.com)
-- Website: [https://diazvictor.gitlab.io](https://diazvictor.gitlab.io)
-- Telegram: [https://t.me/diazvictor](https://t.me/diazvictor)
+Before running MoonZaphire, you'll need compile the `data/com.github.diazvictor.MoonZaphire.xml` file:
+
+```
+glib-compile-resources data/com.github.diazvictor.MoonZaphire.xml
+```
+
+Now all that remains is to run the application
+
+```
+lua MoonZaphire.lua
+```
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## Credits
+
+Thanks to:
+- [darltrash](https://github.com/darltrash) for the logo and some ideas for the application.
+- [sodomon](https://github.com/sodomon2) for contributing the code and supporting the project.
+- [vitronic](https://gitlab.com/vitronic) for guiding me in the construction of the application, in addition to developing a standard protocol for the application.
+
+## License
+
+MoonZaphire is available under the zlib license. Details can be found in the [LICENSE](LICENSE) file.
