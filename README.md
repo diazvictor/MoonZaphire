@@ -8,7 +8,7 @@ MoonZaphire is a GTK3 frontend for MQTT written in Lua with a lot of love.
 > of the features are not yet available.
 
 <p align="center">
-	<img alt="UI Concept" src="ui-concept.png"/>
+	<img alt="UI Concept" src="https://github.com/diazvictor/MoonZaphire/raw/v3.0/ui-concept.png"/>
 </p>
 
 ## Dependencies
