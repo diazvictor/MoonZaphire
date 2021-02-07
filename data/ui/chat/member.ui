@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<!-- interface-requires gtk+ 3.8 -->
+	<template class="MoonZaphireRosterMember" parent="GtkListBoxRow">
+		<property name="width_request">100</property>
+		<property name="height_request">70</property>
+		<property name="visible">True</property>
+		<property name="can_focus">True</property>
+		<property name="activatable">True</property>
+		<property name="selectable">True</property>
+		<child>
+			<object class="GtkBox">
+				<property name="visible">True</property>
+				<property name="can_focus">False</property>
+				<property name="valign">center</property>
+				<property name="spacing">10</property>
+				<child>
+					<object class="GtkImage" id="avatar">
+						<property name="visible">True</property>
+						<property name="can_focus">False</property>
+						<property name="valign">center</property>
+						<property name="icon_name">avatar-default-symbolic</property>
+						<property name="icon_size">6</property>
+						<style>
+							<class name="avatar"/>
+						</style>
+					</object>
+					<packing>
+						<property name="expand">False</property>
+						<property name="fill">True</property>
+						<property name="position">0</property>
+					</packing>
+				</child>
+				<child>
+					<object class="GtkBox">
+						<property name="visible">True</property>
+						<property name="can_focus">False</property>
+						<property name="valign">center</property>
+						<property name="orientation">vertical</property>
+						<child>
+							<object class="GtkBox">
+								<property name="visible">True</property>
+								<property name="can_focus">False</property>
+								<child>
+									<object class="GtkLabel" id="fullname">
+										<property name="visible">True</property>
+										<property name="can_focus">False</property>
+										<property name="halign">start</property>
+										<property name="label" translatable="yes"></property>
+										<style>
+											<class name="title"/>
+										</style>
+									</object>
+									<packing>
+										<property name="expand">False</property>
+										<property name="fill">True</property>
+										<property name="position">0</property>
+									</packing>
+								</child>
+								<child>
+									<object class="GtkImage" id="online">
+										<property name="visible">True</property>
+										<property name="can_focus">False</property>
+										<property name="valign">center</property>
+										<property name="icon_name">media-record-symbolic</property>
+										<style>
+											<class name="online"/>
+										</style>
+									</object>
+									<packing>
+										<property name="expand">False</property>
+										<property name="fill">True</property>
+										<property name="pack_type">end</property>
+										<property name="position">1</property>
+									</packing>
+								</child>
+							</object>
+							<packing>
+								<property name="expand">False</property>
+								<property name="fill">True</property>
+								<property name="position">0</property>
+							</packing>
+						</child>
+						<child>
+							<object class="GtkBox">
+								<property name="visible">True</property>
+								<property name="can_focus">False</property>
+								<child>
+									<object class="GtkLabel" id="last_message">
+										<property name="visible">True</property>
+										<property name="can_focus">False</property>
+										<property name="label" translatable="yes"></property>
+										<style>
+											<class name="subtitle"/>
+										</style>
+									</object>
+									<packing>
+										<property name="expand">False</property>
+										<property name="fill">True</property>
+										<property name="position">0</property>
+									</packing>
+								</child>
+								<child>
+									<object class="GtkLabel" id="message_hour">
+										<property name="visible">True</property>
+										<property name="can_focus">False</property>
+										<property name="label" translatable="yes"></property>
+										<style>
+											<class name="text"/>
+										</style>
+									</object>
+									<packing>
+										<property name="expand">False</property>
+										<property name="fill">True</property>
+										<property name="pack_type">end</property>
+										<property name="position">1</property>
+									</packing>
+								</child>
+							</object>
+							<packing>
+								<property name="expand">False</property>
+								<property name="fill">True</property>
+								<property name="position">1</property>
+							</packing>
+						</child>
+					</object>
+					<packing>
+						<property name="expand">True</property>
+						<property name="fill">True</property>
+						<property name="position">1</property>
+					</packing>
+				</child>
+				<style>
+					<class name="content"/>
+				</style>
+			</object>
+		</child>
+		<style>
+			<class name="item"/>
+		</style>
+	</template>
+</interface>
+
