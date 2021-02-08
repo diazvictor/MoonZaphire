@@ -1,6 +1,6 @@
 --[[--
  @package   MoonZaphire
- @filename  main.lua
+ @filename  MoonZaphire.lua
  @version   1.0
  @author    Díaz Urbaneja Víctor Eduardo Diex <victor.vector008@gmail.com>
  @date      05.02.2021 00:09:36 -04
@@ -39,13 +39,7 @@ require('start')
 require('login.auth_user')
 require('login.auth_host')
 require('settings.settings')
-require('settings.general')
-require('settings.new_group')
-require('settings.languages')
-require('settings.contacts')
-require('settings.about')
-require('chat.roster')
-require('chat.member')
+require('roster.roster')
 require('window')
 
 --- Start the application
