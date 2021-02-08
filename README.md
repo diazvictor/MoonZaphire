@@ -41,4 +41,4 @@ Thanks to:
 
 ## License
 
-MoonZaphire is available under the zlib license. Details can be found in the [LICENSE](LICENSE) file.
+MoonZaphire is available under the zlib license. Details can be found in the [LICENSE](LICENSE.md) file.
