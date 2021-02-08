@@ -55,7 +55,7 @@
 										</style>
 									</object>
 									<packing>
-										<property name="expand">False</property>
+										<property name="expand">True</property>
 										<property name="fill">True</property>
 										<property name="position">1</property>
 									</packing>
@@ -135,46 +135,110 @@
 						<property name="can_focus">False</property>
 						<property name="transition_type">slide-left-right</property>
 						<child>
-							<object class="GtkBox">
+							<object class="GtkScrolledWindow">
 								<property name="visible">True</property>
-								<property name="can_focus">False</property>
-								<property name="orientation">vertical</property>
+								<property name="can_focus">True</property>
+								<property name="shadow_type">in</property>
 								<child>
-									<object class="GtkBox">
+									<object class="GtkViewport">
 										<property name="visible">True</property>
 										<property name="can_focus">False</property>
-										<property name="spacing">10</property>
-										<child>
-											<object class="GtkImage">
-												<property name="visible">True</property>
-												<property name="can_focus">False</property>
-												<property name="valign">center</property>
-												<property name="icon_name">contact-new-symbolic</property>
-												<property name="icon_size">6</property>
-												<style>
-													<class name="avatar"/>
-												</style>
-											</object>
-											<packing>
-												<property name="expand">False</property>
-												<property name="fill">True</property>
-												<property name="position">0</property>
-											</packing>
-										</child>
 										<child>
 											<object class="GtkBox">
 												<property name="visible">True</property>
 												<property name="can_focus">False</property>
-												<property name="valign">center</property>
 												<property name="orientation">vertical</property>
 												<child>
-													<object class="GtkLabel">
+													<object class="GtkBox" id="description">
 														<property name="visible">True</property>
 														<property name="can_focus">False</property>
-														<property name="halign">start</property>
-														<property name="label" translatable="yes">Fullname</property>
+														<property name="spacing">10</property>
+														<child>
+															<object class="GtkImage" id="avatar">
+																<property name="visible">True</property>
+																<property name="can_focus">False</property>
+																<property name="valign">center</property>
+																<property name="icon_name">contact-new-symbolic</property>
+																<property name="icon_size">6</property>
+																<style>
+																	<class name="avatar"/>
+																</style>
+															</object>
+															<packing>
+																<property name="expand">False</property>
+																<property name="fill">True</property>
+																<property name="position">0</property>
+															</packing>
+														</child>
+														<child>
+															<object class="GtkBox">
+																<property name="visible">True</property>
+																<property name="can_focus">False</property>
+																<property name="valign">center</property>
+																<property name="orientation">vertical</property>
+																<child>
+																	<object class="GtkLabel" id="fullname">
+																		<property name="visible">True</property>
+																		<property name="can_focus">False</property>
+																		<property name="halign">start</property>
+																		<property name="label" translatable="yes">Fullname</property>
+																		<style>
+																			<class name="title"/>
+																		</style>
+																	</object>
+																	<packing>
+																		<property name="expand">False</property>
+																		<property name="fill">True</property>
+																		<property name="position">0</property>
+																	</packing>
+																</child>
+																<child>
+																	<object class="GtkLabel" id="nickname">
+																		<property name="visible">True</property>
+																		<property name="can_focus">False</property>
+																		<property name="halign">start</property>
+																		<property name="label" translatable="yes">@nickname</property>
+																		<style>
+																			<class name="subtitle"/>
+																		</style>
+																	</object>
+																	<packing>
+																		<property name="expand">False</property>
+																		<property name="fill">True</property>
+																		<property name="position">1</property>
+																	</packing>
+																</child>
+															</object>
+															<packing>
+																<property name="expand">False</property>
+																<property name="fill">True</property>
+																<property name="position">1</property>
+															</packing>
+														</child>
+														<child>
+															<object class="GtkButton" id="btn_profile">
+																<property name="visible">True</property>
+																<property name="can_focus">True</property>
+																<property name="receives_default">True</property>
+																<property name="tooltip_text" translatable="yes">Edit profile</property>
+																<property name="valign">center</property>
+																<child>
+																	<object class="GtkImage">
+																		<property name="visible">True</property>
+																		<property name="can_focus">False</property>
+																		<property name="icon_name">edit-symbolic</property>
+																	</object>
+																</child>
+															</object>
+															<packing>
+																<property name="expand">False</property>
+																<property name="fill">True</property>
+																<property name="pack_type">end</property>
+																<property name="position">2</property>
+															</packing>
+														</child>
 														<style>
-															<class name="title"/>
+															<class name="head"/>
 														</style>
 													</object>
 													<packing>
@@ -184,71 +248,7 @@
 													</packing>
 												</child>
 												<child>
-													<object class="GtkLabel">
-														<property name="visible">True</property>
-														<property name="can_focus">False</property>
-														<property name="halign">start</property>
-														<property name="label" translatable="yes">@alias</property>
-														<style>
-															<class name="subtitle"/>
-														</style>
-													</object>
-													<packing>
-														<property name="expand">False</property>
-														<property name="fill">True</property>
-														<property name="position">1</property>
-													</packing>
-												</child>
-											</object>
-											<packing>
-												<property name="expand">False</property>
-												<property name="fill">True</property>
-												<property name="position">1</property>
-											</packing>
-										</child>
-										<child>
-											<object class="GtkButton">
-												<property name="visible">True</property>
-												<property name="can_focus">True</property>
-												<property name="receives_default">True</property>
-												<property name="tooltip_text" translatable="yes">Edit profile</property>
-												<property name="valign">center</property>
-												<child>
-													<object class="GtkImage">
-														<property name="visible">True</property>
-														<property name="can_focus">False</property>
-														<property name="icon_name">edit-symbolic</property>
-													</object>
-												</child>
-											</object>
-											<packing>
-												<property name="expand">False</property>
-												<property name="fill">True</property>
-												<property name="pack_type">end</property>
-												<property name="position">2</property>
-											</packing>
-										</child>
-										<style>
-											<class name="head"/>
-										</style>
-									</object>
-									<packing>
-										<property name="expand">False</property>
-										<property name="fill">True</property>
-										<property name="position">0</property>
-									</packing>
-								</child>
-								<child>
-									<object class="GtkScrolledWindow">
-										<property name="visible">True</property>
-										<property name="can_focus">True</property>
-										<property name="shadow_type">in</property>
-										<child>
-											<object class="GtkViewport">
-												<property name="visible">True</property>
-												<property name="can_focus">False</property>
-												<child>
-													<object class="GtkListBox" id="settings_menu">
+													<object class="GtkListBox" id="items">
 														<property name="visible">True</property>
 														<property name="can_focus">False</property>
 														<child>
@@ -362,59 +362,59 @@
 															</object>
 														</child>
 														<child>
-														    <object class="GtkListBoxRow">
-														        <property name="width_request">100</property>
-														        <property name="height_request">70</property>
-														        <property name="visible">True</property>
-														        <property name="can_focus">True</property>
-														        <child>
-														            <object class="GtkBox">
-														                <property name="visible">True</property>
-														                <property name="can_focus">False</property>
-														                <property name="spacing">10</property>
-														                <child>
-														                    <object class="GtkImage">
-														                        <property name="visible">True</property>
-														                        <property name="can_focus">False</property>
-														                        <property name="valign">center</property>
-														                        <property name="icon_name">application-menu-symbolic</property>
-														                        <property name="icon_size">6</property>
-														                        <style>
-														                            <class name="avatar"/>
-														                        </style>
-														                    </object>
-														                    <packing>
-														                        <property name="expand">False</property>
-														                        <property name="fill">True</property>
-														                        <property name="position">0</property>
-														                    </packing>
-														                </child>
-														                <child>
-														                    <object class="GtkLabel">
-														                        <property name="visible">True</property>
-														                        <property name="can_focus">False</property>
-														                        <property name="halign">start</property>
-														                        <property name="valign">center</property>
-														                        <property name="label" translatable="yes">Settings</property>
-														                        <style>
-														                            <class name="title"/>
-														                        </style>
-														                    </object>
-														                    <packing>
-														                        <property name="expand">False</property>
-														                        <property name="fill">True</property>
-														                        <property name="position">1</property>
-														                    </packing>
-														                </child>
-														                <style>
-														                    <class name="content"/>
-														                </style>
-														            </object>
-														        </child>
-														        <style>
-														            <class name="item"/>
-														        </style>
-														    </object>
+															<object class="GtkListBoxRow">
+																<property name="width_request">100</property>
+																<property name="height_request">70</property>
+																<property name="visible">True</property>
+																<property name="can_focus">True</property>
+																<child>
+																	<object class="GtkBox">
+																		<property name="visible">True</property>
+																		<property name="can_focus">False</property>
+																		<property name="spacing">10</property>
+																		<child>
+																			<object class="GtkImage">
+																				<property name="visible">True</property>
+																				<property name="can_focus">False</property>
+																				<property name="valign">center</property>
+																				<property name="icon_name">application-menu-symbolic</property>
+																				<property name="icon_size">6</property>
+																				<style>
+																					<class name="avatar"/>
+																				</style>
+																			</object>
+																			<packing>
+																				<property name="expand">False</property>
+																				<property name="fill">True</property>
+																				<property name="position">0</property>
+																			</packing>
+																		</child>
+																		<child>
+																			<object class="GtkLabel">
+																				<property name="visible">True</property>
+																				<property name="can_focus">False</property>
+																				<property name="halign">start</property>
+																				<property name="valign">center</property>
+																				<property name="label" translatable="yes">Settings</property>
+																				<style>
+																					<class name="title"/>
+																				</style>
+																			</object>
+																			<packing>
+																				<property name="expand">False</property>
+																				<property name="fill">True</property>
+																				<property name="position">1</property>
+																			</packing>
+																		</child>
+																		<style>
+																			<class name="content"/>
+																		</style>
+																	</object>
+																</child>
+																<style>
+																	<class name="item"/>
+																</style>
+															</object>
 														</child>
 														<child>
 															<object class="GtkListBoxRow">
@@ -607,56 +607,140 @@
 															<class name="moon-zaphire"/><class name="list"/>
 														</style>
 													</object>
+													<packing>
+														<property name="expand">False</property>
+														<property name="fill">True</property>
+														<property name="position">1</property>
+													</packing>
 												</child>
 											</object>
 										</child>
 									</object>
-									<packing>
-										<property name="expand">True</property>
-										<property name="fill">True</property>
-										<property name="position">1</property>
-									</packing>
 								</child>
 							</object>
 							<packing>
-								<property name="name">settings_menu</property>
+								<property name="name">main</property>
 							</packing>
 						</child>
 						<child>
-							<object class="MoonZaphireSettingsNewGroup"></object>
+							<object class="GtkScrolledWindow">
+								<property name="visible">True</property>
+								<property name="can_focus">True</property>
+								<property name="shadow_type">in</property>
+								<child>
+									<object class="GtkViewport">
+										<property name="visible">True</property>
+										<property name="can_focus">False</property>
+										<child>
+											<object class="MoonZaphireSettingsProfile"></object>
+										</child>
+									</object>
+								</child>
+							</object>
 							<packing>
-								<property name="name">new_group</property>
-								<property name="title" translatable="yes">page0</property>
+								<property name="name">profile</property>
 								<property name="position">1</property>
 							</packing>
 						</child>
 						<child>
-							<object class="MoonZaphireSettingsContacts"></object>
+							<object class="GtkScrolledWindow">
+								<property name="visible">True</property>
+								<property name="can_focus">True</property>
+								<property name="shadow_type">in</property>
+								<child>
+									<object class="GtkViewport">
+										<property name="visible">True</property>
+										<property name="can_focus">False</property>
+										<child>
+											<object class="MoonZaphireSettingsNewGroup"></object>
+										</child>
+									</object>
+								</child>
+							</object>
 							<packing>
-								<property name="name">contacts</property>
+								<property name="name">new_group</property>
 								<property name="position">2</property>
 							</packing>
 						</child>
 						<child>
-							<object class="MoonZaphireSettingsLanguages"></object>
-							<packing>
-								<property name="name">languages</property>
-								<property name="position">3</property>
-							</packing>
+						    <object class="GtkScrolledWindow">
+						        <property name="visible">True</property>
+						        <property name="can_focus">True</property>
+						        <property name="shadow_type">in</property>
+						        <child>
+						            <object class="GtkViewport">
+						                <property name="visible">True</property>
+						                <property name="can_focus">False</property>
+						                <child>
+						                    <object class="MoonZaphireSettingsContacts"></object>
+						                </child>
+						            </object>
+						        </child>
+						    </object>
+						    <packing>
+						        <property name="name">contacts</property>
+						        <property name="position">3</property>
+						    </packing>
 						</child>
 						<child>
-							<object class="MoonZaphireSettingsAbout"></object>
-							<packing>
-								<property name="name">about</property>
-								<property name="position">4</property>
-							</packing>
+						    <object class="GtkScrolledWindow">
+						        <property name="visible">True</property>
+						        <property name="can_focus">True</property>
+						        <property name="shadow_type">in</property>
+						        <child>
+						            <object class="GtkViewport">
+						                <property name="visible">True</property>
+						                <property name="can_focus">False</property>
+						                <child>
+											<object class="MoonZaphireSettingsGeneral"></object>
+						                </child>
+						            </object>
+						        </child>
+						    </object>
+						    <packing>
+						        <property name="name">general</property>
+						        <property name="position">4</property>
+						    </packing>
 						</child>
 						<child>
-							<object class="MoonZaphireSettingsGeneral"></object>
-							<packing>
-								<property name="name">general</property>
-								<property name="position">5</property>
-							</packing>
+						    <object class="GtkScrolledWindow">
+						        <property name="visible">True</property>
+						        <property name="can_focus">True</property>
+						        <property name="shadow_type">in</property>
+						        <child>
+						            <object class="GtkViewport">
+						                <property name="visible">True</property>
+						                <property name="can_focus">False</property>
+						                <child>
+						                    <object class="MoonZaphireSettingsLanguages"></object>
+						                </child>
+						            </object>
+						        </child>
+						    </object>
+						    <packing>
+						        <property name="name">languages</property>
+						        <property name="position">5</property>
+						    </packing>
+						</child>
+						<child>
+						    <object class="GtkScrolledWindow">
+						        <property name="visible">True</property>
+						        <property name="can_focus">True</property>
+						        <property name="shadow_type">in</property>
+						        <child>
+						            <object class="GtkViewport">
+						                <property name="visible">True</property>
+						                <property name="can_focus">False</property>
+						                <child>
+						                    <object class="MoonZaphireSettingsAbout"></object>
+						                </child>
+						            </object>
+						        </child>
+						    </object>
+						    <packing>
+						        <property name="name">about</property>
+						        <property name="position">6</property>
+						    </packing>
 						</child>
 						<style>
 							<class name="modal"/>
