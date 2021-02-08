@@ -1,109 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-	<!-- interface-requires gtk+ 3.8 -->
-	<template class="MoonZaphireSettingsContacts" parent="GtkBox">
-		<property name="visible">True</property>
-		<property name="can_focus">False</property>
-		<property name="orientation">vertical</property>
-		<child>
-			<object class="GtkEntry">
-				<property name="visible">True</property>
-				<property name="can_focus">True</property>
-				<property name="primary_icon_name">search-symbolic</property>
-				<style>
-					<class name="textfield"/>
-				</style>
-			</object>
-			<packing>
-				<property name="expand">False</property>
-				<property name="fill">True</property>
-				<property name="position">0</property>
-			</packing>
-		</child>
-		<child>
-			<object class="GtkScrolledWindow">
-				<property name="visible">True</property>
-				<property name="can_focus">True</property>
-				<property name="shadow_type">in</property>
-				<child>
-					<object class="GtkViewport">
-						<property name="visible">True</property>
-						<property name="can_focus">False</property>
-						<child>
-							<object class="GtkListBox">
-								<property name="visible">True</property>
-								<property name="can_focus">False</property>
-								<child>
-									<object class="GtkListBoxRow">
-										<property name="width_request">100</property>
-										<property name="height_request">70</property>
-										<property name="visible">True</property>
-										<property name="can_focus">True</property>
-										<child>
-											<object class="GtkBox">
-												<property name="visible">True</property>
-												<property name="can_focus">False</property>
-												<property name="spacing">10</property>
-												<child>
-													<object class="GtkImage">
-														<property name="visible">True</property>
-														<property name="can_focus">False</property>
-														<property name="valign">center</property>
-														<property name="icon_name">contact-new-symbolic</property>
-														<property name="icon_size">6</property>
-														<style>
-															<class name="avatar"/>
-														</style>
-													</object>
-													<packing>
-														<property name="expand">False</property>
-														<property name="fill">True</property>
-														<property name="position">0</property>
-													</packing>
-												</child>
-												<child>
-													<object class="GtkLabel">
-														<property name="visible">True</property>
-														<property name="can_focus">False</property>
-														<property name="halign">start</property>
-														<property name="valign">center</property>
-														<property name="label" translatable="yes">Fullname</property>
-														<style>
-															<class name="title"/>
-														</style>
-													</object>
-													<packing>
-														<property name="expand">False</property>
-														<property name="fill">True</property>
-														<property name="position">1</property>
-													</packing>
-												</child>
-												<style>
-													<class name="content"/>
-												</style>
-											</object>
-										</child>
-										<style>
-											<class name="item"/>
-										</style>
-									</object>
-								</child>
-								<style>
-									<class name="moon-zaphire"/><class name="list"/>
-								</style>
-							</object>
-						</child>
-					</object>
-				</child>
-			</object>
-			<packing>
-				<property name="expand">True</property>
-				<property name="fill">True</property>
-				<property name="position">3</property>
-			</packing>
-		</child>
-		<style>
-			<class name="content"/>
-		</style>
-	</template>
+    <!-- interface-requires gtk+ 3.8 -->
+    <template class="MoonZaphireSettingsContacts" parent="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+            <object class="GtkEntry" id="search">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="primary_icon_name">search-symbolic</property>
+                <style>
+                    <class name="textfield"/>
+                </style>
+            </object>
+            <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+            </packing>
+        </child>
+        <child>
+            <object class="GtkListBox" id="lists-contacts">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                    <object class="GtkListBoxRow">
+                        <property name="width_request">100</property>
+                        <property name="height_request">70</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <child>
+                            <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="spacing">10</property>
+                                <child>
+                                    <object class="GtkImage">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="valign">center</property>
+                                        <property name="icon_name">contact-new-symbolic</property>
+                                        <property name="icon_size">6</property>
+                                        <style>
+                                            <class name="avatar"/>
+                                        </style>
+                                    </object>
+                                    <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                    </packing>
+                                </child>
+                                <child>
+                                    <object class="GtkLabel">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="valign">center</property>
+                                        <property name="label" translatable="yes">Fullname</property>
+                                        <style>
+                                            <class name="title"/>
+                                        </style>
+                                    </object>
+                                    <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                    </packing>
+                                </child>
+                                <style>
+                                    <class name="content"/>
+                                </style>
+                            </object>
+                        </child>
+                        <style>
+                            <class name="item"/>
+                        </style>
+                    </object>
+                </child>
+                <style>
+                    <class name="moon-zaphire"/><class name="list"/>
+                </style>
+            </object>
+            <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+            </packing>
+        </child>
+        <style>
+            <class name="content"/>
+        </style>
+    </template>
 </interface>
