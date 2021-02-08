@@ -3,6 +3,7 @@
 </p>
 
 <p align="center">
+	<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/diazvictor/MoonZaphire">
 	<img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/diazvictor/MoonZaphire?label=last%20release">
 	<a href="https://github.com/diazvictor/MoonZaphire/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/diazvictor/MoonZaphire"></a>
 </p>
