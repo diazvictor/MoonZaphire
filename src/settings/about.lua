@@ -1,6 +1,6 @@
 --[[--
  @package   MoonZaphire
- @filename  new_group.lua
+ @filename  settings/about.lua
  @version   1.0
  @author    Díaz Urbaneja Víctor Eduardo Diex <victor.vector008@gmail.com>
  @date      07.02.2021 12:36:07 -04
