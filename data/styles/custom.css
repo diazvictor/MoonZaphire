@@ -117,21 +117,20 @@ box.moon-zaphire .card box.foot label.title {
 	font-weight: bold;
 }
 
-/* USER CHAT STYLE */
-/** TITLE **/
-stack.user-chat > box > box:nth-child(1) box label {
-	font-size: 16px;
-	font-weight: bold;
-}
-
-/* COMMENT STYLES */
-box.comment-this,
-box.comment-for-you {
+/* Messages */
+box.my-message {
 	background-color: #1E90FF;
 	padding: 10px 15px;
 	border-radius: 20px;
 }
-box.comment-this label,
-box.comment-for-you label {
-	color: #FFFFFF;
+box.message-for-me {
+	background-color: @color-grey;
+	padding: 10px 15px;
+	border-radius: 20px;
+}
+box.my-message label {
+	color: @color-black;
+}
+box.message-for-me label {
+	color: @color-white;
 }
