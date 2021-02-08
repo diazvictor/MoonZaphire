@@ -10,22 +10,22 @@
 			<placeholder/>
 		</child>
 		<child>
-			<object class="GtkOverlay" id="Background">
+			<object class="GtkOverlay" id="background">
 				<property name="visible">True</property>
 				<property name="can_focus">False</property>
 				<child>
-					<object class="GtkStack" id="Content">
+					<object class="GtkStack" id="content">
 						<property name="visible">True</property>
 						<property name="can_focus">False</property>
 						<property name="transition_type">slide-left-right</property>
 						<child>
-							<object class="MoonZaphireStart" id="Start"></object>
+							<object class="MoonZaphireStart" id="start"></object>
 							<packing>
 								<property name="name">start</property>
 							</packing>
 						</child>
 						<child>
-							<object class="GtkStack" id="Login">
+							<object class="GtkStack" id="login">
 								<property name="width_request">300</property>
 								<property name="visible">True</property>
 								<property name="can_focus">False</property>
@@ -35,14 +35,14 @@
 								<property name="transition_type">slide-left-right</property>
 
 								<child>
-									<object class="MoonZaphireAuthUser" id="AuthUser"></object>
+									<object class="MoonZaphireAuthUser" id="auth_user"></object>
 									<packing>
 										<property name="name">auth_user</property>
 									</packing>
 								</child>
 
 								<child>
-									<object class="MoonZaphireAuthHost" id="AuthHost"></object>
+									<object class="MoonZaphireAuthHost" id="auth_host"></object>
 									<packing>
 										<property name="name">auth_host</property>
 										<property name="position">1</property>
@@ -55,7 +55,7 @@
 							</packing>
 						</child>
 						<child>
-                            <object class="GtkStack" id="Chat">
+                            <object class="GtkStack" id="chat">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="margin_left">10</property>
@@ -82,11 +82,11 @@
 														<property name="visible">True</property>
 														<property name="can_focus">False</property>
 														<property name="orientation">vertical</property>
+														<property name="spacing">10</property>
 														<child>
 															<object class="GtkBox">
 																<property name="visible">True</property>
 																<property name="can_focus">False</property>
-																<property name="margin_bottom">10</property>
 																<property name="spacing">10</property>
 																<child>
 																	<object class="GtkButton" id="btn_menu">
@@ -109,13 +109,34 @@
 																	</packing>
 																</child>
 																<child>
-																	<object class="GtkEntry" id="search_members">
+																	<object class="GtkBox" id="buttons">
 																		<property name="visible">True</property>
-																		<property name="can_focus">True</property>
+																		<property name="can_focus">False</property>
+																		<child>
+																			<object class="GtkToggleButton" id="btn_search">
+																				<property name="visible">True</property>
+																				<property name="can_focus">True</property>
+																				<property name="focus_on_click">False</property>
+																				<property name="receives_default">True</property>
+																				<child>
+																					<object class="GtkImage">
+																						<property name="visible">True</property>
+																						<property name="can_focus">False</property>
+																						<property name="icon_name">search-symbolic</property>
+																					</object>
+																				</child>
+																			</object>
+																			<packing>
+																				<property name="expand">False</property>
+																				<property name="fill">True</property>
+																				<property name="position">2</property>
+																			</packing>
+																		</child>
 																	</object>
 																	<packing>
-																		<property name="expand">True</property>
+																		<property name="expand">False</property>
 																		<property name="fill">True</property>
+																		<property name="pack_type">end</property>
 																		<property name="position">1</property>
 																	</packing>
 																</child>
@@ -134,7 +155,7 @@
 															<packing>
 																<property name="expand">False</property>
 																<property name="fill">True</property>
-																<property name="position">2</property>
+																<property name="position">1</property>
 															</packing>
 														</child>
 													</object>
@@ -145,7 +166,7 @@
 													</packing>
 												</child>
 												<child>
-													<object class="MoonZaphireRoster" id="Roster"></object>
+													<object class="MoonZaphireRoster" id="roster"></object>
 													<packing>
 														<property name="expand">True</property>
 														<property name="fill">True</property>
@@ -159,7 +180,7 @@
                                             </packing>
                                         </child>
                                         <child>
-                                            <object class="GtkStack" id="user_chat">
+                                            <object class="GtkStack" id="messages">
                                                 <property name="width_request">500</property>
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">False</property>
