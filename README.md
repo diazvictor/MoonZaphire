@@ -2,6 +2,11 @@
 	<a href="https://github.com/diazvictor/MoonZaphire"><img src="https://github.com/diazvictor/MoonZaphire/raw/v3.0/logo.svg" alt="Logo"></a>
 </p>
 
+<p align="center">
+	<img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/diazvictor/MoonZaphire?label=last%20release">
+	<a href="https://github.com/diazvictor/MoonZaphire/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/diazvictor/MoonZaphire"></a>
+</p>
+
 MoonZaphire is a GTK3 client for MQTT (and others) written in Lua with a lot of love.
 
 > **IMPORTANT:** This project is under active development, therefore many 
