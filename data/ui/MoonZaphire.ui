@@ -155,6 +155,7 @@
                               <object class="GtkRevealer">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <property name="reveal_child">True</property>
                                 <child>
                                   <object class="GtkEntry">
                                     <property name="visible">True</property>
@@ -606,7 +607,7 @@
                                   </packing>
                                 </child>
                                 <style>
-                                  <class name="message-box"/>
+                                  <class name="chat-view"/>
                                 </style>
                               </object>
                               <packing>
@@ -620,7 +621,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="transition_type">slide-left</property>
-                                <property name="reveal_child">True</property>
+                                <property name="transition_duration">200</property>
                                 <child>
                                   <object class="GtkBox">
                                     <property name="width_request">250</property>
@@ -904,7 +905,7 @@
                                     </child>
                                     <style>
                                       <class name="moon-zaphire"/>
-                                      <class name="infobar"/>
+                                      <class name="chat-details"/>
                                     </style>
                                   </object>
                                 </child>
