@@ -13,8 +13,12 @@
 /* = Variables = */
 /* =============================================== */
 
+@define-color bg-light #F8F8F8;
+@define-color bg-white #FFFFFF;
 @define-color bg-black-opacity rgba(0, 0, 0, 0.5);
 @define-color bg-white-opacity rgba(255, 255, 255, 0.5);
+
+@define-color icon-color #4D4D4D;
 @define-color color-white #F1F1F1;
 @define-color color-black #1A1A1A;
 @define-color color-grey #BDBDBD;
@@ -25,13 +29,31 @@
 /* = Global = */
 /* =============================================== */
 
-* {
-	font-family: 'Open Sans', 'sans-serif';
+window.light-mode {
+	background: @bg-light;
 }
-
+* {
+	font-family: 'Open Sans', 'Roboto';
+}
+separator {
+	background-image: image(@color-grey);
+}
 scrolledwindow {
     border: none;
 }
+.m-a-10 {
+	margin: 10px;
+}
+image.icon {
+	color: @icon-color;
+	-gtk-icon-shadow: none;
+}
+
+/* =============================================== */
+/* = Main = */
+/* =============================================== */
+
+window.light-mode .main {}
 
 /* =============================================== */
 /* = Alert Dialog = */
@@ -52,7 +74,7 @@ box.moon-zaphire.alert-dialog > label.message {
 }
 
 /* =============================================== */
-/* = ListBox = */
+/* = List = */
 /* =============================================== */
 
 list.moon-zaphire.list {
@@ -82,6 +104,7 @@ list.moon-zaphire.list image.online {
 
 /* =============================================== */
 /* = Card = */
+/* - The configuration module uses these styles - */
 /* =============================================== */
 
 box.moon-zaphire .card {
@@ -117,20 +140,140 @@ box.moon-zaphire .card box.foot label.title {
 	font-weight: bold;
 }
 
-/* Messages */
-box.my-message {
+/* =============================================== */
+/* = Roster = */
+/* - The roster (shortcuts to chat) - */
+/* =============================================== */
+
+window.light-mode .main box.drawer-left box.head {
+	margin-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+window.light-mode .main box.drawer-left entry.textfield {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+window.light-mode .main box.drawer-left separator {
+	background: transparent;
+	background-image: image(transparent);
+}
+
+/* =============================================== */
+/* = Message Box = */
+/* - The chat container - */
+/* =============================================== */
+
+window.light-mode .main stack.content {}
+window.light-mode .main stack.content box.toolbar box.header {
+	margin-top: 10px;
+	padding-left: 10px;
+}
+window.light-mode .main stack.content box.toolbar box.header label.title {
+	font-weight: bold;
+	font-size: 20px;
+}
+window.light-mode .main stack.content box.toolbar separator {}
+window.light-mode .main stack.content box.message-box {}
+
+/* =============================================== */
+/* = Shipping box = */
+/* - Actions for sending a message (input and buttons) - */
+/* =============================================== */
+
+window.light-mode .main stack.content box.message-box box.foot {
+	border-top: 1px solid @color-grey;
+	background: #FFFFFF;
+}
+window.light-mode .main stack.content box.message-box box.foot scrolledwindow {}
+window.light-mode .main stack.content box.message-box box.foot scrolledwindow textview {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background: @bg-white;
+}
+window.light-mode .main stack.content box.message-box box.foot button {
+	border-radius: 0px;
+	padding: 10px 15px;
+	background: @bg-white;
+    box-shadow: none;
+    border-color: transparent;
+}
+window.light-mode .main stack.content box.message-box box.foot button:active {
+	background: @color-blue;
+}
+window.light-mode .main stack.content box.message-box box.foot button:active image {
+	color: @color-white;
+}
+window.light-mode .main stack.content box.message-box box.foot button image {
+	-gtk-icon-shadow: none;
+    color: @icon-color;
+}
+
+/* =============================================== */
+/* = Messages = */
+/* - Messages that are sent and received - */
+/* =============================================== */
+
+window.light-mode box.my-message {
 	background-color: #1E90FF;
 	padding: 10px 15px;
 	border-radius: 20px;
 }
-box.message-for-me {
+window.light-mode box.message-for-me {
 	background-color: @color-grey;
 	padding: 10px 15px;
 	border-radius: 20px;
 }
-box.my-message label {
+window.light-mode box.my-message label {
 	color: @color-black;
 }
-box.message-for-me label {
+window.light-mode box.message-for-me label {
 	color: @color-white;
+}
+
+/* =============================================== */
+/* = Infobar = */
+/* - The information bar (where I show the group or contact information) - */
+/* =============================================== */
+
+window.light-mode .main stack.content revealer > box.infobar {
+	border-left: 1px solid @color-grey;
+}
+window.light-mode box.infobar {
+	background: transparent;
+}
+window.light-mode box.infobar box.head {
+	margin-top: 50px;
+}
+window.light-mode box.infobar box.head image.avatar {}
+window.light-mode box.infobar box.head box.info label.title {
+	font-weight: bold;
+}
+window.light-mode box.infobar box.head box.info label.subtitle {
+	color: @color-grey;
+	text-decoration: underline;
+}
+window.light-mode box.infobar box.content {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background: white;
+	margin-top: 20px;
+	margin-top: 20px;
+}
+window.light-mode box.infobar list.actions {
+	background: transparent;
+}
+window.light-mode box.infobar list.actions row.action {
+	padding: 10px;
+}
+window.light-mode box.infobar list.actions row.action box image {
+	padding-left: 10px;
+}
+window.light-mode box.infobar list.actions row.action box label {
+}
+window.light-mode box.infobar box.foot {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background: white;
+	margin-top: 20px;
 }
