@@ -39,7 +39,8 @@ require('start')
 require('login.auth_user')
 require('login.auth_host')
 require('settings.settings')
-require('roster.roster')
+require('chat_list.chat_list')
+require('chat.chat')
 require('window')
 
 --- Start the application
