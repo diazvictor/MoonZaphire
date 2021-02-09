@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <!-- interface-requires gtk+ 3.8 -->
+    <object class="GtkTextBuffer" id="message_text"/>
+    <template class="MoonZaphireChatView" parent="GtkBox">
+		<property name="visible">True</property>
+		<property name="can_focus">False</property>
+		<property name="orientation">horizontal</property>
+		<child>
+			<object class="GtkBox">
+				<property name="width_request">400</property>
+				<property name="visible">True</property>
+				<property name="can_focus">False</property>
+				<property name="orientation">vertical</property>
+				<property name="spacing">20</property>
+				<child>
+					<object class="GtkBox">
+						<property name="visible">True</property>
+						<property name="can_focus">False</property>
+						<property name="orientation">vertical</property>
+						<property name="spacing">10</property>
+						<child>
+							<object class="GtkBox">
+								<property name="visible">True</property>
+								<property name="can_focus">False</property>
+								<property name="spacing">12</property>
+								<child>
+									<object class="GtkLabel">
+										<property name="visible">True</property>
+										<property name="can_focus">False</property>
+										<property name="halign">start</property>
+										<property name="label" translatable="yes">Fullname</property>
+										<property name="ellipsize">end</property>
+										<style>
+											<class name="title"/>
+										</style>
+									</object>
+									<packing>
+										<property name="expand">False</property>
+										<property name="fill">True</property>
+										<property name="position">0</property>
+									</packing>
+								</child>
+								<child>
+									<object class="GtkBox">
+										<property name="visible">True</property>
+										<property name="can_focus">False</property>
+										<property name="spacing">10</property>
+										<child>
+											<object class="GtkToggleButton" id="btn_search">
+												<property name="visible">True</property>
+												<property name="can_focus">True</property>
+												<property name="receives_default">True</property>
+												<property name="relief">none</property>
+												<child>
+													<object class="GtkImage">
+														<property name="visible">True</property>
+														<property name="can_focus">False</property>
+														<property name="icon_name">search-symbolic</property>
+														<style>
+															<class name="icon"/>
+														</style>
+													</object>
+												</child>
+											</object>
+											<packing>
+												<property name="expand">False</property>
+												<property name="fill">True</property>
+												<property name="position">0</property>
+											</packing>
+										</child>
+										<child>
+											<object class="GtkToggleButton" id="switch_details">
+												<property name="visible">True</property>
+												<property name="can_focus">True</property>
+												<property name="receives_default">True</property>
+												<property name="relief">none</property>
+												<child>
+													<object class="GtkImage">
+														<property name="visible">True</property>
+														<property name="can_focus">False</property>
+														<property name="icon_name">view-right-pane-symbolic</property>
+														<style>
+															<class name="icon"/>
+														</style>
+													</object>
+												</child>
+											</object>
+											<packing>
+												<property name="expand">False</property>
+												<property name="fill">True</property>
+												<property name="position">1</property>
+											</packing>
+										</child>
+										<child>
+											<object class="GtkMenuButton" id="btn_more">
+												<property name="visible">True</property>
+												<property name="can_focus">True</property>
+												<property name="receives_default">True</property>
+												<property name="relief">none</property>
+												<child>
+													<object class="GtkImage">
+														<property name="visible">True</property>
+														<property name="can_focus">False</property>
+														<property name="icon_name">open-menu-symbolic</property>
+														<style>
+															<class name="icon"/>
+														</style>
+													</object>
+												</child>
+											</object>
+											<packing>
+												<property name="expand">False</property>
+												<property name="fill">True</property>
+												<property name="position">2</property>
+											</packing>
+										</child>
+										<style>
+											<class name="buttons"/>
+										</style>
+									</object>
+									<packing>
+										<property name="expand">False</property>
+										<property name="fill">True</property>
+										<property name="pack_type">end</property>
+										<property name="position">1</property>
+									</packing>
+								</child>
+								<style>
+									<class name="header"/>
+								</style>
+							</object>
+							<packing>
+								<property name="expand">False</property>
+								<property name="fill">True</property>
+								<property name="position">0</property>
+							</packing>
+						</child>
+						<child>
+							<object class="GtkSeparator">
+								<property name="visible">True</property>
+								<property name="can_focus">False</property>
+							</object>
+							<packing>
+								<property name="expand">False</property>
+								<property name="fill">True</property>
+								<property name="position">1</property>
+							</packing>
+						</child>
+						<style>
+							<class name="toolbar"/>
+						</style>
+					</object>
+					<packing>
+						<property name="expand">False</property>
+						<property name="fill">True</property>
+						<property name="position">0</property>
+					</packing>
+				</child>
+				<child>
+					<object class="GtkScrolledWindow">
+						<property name="visible">True</property>
+						<property name="can_focus">True</property>
+						<property name="shadow_type">in</property>
+						<child>
+							<object class="GtkViewport">
+								<property name="visible">True</property>
+								<property name="can_focus">False</property>
+								<child>
+									<object class="GtkBox">
+										<property name="visible">True</property>
+										<property name="can_focus">False</property>
+										<property name="orientation">vertical</property>
+										<child>
+											<placeholder />
+										</child>
+									</object>
+								</child>
+							</object>
+						</child>
+					</object>
+					<packing>
+						<property name="expand">True</property>
+						<property name="fill">True</property>
+						<property name="position">1</property>
+					</packing>
+				</child>
+				<child>
+					<object class="GtkBox">
+						<property name="visible">True</property>
+						<property name="can_focus">False</property>
+						<child>
+							<object class="GtkScrolledWindow">
+								<property name="visible">True</property>
+								<property name="can_focus">True</property>
+								<property name="shadow_type">in</property>
+								<child>
+									<object class="GtkTextView">
+										<property name="visible">True</property>
+										<property name="can_focus">True</property>
+										<property name="wrap_mode">word-char</property>
+										<property name="left_margin">10</property>
+										<property name="right_margin">10</property>
+										<property name="top_margin">5</property>
+										<property name="buffer">message_text</property>
+										<property name="accepts_tab">False</property>
+									</object>
+								</child>
+							</object>
+							<packing>
+								<property name="expand">True</property>
+								<property name="fill">True</property>
+								<property name="position">0</property>
+							</packing>
+						</child>
+						<child>
+							<object class="GtkButton" id="btn_send">
+								<property name="visible">True</property>
+								<property name="can_focus">True</property>
+								<property name="receives_default">True</property>
+								<property name="valign">end</property>
+								<child>
+									<object class="GtkImage">
+										<property name="visible">True</property>
+										<property name="can_focus">False</property>
+										<property name="halign">center</property>
+										<property name="valign">center</property>
+										<property name="icon_name">document-send-symbolic</property>
+									</object>
+								</child>
+							</object>
+							<packing>
+								<property name="expand">False</property>
+								<property name="fill">True</property>
+								<property name="position">1</property>
+							</packing>
+						</child>
+						<style>
+							<class name="foot"/>
+						</style>
+					</object>
+					<packing>
+						<property name="expand">False</property>
+						<property name="fill">True</property>
+						<property name="position">2</property>
+					</packing>
+				</child>
+				<style>
+					<class name="chat-view"/>
+				</style>
+			</object>
+			<packing>
+				<property name="expand">True</property>
+				<property name="fill">True</property>
+				<property name="position">0</property>
+			</packing>
+		</child>
+		<child>
+			<object class="GtkRevealer" id="chat_details">
+				<property name="visible">True</property>
+				<property name="can_focus">False</property>
+				<property name="transition_type">slide-left</property>
+				<property name="transition_duration">200</property>
+				<child>
+					<object class="MoonZaphireChatDetails"></object>
+				</child>
+			</object>
+			<packing>
+				<property name="expand">False</property>
+				<property name="fill">True</property>
+				<property name="position">1</property>
+			</packing>
+		</child>
+    </template>
+</interface>
