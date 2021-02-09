@@ -1,24 +1,24 @@
 --[[--
  @package   MoonZaphire
- @filename  roster/roster.lua
+ @filename  chat_list/chat_list.lua
  @version   1.0
  @author    Díaz Urbaneja Víctor Eduardo Diex <victor.vector008@gmail.com>
  @date      05.02.2021 07:24:46 -04
 ]]
 
---- I create the Roster subclass of MoonZaphire
-MoonZaphire:class('Roster', Gtk.Box)
+--- I create the ChatList subclass of MoonZaphire
+MoonZaphire:class('ChatList', Gtk.Box)
 
---- I require the modules belonging to Roster
-require('roster.member')
+--- I require the modules belonging to ChatList
+require('chat_list.item')
 
-local items, search_box
+local items, search_box, search
 
 --- At the beginning of the class
-function MoonZaphire.Roster:_class_init(klass)
+function MoonZaphire.ChatList:_class_init(klass)
 	--- I load the template
 	klass:set_template_from_resource(
-		'/com/github/diazvictor/MoonZaphire/data/ui/roster/roster.ui'
+		'/com/github/diazvictor/MoonZaphire/data/ui/chat_list/chat_list.ui'
 	)
 	--- I add the desired elements to the template
 	klass:bind_template_child_full('items', true, 0)
@@ -27,43 +27,49 @@ function MoonZaphire.Roster:_class_init(klass)
 end
 
 --- When building the class
-function MoonZaphire.Roster:_init()
+function MoonZaphire.ChatList:_init()
 	-- Start template
 	self:init_template()
 
 	-- I load the template objects
-	items = self:get_template_child(MoonZaphire.Roster, 'items')
-	search_box = self:get_template_child(MoonZaphire.Roster, 'search_box')
-	local search = self:get_template_child(MoonZaphire.Roster, 'search')
+	items = self:get_template_child(MoonZaphire.ChatList, 'items')
+	search_box = self:get_template_child(MoonZaphire.ChatList, 'search_box')
+	search = self:get_template_child(MoonZaphire.ChatList, 'search')
 
 	search.on_key_release_event = function (self, env)
 		if ( env.keyval  == Gdk.KEY_Return ) then
 			if (self.text ~= '') then
 				local id_member = tostring(os.time())
-				local member = MoonZaphire.Roster:add_member(id_member)
-				-- member.child.fullname.label = self.text
+				local member = MoonZaphire.ChatList:add_member(id_member)
 			end
 		end
 	end
 end
 
-function MoonZaphire.Roster:get()
+function MoonZaphire.ChatList:get()
 	return items
 end
 
-function MoonZaphire.Roster:show_search(state)
+--- I show the search bar and set the focus on it
+-- @param state boolean: true show, false hide
+-- @return true or false
+function MoonZaphire.ChatList:show_search(state)
 	local str = type(state)
 	local message = ('A boolean was expected and %s was passed.'):format(str)
 	if type(state) == 'boolean' then
 		search_box:set_reveal_child(state)
+		if state == true then
+			search:grab_focus()
+		end
+		search.text = ''
 		return true
 	end
 	utils:show_log('SEARCH', 'warning', message)
 	return false
 end
 
-function MoonZaphire.Roster:add_member (id_member)
-	local member = MoonZaphire.Member {
+function MoonZaphire.ChatList:add_member (id_member)
+	local member = MoonZaphire.ChatListItem {
 		id = id_member
 	}
 	items:add(member)

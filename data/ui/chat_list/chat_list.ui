@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
 	<!-- interface-requires gtk+ 3.8 -->
-	<template class="MoonZaphireRoster" parent="GtkBox">
+	<template class="MoonZaphireChatList" parent="GtkBox">
 		<property name="visible">True</property>
 		<property name="can_focus">False</property>
 		<property name="orientation">vertical</property>
@@ -13,7 +13,11 @@
 					<object class="GtkEntry" id="search">
 						<property name="visible">True</property>
 						<property name="can_focus">True</property>
+						<property name="margin_top">10</property>
 						<property name="margin_bottom">10</property>
+						<style>
+							<class name="textfield"/>
+						</style>
 					</object>
 				</child>
 			</object>
@@ -38,7 +42,7 @@
 								<property name="can_focus">False</property>
 <!--
 								<child>
-									<object class="MoonZaphireMember"></object>
+									<object class="MoonZaphireChatListItem"></object>
 								</child>
 -->
 								<style>
