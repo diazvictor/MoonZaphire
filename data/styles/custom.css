@@ -1,12 +1,9 @@
 /**!
  * @package   MoonZaphire
- * @filename  styles/custom.less
+ * @filename  styles/custom.css
  * @version   1.0
  * @autor     Díaz Urbaneja Víctor Eduardo Diex <victor.vector008@gmail.com>
  * @date      03.02.2021 15:56:32 -04
- *
- * Para compilar el archivo desde la consola de comandos es:
- * lessc custom.sass > custom.sass.css
  */
 
 /* =============================================== */
@@ -141,8 +138,8 @@ box.moon-zaphire .card box.foot label.title {
 }
 
 /* =============================================== */
-/* = Roster = */
-/* - The roster (shortcuts to chat) - */
+/* = Chat List = */
+/* - The Chat List (shortcuts to chat) - */
 /* =============================================== */
 
 window.light-mode .main box.drawer-left box.head {
@@ -160,7 +157,7 @@ window.light-mode .main box.drawer-left separator {
 }
 
 /* =============================================== */
-/* = Message Box = */
+/* = Chat View = */
 /* - The chat container - */
 /* =============================================== */
 
@@ -174,37 +171,37 @@ window.light-mode .main stack.content box.toolbar box.header label.title {
 	font-size: 20px;
 }
 window.light-mode .main stack.content box.toolbar separator {}
-window.light-mode .main stack.content box.message-box {}
+window.light-mode .main stack.content box.chat-view {}
 
 /* =============================================== */
 /* = Shipping box = */
 /* - Actions for sending a message (input and buttons) - */
 /* =============================================== */
 
-window.light-mode .main stack.content box.message-box box.foot {
+window.light-mode .main stack.content box.chat-view box.foot {
 	border-top: 1px solid @color-grey;
 	background: #FFFFFF;
 }
-window.light-mode .main stack.content box.message-box box.foot scrolledwindow {}
-window.light-mode .main stack.content box.message-box box.foot scrolledwindow textview {
+window.light-mode .main stack.content box.chat-view box.foot scrolledwindow {}
+window.light-mode .main stack.content box.chat-view box.foot scrolledwindow textview {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	background: @bg-white;
 }
-window.light-mode .main stack.content box.message-box box.foot button {
+window.light-mode .main stack.content box.chat-view box.foot button {
 	border-radius: 0px;
 	padding: 10px 15px;
 	background: @bg-white;
     box-shadow: none;
     border-color: transparent;
 }
-window.light-mode .main stack.content box.message-box box.foot button:active {
+window.light-mode .main stack.content box.chat-view box.foot button:active {
 	background: @color-blue;
 }
-window.light-mode .main stack.content box.message-box box.foot button:active image {
+window.light-mode .main stack.content box.chat-view box.foot button:active image {
 	color: @color-white;
 }
-window.light-mode .main stack.content box.message-box box.foot button image {
+window.light-mode .main stack.content box.chat-view box.foot button image {
 	-gtk-icon-shadow: none;
     color: @icon-color;
 }
@@ -232,46 +229,46 @@ window.light-mode box.message-for-me label {
 }
 
 /* =============================================== */
-/* = Infobar = */
+/* = Chat Details = */
 /* - The information bar (where I show the group or contact information) - */
 /* =============================================== */
 
-window.light-mode .main stack.content revealer > box.infobar {
+window.light-mode .main stack.content revealer > box.chat-details {
 	border-left: 1px solid @color-grey;
 }
-window.light-mode box.infobar {
+window.light-mode box.chat-details {
 	background: transparent;
 }
-window.light-mode box.infobar box.head {
+window.light-mode box.chat-details box.head {
 	margin-top: 50px;
 }
-window.light-mode box.infobar box.head image.avatar {}
-window.light-mode box.infobar box.head box.info label.title {
+window.light-mode box.chat-details box.head image.avatar {}
+window.light-mode box.chat-details box.head box.info label.title {
 	font-weight: bold;
 }
-window.light-mode box.infobar box.head box.info label.subtitle {
+window.light-mode box.chat-details box.head box.info label.subtitle {
 	color: @color-grey;
 	text-decoration: underline;
 }
-window.light-mode box.infobar box.content {
+window.light-mode box.chat-details box.content {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	background: white;
 	margin-top: 20px;
 	margin-top: 20px;
 }
-window.light-mode box.infobar list.actions {
+window.light-mode box.chat-details list.actions {
 	background: transparent;
 }
-window.light-mode box.infobar list.actions row.action {
+window.light-mode box.chat-details list.actions row.action {
 	padding: 10px;
 }
-window.light-mode box.infobar list.actions row.action box image {
+window.light-mode box.chat-details list.actions row.action box image {
 	padding-left: 10px;
 }
-window.light-mode box.infobar list.actions row.action box label {
+window.light-mode box.chat-details list.actions row.action box label {
 }
-window.light-mode box.infobar box.foot {
+window.light-mode box.chat-details box.foot {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	background: white;

@@ -47,12 +47,12 @@ function MoonZaphire.Window:_init()
 		utils:addClass(background.child.Settings, 'alert-dialog')
 	end
 
-	--- By clicking I search a roster
+	--- By clicking I search a chat list
 	btn_search.on_toggled = function (self)
 		if  (self.active) then
-			MoonZaphire.Roster:show_search(true)
+			MoonZaphire.ChatList:show_search(true)
 		else
-			MoonZaphire.Roster:show_search(false)
+			MoonZaphire.ChatList:show_search(false)
 		end
 	end
 

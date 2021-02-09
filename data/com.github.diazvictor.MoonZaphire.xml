@@ -6,8 +6,11 @@
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/start.ui</file>
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/login/auth_user.ui</file>
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/login/auth_host.ui</file>
-		<file compressed="true" preprocess="xml-stripblanks">data/ui/roster/roster.ui</file>
-		<file compressed="true" preprocess="xml-stripblanks">data/ui/roster/member.ui</file>
+		<file compressed="true" preprocess="xml-stripblanks">data/ui/chat_list/chat_list.ui</file>
+		<file compressed="true" preprocess="xml-stripblanks">data/ui/chat_list/item.ui</file>
+		<file compressed="true" preprocess="xml-stripblanks">data/ui/chat/chat.ui</file>
+		<file compressed="true" preprocess="xml-stripblanks">data/ui/chat/chat_view.ui</file>
+		<file compressed="true" preprocess="xml-stripblanks">data/ui/chat/chat_details.ui</file>
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/settings/settings.ui</file>
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/settings/profile.ui</file>
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/settings/new_group.ui</file>
