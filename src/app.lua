@@ -20,10 +20,15 @@ function MoonZaphire.App:do_startup()
 
 	-- I create a configuration
 	settings = Gtk.Settings.get_default()
-
+	-- I collect the value of the screen resolution
+	local screen = Gdk.Screen:get_default()
+	local width, height = screen:get_width(), screen:get_height()
 	-- Creates the window
 	MoonZaphire.Window {
-		application = self
+		title = 'MoonZaphire',
+		application = self,
+		default_width = width,
+		default_height = height
 	}
 end
 
