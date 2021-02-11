@@ -46,7 +46,7 @@
 								</child>
 -->
 								<style>
-									<class name="moon-zaphire"/><class name="list"/>
+									<class name="chat-list"/>
 								</style>
 							</object>
 						</child>

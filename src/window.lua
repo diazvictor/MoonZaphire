@@ -9,6 +9,8 @@
 --- I create the Window subclass of MoonZaphire
 MoonZaphire:class("Window", Gtk.Window)
 
+local window
+
 --- At the beginning of the class
 function MoonZaphire.Window:_class_init(klass)
 	--- I load the template
@@ -37,6 +39,8 @@ function MoonZaphire.Window:_init()
 	content_login = self:get_template_child(MoonZaphire.Window, 'login')
 	local btn_menu = self:get_template_child(MoonZaphire.Window, 'btn_menu')
 	local btn_search = self:get_template_child(MoonZaphire.Window, 'btn_search')
+
+	window = self
 
 	btn_menu.on_clicked = function (self)
 		background:add_overlay(
@@ -67,4 +71,33 @@ function MoonZaphire.Window:_init()
 		styles,
 		Gtk.STYLE_PROVIDER_PRIORITY_USER
 	)
+end
+
+-- @TODO: Improve performance when changing themes
+function MoonZaphire.Window:toggle_theme(theme)
+	local str = type(theme)
+	local message = ('A boolean was expected and %s was passed.'):format(str)
+	if type(theme) == 'boolean' then
+		-- @TODO: make a toggleClas method
+		if theme then
+			if not utils:hasClass(background.child.Settings, 'dark-mode') then
+				utils:removeClass(background.child.Settings, 'light-mode')
+				utils:addClass(background.child.Settings, 'dark-mode')
+
+				utils:removeClass(window, 'light-mode')
+				utils:addClass(window, 'dark-mode')
+			end
+		else
+			if not utils:hasClass(background.child.Settings, 'light-mode') then
+				utils:removeClass(background.child.Settings, 'dark-mode')
+				utils:addClass(background.child.Settings, 'light-mode')
+
+				utils:removeClass(window, 'dark-mode')
+				utils:addClass(window, 'light-mode')
+			end
+		end
+		return true
+	end
+	utils:show_log('THEME', 'warning', message)
+	return false
 end

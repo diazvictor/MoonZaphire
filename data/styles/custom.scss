@@ -1,0 +1,993 @@
+/**!
+ * @package   MoonZaphire
+ * @filename  styles/custom.css
+ * @version   1.0
+ * @autor     Díaz Urbaneja Víctor Eduardo Diex <victor.vector008@gmail.com>
+ * @date      03.02.2021 15:56:32 -04
+ */
+
+@function gtkalpha($c, $a) {
+	@return unquote("alpha(#{$c}, #{$a})");
+}
+
+// ===============================================
+// = Global
+// ===============================================
+
+* {
+	font-family: 'Open Sans', 'Roboto';
+	all: unset;
+}
+
+$bg-light: #FFFFFF;
+$bg-dark: #232729;
+$actions-height: 50px;
+$bg-black-opacity: rgba(0, 0, 0, 0.5);
+
+separator {
+	min-width: 1px;
+	min-height: 1px;
+	background-color: rgba(0, 0, 0, 0.12);
+}
+
+paned separator {
+	min-width: 1px;
+	min-height: 1px;
+	-gtk-icon-source: none;
+	border-style: none;
+	background-color: transparent;
+	background-image: image(rgba(0, 0, 0, 0.12));
+	background-size: 1px 1px;
+	background-clip: content-box;
+}
+
+scrolledwindow {
+	border: none;
+}
+
+.m-a-10 {
+	margin: 10px;
+}
+
+@mixin button($bg, $bg-active, $color, $size) {
+	background: $bg;
+	// Material design
+	// box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
+	padding: 10px;
+	border-radius: $size;
+	transition: all 0.4s ease 0s;
+
+	label {
+		color: $color;
+	}
+
+	&:hover {}
+
+	&:active {
+		background: $bg-active;
+		transition: all 0.4s ease 0s;
+	
+		image{
+			color: $color;
+		}
+	}
+	
+	&:checked {
+		background: $bg-active;
+		transition: all 0.4s ease 0s;
+	}
+}
+
+@mixin switch($bg, $color, $bg-color) {
+	transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
+	margin: 6px 0;
+	padding: 0 2px;
+	border: 5px solid transparent;
+	border-radius: 9999px;
+	background-color: rgba(0, 0, 0, 0.26);
+	background-clip: padding-box;
+	font-size: 0;
+
+	image {
+		margin: -8px;
+		-gtk-icon-transform: scale(0);
+	}
+
+	slider {
+		transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
+		min-width: 20px;
+		min-height: 20px;
+		margin: -3px -2px;
+		border-radius: 9999px;
+		outline: none;
+		box-shadow: 0 0 0 10px transparent, 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+		background-color: $bg-color;
+	}
+
+	&:focus slider {
+		box-shadow: 0 0 0 10px gtkalpha(currentColor, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	}
+
+	&:hover slider {
+		box-shadow: 0 0 0 10px gtkalpha(currentColor, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	}
+
+	&:focus:hover slider {
+		box-shadow: 0 0 0 10px gtkalpha(currentColor, 0.16), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	}
+
+	&:checked slider {
+		background-color: $bg;
+		color: $color;
+	}
+
+	&:checked {
+		background-color: rgba(26, 115, 232, 0.5);
+	}
+}
+
+// ===============================================
+// = Light Mode
+// ===============================================
+window.light-mode {
+	$bg-white: #FFFFFF;
+
+	$icon-color: #4D4D4D;
+	$color-white: #F1F1F1;
+	$color-black: #1A1A1A;
+	$color-text: #2B2B2B;
+	$color-grey: #BDBDBD;
+	$color-green: #2FC62F;
+
+	$primary: #1E90FF;
+	$primary-active: #1E5EFF;
+
+	$secondary: rgba(0, 0, 0, 0.08);
+	$secondary-active: rgba(0, 0, 0, 0.15);
+
+	$item: transparent;
+	$item-active: $secondary;
+	background: $bg-light;
+
+	label {
+		color: $color-text;
+		link {
+			color: $primary;
+			&:hover {
+				color: $primary-active;					
+			}
+		}
+	}
+
+	image.icon {
+		color: $icon-color;
+		-gtk-icon-shadow: none;
+	}
+
+	// ===============================================
+	// = Buttons
+	// ===============================================
+
+	button { 
+		@include button($primary, $primary-active, $color-white, 3px)
+		image.icon {
+			color: $color-white;
+		}
+	}
+
+	// ===============================================
+	// = Switch
+	// ===============================================
+
+	switch {@include switch($primary, $primary-active, $color-white)}
+
+	// ===============================================
+	// = Inputs
+	// ===============================================
+
+	entry {
+		min-height: 36px;
+		padding: 0 8px;
+		border-radius: 3px 3px 0 0;
+		caret-color: $color-text;
+		transition: all 75ms cubic-bezier(0, 0, 0.2, 1), border-image 225ms cubic-bezier(0, 0, 0.2, 1);
+		border-image: radial-gradient(circle closest-corner at center calc(100% - 1px), $primary 0%, transparent 0%) 0 0 0/0 0 0px;
+		box-shadow: inset 0 0 0 9999px transparent, inset 0 -1px rgba(0, 0, 0, 0.26);
+		background-color: $secondary;
+		color: $color-text;
+
+		&:focus {
+			border-image: radial-gradient(circle closest-corner at center calc(100% - 1px), $primary 100%, transparent 0%) 0 0 2/0 0 2px;
+		}
+
+		&:drop(active) {
+			box-shadow: inset 0 0 0 9999px gtkalpha(currentColor, 0.08), inset 0 -1px rgba(0, 0, 0, 0.26);
+		}
+
+		selection { background-color: rgba($primary, 0.24); }
+	}
+
+	// ===============================================
+	// = Chat List
+	// - The Chat List (shortcuts to chat)
+	// ===============================================
+
+	.main {
+		box.drawer-left {
+			box.head {
+				margin-top: 10px;
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+
+			entry.textfield {
+				margin-top: -10px;
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+
+			separator {
+				background: transparent;
+				background-image: image(transparent);
+			}
+
+			// ===============================================
+			// = List
+			// ===============================================
+
+			list.chat-list {
+				background: transparent;
+
+				row {
+					background: $item;
+					transition: all 0.4s ease 0s;
+
+					box.content {
+						padding-left: 10px;
+						padding-right: 10px;
+					}
+
+					image.avatar {
+						color: $color-text;
+					}
+
+					label.title {
+						color: $color-text;
+						font-weight: bold;
+					}
+
+					label.subtitle {
+						color: $color-text;
+						font-weight: 400;
+					}
+
+					label.text {
+						color: $color-grey;
+					}
+
+					image.online {
+						color: $primary;
+					}
+
+					&:active, &:selected {
+						background: $item-active;
+						transition: all 0.4s ease 0s;
+					}
+				}
+			}
+		}
+
+		// ===============================================
+		// = Chat View
+		// - The chat container
+		// ===============================================
+
+		stack.content {	
+			box.toolbar {
+				box.header {
+					margin-top: 10px;
+					padding-left: 10px;
+					padding-right: 10px;
+
+					label.title {
+						color: $color-text;
+						font-weight: bold;
+						font-size: 20px;
+					}
+				}
+
+				separator {}
+			}
+
+			// ===============================================
+			// = Shipping box
+			// - Actions for sending a message (input and buttons)
+			// ===============================================
+
+			box.chat-view {				
+				box.foot {
+					border-top: 1px solid rgba(0, 0, 0, 0.12);
+
+					scrolledwindow {
+						textview {
+							padding: 15px 10px;
+							background: $bg-white;
+							color: $color-text;
+							caret-color: $color-text;
+
+							selection { background-color: rgba($primary, 0.24); }
+						}
+					}
+
+					button {
+						padding: 15px;
+						border-radius: 0px;
+						background: $bg-white;
+						box-shadow: none;
+						border-color: transparent;
+
+						image {
+							-gtk-icon-shadow: none;
+							color: $icon-color;
+						}
+						
+						&:active {
+							background: $primary-active;
+							
+							image {
+								color: $color-white;
+							}
+						}
+					}
+				}
+			}
+
+			// ===============================================
+			// = Chat Details
+			// - The information bar (where I show the group or contact information)
+			// ===============================================
+
+			revealer > box.chat-details {
+				border-left: 1px solid rgba(0, 0, 0, 0.12);
+				background: transparent;
+
+				box.head {
+					margin-top: 50px;
+
+					image.avatar {}
+
+					box.info {
+						label.title {
+							color: $color-text;
+							font-weight: bold;
+						}
+
+						label.subtitle {
+							color: $color-grey;
+							text-decoration: underline;
+						}
+					}
+				}
+
+				box.content {
+					padding-top: 10px;
+					padding-bottom: 10px;
+					background: transparent;
+					margin-top: 20px;
+					margin-top: 20px;
+				}
+
+				list.actions {
+					background: transparent;
+
+					row.action {
+						background: $secondary;
+						min-height: $actions-height;
+						padding: 10px;
+						transition: all 0.4s ease 0s;
+
+						box {
+							image {
+								padding-left: 10px;
+							}
+
+							label {
+								color: $color-text;
+							}
+						}
+
+						&:active, &:selected {
+							background: $secondary-active;
+							transition: all 0.4s ease 0s;
+						}
+					}
+				}
+
+				box.foot {
+					padding-top: 10px;
+					padding-bottom: 10px;
+					background: transparent;
+					margin-top: 20px;
+				}
+			}
+		}
+	}
+
+	// ===============================================
+	// = Messages
+	// - Messages that are sent and received
+	// ===============================================
+
+	box.my-message {
+		background-color: #1E90FF;
+		padding: 10px 15px;
+		border-radius: 20px;
+
+		label {
+			color: $color-black;
+		}
+	}
+
+	box.message-for-me {
+		background-color: $color-grey;
+		padding: 10px 15px;
+		border-radius: 20px;
+
+		label {
+			color: $color-white;
+		}
+	}
+}
+
+// ===============================================
+// = Dark Mode
+// ===============================================
+
+window.dark-mode {
+	$bg-white: #232729;
+
+	$icon-color: #ECECEC;
+	$color-white: #F1F1F1;
+	$color-black: #1A1A1A;
+	$color-text: #ECECEC;
+	$color-grey: #BDBDBD;
+	$color-green: #2FC62F;
+
+	$primary: #2D4E6F;
+	$primary-active: #18395A;
+
+	$secondary: rgba(0, 0, 0, 0.08);
+	$secondary-active: rgba(0, 0, 0, 0.15);
+
+	$item: transparent;
+	$item-active: $secondary;
+
+	background: $bg-dark;
+
+	label {
+		color: $color-text;
+		link {
+			color: $primary;
+			&:hover {
+				color: $primary-active;					
+			}
+		}
+	}
+
+	image.icon {
+		color: $icon-color;
+		-gtk-icon-shadow: none;
+	}
+
+	// ===============================================
+	// = Buttons
+	// ===============================================
+
+	button { 
+		@include button($primary, $primary-active, $color-white, 3px)
+		image.icon {
+			color: $color-white;
+		}
+	}
+
+	// ===============================================
+	// = Switch
+	// ===============================================
+
+	switch {@include switch($primary, $primary-active, $color-text)}
+
+	// ===============================================
+	// = Inputs
+	// ===============================================
+
+	entry {
+		min-height: 36px;
+		padding: 0 8px;
+		border-radius: 3px 3px 0 0;
+		caret-color: $color-text;
+		transition: all 75ms cubic-bezier(0, 0, 0.2, 1), border-image 225ms cubic-bezier(0, 0, 0.2, 1);
+		border-image: radial-gradient(circle closest-corner at center calc(100% - 1px), $primary 0%, transparent 0%) 0 0 0/0 0 0px;
+		box-shadow: inset 0 0 0 9999px transparent, inset 0 -1px rgba(0, 0, 0, 0.26);
+		background-color: $secondary;
+		color: $color-text;
+
+		&:focus {
+			border-image: radial-gradient(circle closest-corner at center calc(100% - 1px), $primary 100%, transparent 0%) 0 0 2/0 0 2px;
+		}
+
+		&:drop(active) {
+			box-shadow: inset 0 0 0 9999px gtkalpha(currentColor, 0.08), inset 0 -1px rgba(0, 0, 0, 0.26);
+		}
+
+		selection { background-color: rgba($primary, 0.24); }
+	}
+
+	// ===============================================
+	// = Chat List
+	// - The Chat List (shortcuts to chat)
+	// ===============================================
+
+	.main {
+		box.drawer-left {
+			box.head {
+				margin-top: 10px;
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+			
+			entry.textfield {
+				margin-top: -10px;
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+
+			separator {
+				background: transparent;
+				background-image: image(transparent);
+			}
+
+			// ===============================================
+			// = List
+			// ===============================================
+
+			list.chat-list {
+				background: transparent;
+
+				row {
+					background: $item;
+					transition: all 0.4s ease 0s;
+
+					box.content {
+						padding-left: 10px;
+						padding-right: 10px;
+					}
+
+					image.avatar {
+						color: $color-text;
+					}
+
+					label.title {
+						color: $color-text;
+						font-weight: bold;
+					}
+
+					label.subtitle {
+						color: $color-text;
+						font-weight: 400;
+					}
+
+					label.text {
+						color: $color-grey;
+					}
+
+					image.online {
+						color: $primary;
+					}
+
+					&:active, &:selected {
+						background: $item-active;
+						transition: all 0.4s ease 0s;
+					}
+				}
+			}
+		}
+		
+		// ===============================================
+		// = Chat View
+		// - The chat container
+		// ===============================================
+	
+		stack.content {	
+			box.toolbar {
+				box.header {
+					margin-top: 10px;
+					padding-left: 10px;
+					padding-right: 10px;
+
+					label.title {
+						color: $color-text;
+						font-weight: bold;
+						font-size: 20px;
+					}
+				}
+				
+				separator {}
+			}
+
+			// ===============================================
+			// = Shipping box
+			// - Actions for sending a message (input and buttons)
+			// ===============================================
+
+			box.chat-view {				
+				box.foot {
+					border-top: 1px solid rgba(0, 0, 0, 0.12);
+
+					scrolledwindow {
+						textview {
+							padding: 15px 10px;
+							background: $bg-dark;
+							color: $color-text;
+							caret-color: $color-text;
+
+							selection { background-color: rgba($primary, 0.24); }
+						}
+					}
+
+					button {
+						padding: 15px;
+						border-radius: 0px;
+						background: $bg-white;
+						box-shadow: none;
+						border-color: transparent;
+
+						image {
+							-gtk-icon-shadow: none;
+							color: $icon-color;
+						}
+
+						&:active {
+							background: $primary-active;
+
+							image {
+								color: $color-white;
+							}
+						}
+					}
+				}
+			}
+
+			// ===============================================
+			// = Chat Details
+			// - The information bar (where I show the group or contact information)
+			// ===============================================
+
+			revealer > box.chat-details {
+				border-left: 1px solid rgba(0, 0, 0, 0.12);
+				background: transparent;
+
+				box.head {
+					margin-top: 50px;
+
+					image.avatar {}
+
+					box.info {
+						label.title {
+							color: $color-text;
+							font-weight: bold;
+						}
+
+						label.subtitle {
+							color: $color-grey;
+							text-decoration: underline;
+						}
+					}
+				}
+
+				box.content {
+					padding-top: 10px;
+					padding-bottom: 10px;
+					background: transparent;
+					margin-top: 20px;
+					margin-top: 20px;
+				}
+
+				list.actions {
+					background: transparent;
+
+					row.action {
+						background: $secondary;
+						min-height: $actions-height;
+						padding: 10px;
+						transition: all 0.4s ease 0s;
+
+						box {
+							image {
+								padding-left: 10px;
+							}
+
+							label {
+								color: $color-text;
+							}
+						}
+
+						&:active, &:selected {
+							background: $secondary-active;
+							transition: all 0.4s ease 0s;
+						}
+					}
+				}
+
+				box.foot {
+					padding-top: 10px;
+					padding-bottom: 10px;
+					background: transparent;
+					margin-top: 20px;
+				}
+			}
+		}
+	}
+
+	// ===============================================
+	// = Messages
+	// - Messages that are sent and received
+	// ===============================================
+
+	box.my-message {
+		background-color: #1E90FF;
+		padding: 10px 15px;
+		border-radius: 20px;
+
+		label {
+			color: $color-black;
+		}
+	}
+
+	box.message-for-me {
+		background-color: $color-grey;
+		padding: 10px 15px;
+		border-radius: 20px;
+
+		label {
+			color: $color-white;
+		}
+	}
+}
+
+// ===============================================
+// = Alert Dialog
+// ===============================================
+
+box.alert-dialog {
+	$color-white: #F1F1F1;
+	$color-text: #2B2B2B;
+	color: $color-white;
+	background-color: $bg-black-opacity;
+	transition: background .2s ease-out;
+
+	> label.title {
+		color: $color-text;
+		font-size: 30px;
+	}
+
+	> label.subtitle {
+		color: $color-text;
+		font-size: 15px;
+	}
+
+	> label.message {}
+}
+
+// ===============================================
+// = Card Light Theme
+// - The configuration module uses these styles
+// ===============================================
+
+box.light-mode {
+	$color-black: #1A1A1A;
+	$color-text: #2B2B2B;
+	$color-grey: #BDBDBD;
+
+	$primary: #1E90FF;
+	$primary-active: #1E5EFF;
+
+	$secondary: rgba(0, 0, 0, 0.08);
+	$secondary-active: rgba(0, 0, 0, 0.15);
+
+	$item: transparent;
+	$item-active: $secondary;
+
+	.card {
+		border-radius: 3px;
+		background-color: $bg-light;
+
+		list {
+			background: transparent;
+
+			row {
+				background: $item;
+				transition: all 0.4s ease 0s;
+
+				switch {@include switch($primary, $primary-active, #F1F1F1)}
+
+				box.content {
+					padding-left: 10px;
+					padding-right: 10px;
+				}
+
+				image.avatar {
+					color: $color-text;
+				}
+
+				label.title {
+					color: $color-text;
+					font-weight: bold;
+				}
+
+				label.subtitle {
+					color: $color-text;
+					font-weight: 400;
+				}
+
+				label.text {
+					color: $color-grey;
+				}
+
+				image.online {
+					color: $primary;
+				}
+
+				&:active, &:selected {
+					background: $item-active;
+					transition: all 0.4s ease 0s;
+				}
+			}
+		}
+		box.header {
+			color: $color-text;
+			padding: 10px;
+
+			label.title {
+				font-size: 20px;
+				font-weight: bold;
+			}
+			
+			button { @include button(transparent, $secondary, $color-black, 20px)}
+		}
+
+		entry.textfield {
+			margin: 10px;
+		}
+
+		box.head {
+			color: $color-text;
+			padding: 20px 10px;
+
+			label.title {
+				font-weight: bold;
+			}
+
+			label.subtitle {
+				font-weight: 400;
+			}
+
+			button { @include button(transparent, $secondary, $color-black, 20px)}
+		}
+
+		box.foot {
+			color: $color-black;
+			padding: 10px;
+
+			label.title {
+				font-weight: bold;
+			}
+		}
+	}
+}
+
+// ===============================================
+// = Card Dark Theme
+// - The configuration module uses these styles
+// ===============================================
+
+box.dark-mode {
+	$color-black: #1A1A1A;
+	$color-text: #ECECEC;
+	$color-grey: #BDBDBD;
+
+	$primary: #2D4E6F;
+	$primary-active: #18395A;
+
+	$secondary: rgba(0, 0, 0, 0.08);
+
+	$item: transparent;
+	$item-active: $secondary;
+
+	.card {
+		border-radius: 3px;
+		background-color: $bg-dark;
+
+		list {
+			background: transparent;
+
+			row {
+				background: $item;
+				transition: all 0.4s ease 0s;
+
+				switch {@include switch($primary, $primary-active, $color-text)}
+
+				box.content {
+					padding-left: 10px;
+					padding-right: 10px;
+				}
+
+				image.avatar {
+					color: $color-text;
+				}
+
+				label.title {
+					color: $color-text;
+					font-weight: bold;
+				}
+
+				label.subtitle {
+					color: $color-text;
+					font-weight: 400;
+				}
+
+				label.text {
+					color: $color-grey;
+				}
+
+				image.online {
+					color: $primary;
+				}
+
+				&:active, &:selected {
+					background: $item-active;
+					transition: all 0.4s ease 0s;
+				}
+			}
+		}
+
+		box.header {
+			color: $color-text;
+			padding: 10px;
+
+			label.title {
+				font-size: 20px;
+				font-weight: bold;
+			}
+			
+			button { @include button(transparent, $secondary, $color-text, 20px)}
+		}
+
+		entry.textfield {
+			margin: 10px;
+		}
+
+		box.head {
+			color: $color-text;
+			padding: 20px 10px;
+
+			label.title {
+				font-weight: bold;
+			}
+
+			label.subtitle {
+				font-weight: 400;
+			}
+
+			button { @include button(transparent, $secondary, $color-text, 20px)}
+		}
+
+		box.foot {
+			color: $color-black;
+			padding: 10px;
+
+			label.title {
+				font-weight: bold;
+			}
+		}
+	}
+}

@@ -5,272 +5,1020 @@
  * @autor     Díaz Urbaneja Víctor Eduardo Diex <victor.vector008@gmail.com>
  * @date      03.02.2021 15:56:32 -04
  */
+* {
+  font-family: 'Open Sans', 'Roboto';
+  all: unset;
+}
 
-/* =============================================== */
-/* = Variables = */
-/* =============================================== */
+separator {
+  min-width: 1px;
+  min-height: 1px;
+  background-color: rgba(0, 0, 0, 0.12);
+}
 
-@define-color bg-light #F8F8F8;
-@define-color bg-white #FFFFFF;
-@define-color bg-black-opacity rgba(0, 0, 0, 0.5);
-@define-color bg-white-opacity rgba(255, 255, 255, 0.5);
+paned separator {
+  min-width: 1px;
+  min-height: 1px;
+  -gtk-icon-source: none;
+  border-style: none;
+  background-color: transparent;
+  background-image: image(rgba(0, 0, 0, 0.12));
+  background-size: 1px 1px;
+  background-clip: content-box;
+}
 
-@define-color icon-color #4D4D4D;
-@define-color color-white #F1F1F1;
-@define-color color-black #1A1A1A;
-@define-color color-grey #BDBDBD;
-@define-color color-green #2FC62F;
-@define-color color-blue #1E90FF;
+scrolledwindow {
+  border: none;
+}
 
-/* =============================================== */
-/* = Global = */
-/* =============================================== */
+.m-a-10 {
+  margin: 10px;
+}
 
 window.light-mode {
-	background: @bg-light;
-}
-* {
-	font-family: 'Open Sans', 'Roboto';
-}
-separator {
-	background-image: image(@color-grey);
-}
-scrolledwindow {
-    border: none;
-}
-.m-a-10 {
-	margin: 10px;
-}
-image.icon {
-	color: @icon-color;
-	-gtk-icon-shadow: none;
+  background: #FFFFFF;
 }
 
-/* =============================================== */
-/* = Main = */
-/* =============================================== */
-
-window.light-mode .main {}
-
-/* =============================================== */
-/* = Alert Dialog = */
-/* =============================================== */
-
-box.moon-zaphire.alert-dialog {
-	color: @color-white;
-	background-color: @bg-black-opacity;
-	transition: background .2s ease-out;
-}
-box.moon-zaphire.alert-dialog > label.title {
-	font-size: 30px;
-}
-box.moon-zaphire.alert-dialog > label.subtitle {
-	font-size: 15px;
-}
-box.moon-zaphire.alert-dialog > label.message {
+window.light-mode label {
+  color: #2B2B2B;
 }
 
-/* =============================================== */
-/* = List = */
-/* =============================================== */
-
-list.moon-zaphire.list {
-	background: transparent;
-}
-list.moon-zaphire.list box.content {
-	padding-left: 10px;
-	padding-right: 10px;
-}
-list.moon-zaphire.list image.avatar {
-/*
-	color: @color-black;
-*/
-}
-list.moon-zaphire.list label.title {
-	font-weight: bold;
-}
-list.moon-zaphire.list label.subtitle {
-	font-weight: 400;
-}
-list.moon-zaphire.list label.text {
-	color: @color-grey;
-}
-list.moon-zaphire.list image.online {
-	color: @color-blue;
+window.light-mode label link {
+  color: #1E90FF;
 }
 
-/* =============================================== */
-/* = Card = */
-/* - The configuration module uses these styles - */
-/* =============================================== */
-
-box.moon-zaphire .card {
-	border-radius: 3px;
-	background-color: #FFFFFF;
-}
-box.moon-zaphire .card box.header {
-	color: @color-black;
-	padding: 10px;
-}
-box.moon-zaphire .card box.header label.title {
-	font-size: 20px;
-	font-weight: bold;
-}
-box.moon-zaphire .card entry.textfield {
-	margin: 10px;
-}
-box.moon-zaphire .card box.head {
-	color: @color-black;
-	padding: 20px 10px;
-}
-box.moon-zaphire .card box.head label.title {
-	font-weight: bold;
-}
-box.moon-zaphire .card box.head label.subtitle {
-	font-weight: 400;
-}
-box.moon-zaphire .card box.foot {
-	color: @color-black;
-	padding: 10px;
-}
-box.moon-zaphire .card box.foot label.title {
-	font-weight: bold;
+window.light-mode label link:hover {
+  color: #1E5EFF;
 }
 
-/* =============================================== */
-/* = Chat List = */
-/* - The Chat List (shortcuts to chat) - */
-/* =============================================== */
+window.light-mode image.icon {
+  color: #4D4D4D;
+  -gtk-icon-shadow: none;
+}
+
+window.light-mode button {
+  background: #1E90FF;
+  padding: 10px;
+  border-radius: 3px;
+  transition: all 0.4s ease 0s;
+}
+
+window.light-mode button label {
+  color: #F1F1F1;
+}
+
+window.light-mode button:active {
+  background: #1E5EFF;
+  transition: all 0.4s ease 0s;
+}
+
+window.light-mode button:active image {
+  color: #F1F1F1;
+}
+
+window.light-mode button:checked {
+  background: #1E5EFF;
+  transition: all 0.4s ease 0s;
+}
+
+window.light-mode button image.icon {
+  color: #F1F1F1;
+}
+
+window.light-mode switch {
+  transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
+  margin: 6px 0;
+  padding: 0 2px;
+  border: 5px solid transparent;
+  border-radius: 9999px;
+  background-color: rgba(0, 0, 0, 0.26);
+  background-clip: padding-box;
+  font-size: 0;
+}
+
+window.light-mode switch image {
+  margin: -8px;
+  -gtk-icon-transform: scale(0);
+}
+
+window.light-mode switch slider {
+  transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
+  min-width: 20px;
+  min-height: 20px;
+  margin: -3px -2px;
+  border-radius: 9999px;
+  outline: none;
+  box-shadow: 0 0 0 10px transparent, 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background-color: #F1F1F1;
+}
+
+window.light-mode switch:focus slider {
+  box-shadow: 0 0 0 10px alpha(currentColor, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+window.light-mode switch:hover slider {
+  box-shadow: 0 0 0 10px alpha(currentColor, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+window.light-mode switch:focus:hover slider {
+  box-shadow: 0 0 0 10px alpha(currentColor, 0.16), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+window.light-mode switch:checked slider {
+  background-color: #1E90FF;
+  color: #1E5EFF;
+}
+
+window.light-mode switch:checked {
+  background-color: rgba(26, 115, 232, 0.5);
+}
+
+window.light-mode entry {
+  min-height: 36px;
+  padding: 0 8px;
+  border-radius: 3px 3px 0 0;
+  caret-color: #2B2B2B;
+  transition: all 75ms cubic-bezier(0, 0, 0.2, 1), border-image 225ms cubic-bezier(0, 0, 0.2, 1);
+  border-image: radial-gradient(circle closest-corner at center calc(100% - 1px), #1E90FF 0%, transparent 0%) 0 0 0/0 0 0px;
+  box-shadow: inset 0 0 0 9999px transparent, inset 0 -1px rgba(0, 0, 0, 0.26);
+  background-color: rgba(0, 0, 0, 0.08);
+  color: #2B2B2B;
+}
+
+window.light-mode entry:focus {
+  border-image: radial-gradient(circle closest-corner at center calc(100% - 1px), #1E90FF 100%, transparent 0%) 0 0 2/0 0 2px;
+}
+
+window.light-mode entry:drop(active) {
+  box-shadow: inset 0 0 0 9999px alpha(currentColor, 0.08), inset 0 -1px rgba(0, 0, 0, 0.26);
+}
+
+window.light-mode entry selection {
+  background-color: rgba(30, 144, 255, 0.24);
+}
 
 window.light-mode .main box.drawer-left box.head {
-	margin-top: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
+
 window.light-mode .main box.drawer-left entry.textfield {
-	margin-left: 10px;
-	margin-right: 10px;
+  margin-top: -10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
+
 window.light-mode .main box.drawer-left separator {
-	background: transparent;
-	background-image: image(transparent);
+  background: transparent;
+  background-image: image(transparent);
 }
 
-/* =============================================== */
-/* = Chat View = */
-/* - The chat container - */
-/* =============================================== */
+window.light-mode .main box.drawer-left list.chat-list {
+  background: transparent;
+}
 
-window.light-mode .main stack.content {}
+window.light-mode .main box.drawer-left list.chat-list row {
+  background: transparent;
+  transition: all 0.4s ease 0s;
+}
+
+window.light-mode .main box.drawer-left list.chat-list row box.content {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+window.light-mode .main box.drawer-left list.chat-list row image.avatar {
+  color: #2B2B2B;
+}
+
+window.light-mode .main box.drawer-left list.chat-list row label.title {
+  color: #2B2B2B;
+  font-weight: bold;
+}
+
+window.light-mode .main box.drawer-left list.chat-list row label.subtitle {
+  color: #2B2B2B;
+  font-weight: 400;
+}
+
+window.light-mode .main box.drawer-left list.chat-list row label.text {
+  color: #BDBDBD;
+}
+
+window.light-mode .main box.drawer-left list.chat-list row image.online {
+  color: #1E90FF;
+}
+
+window.light-mode .main box.drawer-left list.chat-list row:active, window.light-mode .main box.drawer-left list.chat-list row:selected {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
 window.light-mode .main stack.content box.toolbar box.header {
-	margin-top: 10px;
-	padding-left: 10px;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
-window.light-mode .main stack.content box.toolbar box.header label.title {
-	font-weight: bold;
-	font-size: 20px;
-}
-window.light-mode .main stack.content box.toolbar separator {}
-window.light-mode .main stack.content box.chat-view {}
 
-/* =============================================== */
-/* = Shipping box = */
-/* - Actions for sending a message (input and buttons) - */
-/* =============================================== */
+window.light-mode .main stack.content box.toolbar box.header label.title {
+  color: #2B2B2B;
+  font-weight: bold;
+  font-size: 20px;
+}
 
 window.light-mode .main stack.content box.chat-view box.foot {
-	border-top: 1px solid @color-grey;
-	background: #FFFFFF;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
-window.light-mode .main stack.content box.chat-view box.foot scrolledwindow {}
+
 window.light-mode .main stack.content box.chat-view box.foot scrolledwindow textview {
-	padding-top: 10px;
-	padding-bottom: 10px;
-	background: @bg-white;
+  padding: 15px 10px;
+  background: #FFFFFF;
+  color: #2B2B2B;
+  caret-color: #2B2B2B;
 }
+
+window.light-mode .main stack.content box.chat-view box.foot scrolledwindow textview selection {
+  background-color: rgba(30, 144, 255, 0.24);
+}
+
 window.light-mode .main stack.content box.chat-view box.foot button {
-	border-radius: 0px;
-	padding: 10px 15px;
-	background: @bg-white;
-    box-shadow: none;
-    border-color: transparent;
+  padding: 15px;
+  border-radius: 0px;
+  background: #FFFFFF;
+  box-shadow: none;
+  border-color: transparent;
 }
-window.light-mode .main stack.content box.chat-view box.foot button:active {
-	background: @color-blue;
-}
-window.light-mode .main stack.content box.chat-view box.foot button:active image {
-	color: @color-white;
-}
+
 window.light-mode .main stack.content box.chat-view box.foot button image {
-	-gtk-icon-shadow: none;
-    color: @icon-color;
+  -gtk-icon-shadow: none;
+  color: #4D4D4D;
 }
 
-/* =============================================== */
-/* = Messages = */
-/* - Messages that are sent and received - */
-/* =============================================== */
-
-window.light-mode box.my-message {
-	background-color: #1E90FF;
-	padding: 10px 15px;
-	border-radius: 20px;
-}
-window.light-mode box.message-for-me {
-	background-color: @color-grey;
-	padding: 10px 15px;
-	border-radius: 20px;
-}
-window.light-mode box.my-message label {
-	color: @color-black;
-}
-window.light-mode box.message-for-me label {
-	color: @color-white;
+window.light-mode .main stack.content box.chat-view box.foot button:active {
+  background: #1E5EFF;
 }
 
-/* =============================================== */
-/* = Chat Details = */
-/* - The information bar (where I show the group or contact information) - */
-/* =============================================== */
+window.light-mode .main stack.content box.chat-view box.foot button:active image {
+  color: #F1F1F1;
+}
 
 window.light-mode .main stack.content revealer > box.chat-details {
-	border-left: 1px solid @color-grey;
+  border-left: 1px solid rgba(0, 0, 0, 0.12);
+  background: transparent;
 }
-window.light-mode box.chat-details {
-	background: transparent;
+
+window.light-mode .main stack.content revealer > box.chat-details box.head {
+  margin-top: 50px;
 }
-window.light-mode box.chat-details box.head {
-	margin-top: 50px;
+
+window.light-mode .main stack.content revealer > box.chat-details box.head box.info label.title {
+  color: #2B2B2B;
+  font-weight: bold;
 }
-window.light-mode box.chat-details box.head image.avatar {}
-window.light-mode box.chat-details box.head box.info label.title {
-	font-weight: bold;
+
+window.light-mode .main stack.content revealer > box.chat-details box.head box.info label.subtitle {
+  color: #BDBDBD;
+  text-decoration: underline;
 }
-window.light-mode box.chat-details box.head box.info label.subtitle {
-	color: @color-grey;
-	text-decoration: underline;
+
+window.light-mode .main stack.content revealer > box.chat-details box.content {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: transparent;
+  margin-top: 20px;
+  margin-top: 20px;
 }
-window.light-mode box.chat-details box.content {
-	padding-top: 10px;
-	padding-bottom: 10px;
-	background: white;
-	margin-top: 20px;
-	margin-top: 20px;
+
+window.light-mode .main stack.content revealer > box.chat-details list.actions {
+  background: transparent;
 }
-window.light-mode box.chat-details list.actions {
-	background: transparent;
+
+window.light-mode .main stack.content revealer > box.chat-details list.actions row.action {
+  background: rgba(0, 0, 0, 0.08);
+  min-height: 50px;
+  padding: 10px;
+  transition: all 0.4s ease 0s;
 }
-window.light-mode box.chat-details list.actions row.action {
-	padding: 10px;
+
+window.light-mode .main stack.content revealer > box.chat-details list.actions row.action box image {
+  padding-left: 10px;
 }
-window.light-mode box.chat-details list.actions row.action box image {
-	padding-left: 10px;
+
+window.light-mode .main stack.content revealer > box.chat-details list.actions row.action box label {
+  color: #2B2B2B;
 }
-window.light-mode box.chat-details list.actions row.action box label {
+
+window.light-mode .main stack.content revealer > box.chat-details list.actions row.action:active, window.light-mode .main stack.content revealer > box.chat-details list.actions row.action:selected {
+  background: rgba(0, 0, 0, 0.15);
+  transition: all 0.4s ease 0s;
 }
-window.light-mode box.chat-details box.foot {
-	padding-top: 10px;
-	padding-bottom: 10px;
-	background: white;
-	margin-top: 20px;
+
+window.light-mode .main stack.content revealer > box.chat-details box.foot {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: transparent;
+  margin-top: 20px;
+}
+
+window.light-mode box.my-message {
+  background-color: #1E90FF;
+  padding: 10px 15px;
+  border-radius: 20px;
+}
+
+window.light-mode box.my-message label {
+  color: #1A1A1A;
+}
+
+window.light-mode box.message-for-me {
+  background-color: #BDBDBD;
+  padding: 10px 15px;
+  border-radius: 20px;
+}
+
+window.light-mode box.message-for-me label {
+  color: #F1F1F1;
+}
+
+window.dark-mode {
+  background: #232729;
+}
+
+window.dark-mode label {
+  color: #ECECEC;
+}
+
+window.dark-mode label link {
+  color: #2D4E6F;
+}
+
+window.dark-mode label link:hover {
+  color: #18395A;
+}
+
+window.dark-mode image.icon {
+  color: #ECECEC;
+  -gtk-icon-shadow: none;
+}
+
+window.dark-mode button {
+  background: #2D4E6F;
+  padding: 10px;
+  border-radius: 3px;
+  transition: all 0.4s ease 0s;
+}
+
+window.dark-mode button label {
+  color: #F1F1F1;
+}
+
+window.dark-mode button:active {
+  background: #18395A;
+  transition: all 0.4s ease 0s;
+}
+
+window.dark-mode button:active image {
+  color: #F1F1F1;
+}
+
+window.dark-mode button:checked {
+  background: #18395A;
+  transition: all 0.4s ease 0s;
+}
+
+window.dark-mode button image.icon {
+  color: #F1F1F1;
+}
+
+window.dark-mode switch {
+  transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
+  margin: 6px 0;
+  padding: 0 2px;
+  border: 5px solid transparent;
+  border-radius: 9999px;
+  background-color: rgba(0, 0, 0, 0.26);
+  background-clip: padding-box;
+  font-size: 0;
+}
+
+window.dark-mode switch image {
+  margin: -8px;
+  -gtk-icon-transform: scale(0);
+}
+
+window.dark-mode switch slider {
+  transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
+  min-width: 20px;
+  min-height: 20px;
+  margin: -3px -2px;
+  border-radius: 9999px;
+  outline: none;
+  box-shadow: 0 0 0 10px transparent, 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background-color: #ECECEC;
+}
+
+window.dark-mode switch:focus slider {
+  box-shadow: 0 0 0 10px alpha(currentColor, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+window.dark-mode switch:hover slider {
+  box-shadow: 0 0 0 10px alpha(currentColor, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+window.dark-mode switch:focus:hover slider {
+  box-shadow: 0 0 0 10px alpha(currentColor, 0.16), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+window.dark-mode switch:checked slider {
+  background-color: #2D4E6F;
+  color: #18395A;
+}
+
+window.dark-mode switch:checked {
+  background-color: rgba(26, 115, 232, 0.5);
+}
+
+window.dark-mode entry {
+  min-height: 36px;
+  padding: 0 8px;
+  border-radius: 3px 3px 0 0;
+  caret-color: #ECECEC;
+  transition: all 75ms cubic-bezier(0, 0, 0.2, 1), border-image 225ms cubic-bezier(0, 0, 0.2, 1);
+  border-image: radial-gradient(circle closest-corner at center calc(100% - 1px), #2D4E6F 0%, transparent 0%) 0 0 0/0 0 0px;
+  box-shadow: inset 0 0 0 9999px transparent, inset 0 -1px rgba(0, 0, 0, 0.26);
+  background-color: rgba(0, 0, 0, 0.08);
+  color: #ECECEC;
+}
+
+window.dark-mode entry:focus {
+  border-image: radial-gradient(circle closest-corner at center calc(100% - 1px), #2D4E6F 100%, transparent 0%) 0 0 2/0 0 2px;
+}
+
+window.dark-mode entry:drop(active) {
+  box-shadow: inset 0 0 0 9999px alpha(currentColor, 0.08), inset 0 -1px rgba(0, 0, 0, 0.26);
+}
+
+window.dark-mode entry selection {
+  background-color: rgba(45, 78, 111, 0.24);
+}
+
+window.dark-mode .main box.drawer-left box.head {
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+window.dark-mode .main box.drawer-left entry.textfield {
+  margin-top: -10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+window.dark-mode .main box.drawer-left separator {
+  background: transparent;
+  background-image: image(transparent);
+}
+
+window.dark-mode .main box.drawer-left list.chat-list {
+  background: transparent;
+}
+
+window.dark-mode .main box.drawer-left list.chat-list row {
+  background: transparent;
+  transition: all 0.4s ease 0s;
+}
+
+window.dark-mode .main box.drawer-left list.chat-list row box.content {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+window.dark-mode .main box.drawer-left list.chat-list row image.avatar {
+  color: #ECECEC;
+}
+
+window.dark-mode .main box.drawer-left list.chat-list row label.title {
+  color: #ECECEC;
+  font-weight: bold;
+}
+
+window.dark-mode .main box.drawer-left list.chat-list row label.subtitle {
+  color: #ECECEC;
+  font-weight: 400;
+}
+
+window.dark-mode .main box.drawer-left list.chat-list row label.text {
+  color: #BDBDBD;
+}
+
+window.dark-mode .main box.drawer-left list.chat-list row image.online {
+  color: #2D4E6F;
+}
+
+window.dark-mode .main box.drawer-left list.chat-list row:active, window.dark-mode .main box.drawer-left list.chat-list row:selected {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
+window.dark-mode .main stack.content box.toolbar box.header {
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+window.dark-mode .main stack.content box.toolbar box.header label.title {
+  color: #ECECEC;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+window.dark-mode .main stack.content box.chat-view box.foot {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+window.dark-mode .main stack.content box.chat-view box.foot scrolledwindow textview {
+  padding: 15px 10px;
+  background: #232729;
+  color: #ECECEC;
+  caret-color: #ECECEC;
+}
+
+window.dark-mode .main stack.content box.chat-view box.foot scrolledwindow textview selection {
+  background-color: rgba(45, 78, 111, 0.24);
+}
+
+window.dark-mode .main stack.content box.chat-view box.foot button {
+  padding: 15px;
+  border-radius: 0px;
+  background: #232729;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+window.dark-mode .main stack.content box.chat-view box.foot button image {
+  -gtk-icon-shadow: none;
+  color: #ECECEC;
+}
+
+window.dark-mode .main stack.content box.chat-view box.foot button:active {
+  background: #18395A;
+}
+
+window.dark-mode .main stack.content box.chat-view box.foot button:active image {
+  color: #F1F1F1;
+}
+
+window.dark-mode .main stack.content revealer > box.chat-details {
+  border-left: 1px solid rgba(0, 0, 0, 0.12);
+  background: transparent;
+}
+
+window.dark-mode .main stack.content revealer > box.chat-details box.head {
+  margin-top: 50px;
+}
+
+window.dark-mode .main stack.content revealer > box.chat-details box.head box.info label.title {
+  color: #ECECEC;
+  font-weight: bold;
+}
+
+window.dark-mode .main stack.content revealer > box.chat-details box.head box.info label.subtitle {
+  color: #BDBDBD;
+  text-decoration: underline;
+}
+
+window.dark-mode .main stack.content revealer > box.chat-details box.content {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: transparent;
+  margin-top: 20px;
+  margin-top: 20px;
+}
+
+window.dark-mode .main stack.content revealer > box.chat-details list.actions {
+  background: transparent;
+}
+
+window.dark-mode .main stack.content revealer > box.chat-details list.actions row.action {
+  background: rgba(0, 0, 0, 0.08);
+  min-height: 50px;
+  padding: 10px;
+  transition: all 0.4s ease 0s;
+}
+
+window.dark-mode .main stack.content revealer > box.chat-details list.actions row.action box image {
+  padding-left: 10px;
+}
+
+window.dark-mode .main stack.content revealer > box.chat-details list.actions row.action box label {
+  color: #ECECEC;
+}
+
+window.dark-mode .main stack.content revealer > box.chat-details list.actions row.action:active, window.dark-mode .main stack.content revealer > box.chat-details list.actions row.action:selected {
+  background: rgba(0, 0, 0, 0.15);
+  transition: all 0.4s ease 0s;
+}
+
+window.dark-mode .main stack.content revealer > box.chat-details box.foot {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: transparent;
+  margin-top: 20px;
+}
+
+window.dark-mode box.my-message {
+  background-color: #1E90FF;
+  padding: 10px 15px;
+  border-radius: 20px;
+}
+
+window.dark-mode box.my-message label {
+  color: #1A1A1A;
+}
+
+window.dark-mode box.message-for-me {
+  background-color: #BDBDBD;
+  padding: 10px 15px;
+  border-radius: 20px;
+}
+
+window.dark-mode box.message-for-me label {
+  color: #F1F1F1;
+}
+
+box.alert-dialog {
+  color: #F1F1F1;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: background .2s ease-out;
+}
+
+box.alert-dialog > label.title {
+  color: #2B2B2B;
+  font-size: 30px;
+}
+
+box.alert-dialog > label.subtitle {
+  color: #2B2B2B;
+  font-size: 15px;
+}
+
+box.light-mode .card {
+  border-radius: 3px;
+  background-color: #FFFFFF;
+}
+
+box.light-mode .card list {
+  background: transparent;
+}
+
+box.light-mode .card list row {
+  background: transparent;
+  transition: all 0.4s ease 0s;
+}
+
+box.light-mode .card list row switch {
+  transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
+  margin: 6px 0;
+  padding: 0 2px;
+  border: 5px solid transparent;
+  border-radius: 9999px;
+  background-color: rgba(0, 0, 0, 0.26);
+  background-clip: padding-box;
+  font-size: 0;
+}
+
+box.light-mode .card list row switch image {
+  margin: -8px;
+  -gtk-icon-transform: scale(0);
+}
+
+box.light-mode .card list row switch slider {
+  transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
+  min-width: 20px;
+  min-height: 20px;
+  margin: -3px -2px;
+  border-radius: 9999px;
+  outline: none;
+  box-shadow: 0 0 0 10px transparent, 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background-color: #F1F1F1;
+}
+
+box.light-mode .card list row switch:focus slider {
+  box-shadow: 0 0 0 10px alpha(currentColor, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+box.light-mode .card list row switch:hover slider {
+  box-shadow: 0 0 0 10px alpha(currentColor, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+box.light-mode .card list row switch:focus:hover slider {
+  box-shadow: 0 0 0 10px alpha(currentColor, 0.16), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+box.light-mode .card list row switch:checked slider {
+  background-color: #1E90FF;
+  color: #1E5EFF;
+}
+
+box.light-mode .card list row switch:checked {
+  background-color: rgba(26, 115, 232, 0.5);
+}
+
+box.light-mode .card list row box.content {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+box.light-mode .card list row image.avatar {
+  color: #2B2B2B;
+}
+
+box.light-mode .card list row label.title {
+  color: #2B2B2B;
+  font-weight: bold;
+}
+
+box.light-mode .card list row label.subtitle {
+  color: #2B2B2B;
+  font-weight: 400;
+}
+
+box.light-mode .card list row label.text {
+  color: #BDBDBD;
+}
+
+box.light-mode .card list row image.online {
+  color: #1E90FF;
+}
+
+box.light-mode .card list row:active, box.light-mode .card list row:selected {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
+box.light-mode .card box.header {
+  color: #2B2B2B;
+  padding: 10px;
+}
+
+box.light-mode .card box.header label.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+box.light-mode .card box.header button {
+  background: transparent;
+  padding: 10px;
+  border-radius: 20px;
+  transition: all 0.4s ease 0s;
+}
+
+box.light-mode .card box.header button label {
+  color: #1A1A1A;
+}
+
+box.light-mode .card box.header button:active {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
+box.light-mode .card box.header button:active image {
+  color: #1A1A1A;
+}
+
+box.light-mode .card box.header button:checked {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
+box.light-mode .card entry.textfield {
+  margin: 10px;
+}
+
+box.light-mode .card box.head {
+  color: #2B2B2B;
+  padding: 20px 10px;
+}
+
+box.light-mode .card box.head label.title {
+  font-weight: bold;
+}
+
+box.light-mode .card box.head label.subtitle {
+  font-weight: 400;
+}
+
+box.light-mode .card box.head button {
+  background: transparent;
+  padding: 10px;
+  border-radius: 20px;
+  transition: all 0.4s ease 0s;
+}
+
+box.light-mode .card box.head button label {
+  color: #1A1A1A;
+}
+
+box.light-mode .card box.head button:active {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
+box.light-mode .card box.head button:active image {
+  color: #1A1A1A;
+}
+
+box.light-mode .card box.head button:checked {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
+box.light-mode .card box.foot {
+  color: #1A1A1A;
+  padding: 10px;
+}
+
+box.light-mode .card box.foot label.title {
+  font-weight: bold;
+}
+
+box.dark-mode .card {
+  border-radius: 3px;
+  background-color: #232729;
+}
+
+box.dark-mode .card list {
+  background: transparent;
+}
+
+box.dark-mode .card list row {
+  background: transparent;
+  transition: all 0.4s ease 0s;
+}
+
+box.dark-mode .card list row switch {
+  transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
+  margin: 6px 0;
+  padding: 0 2px;
+  border: 5px solid transparent;
+  border-radius: 9999px;
+  background-color: rgba(0, 0, 0, 0.26);
+  background-clip: padding-box;
+  font-size: 0;
+}
+
+box.dark-mode .card list row switch image {
+  margin: -8px;
+  -gtk-icon-transform: scale(0);
+}
+
+box.dark-mode .card list row switch slider {
+  transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
+  min-width: 20px;
+  min-height: 20px;
+  margin: -3px -2px;
+  border-radius: 9999px;
+  outline: none;
+  box-shadow: 0 0 0 10px transparent, 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background-color: #ECECEC;
+}
+
+box.dark-mode .card list row switch:focus slider {
+  box-shadow: 0 0 0 10px alpha(currentColor, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+box.dark-mode .card list row switch:hover slider {
+  box-shadow: 0 0 0 10px alpha(currentColor, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+box.dark-mode .card list row switch:focus:hover slider {
+  box-shadow: 0 0 0 10px alpha(currentColor, 0.16), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+box.dark-mode .card list row switch:checked slider {
+  background-color: #2D4E6F;
+  color: #18395A;
+}
+
+box.dark-mode .card list row switch:checked {
+  background-color: rgba(26, 115, 232, 0.5);
+}
+
+box.dark-mode .card list row box.content {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+box.dark-mode .card list row image.avatar {
+  color: #ECECEC;
+}
+
+box.dark-mode .card list row label.title {
+  color: #ECECEC;
+  font-weight: bold;
+}
+
+box.dark-mode .card list row label.subtitle {
+  color: #ECECEC;
+  font-weight: 400;
+}
+
+box.dark-mode .card list row label.text {
+  color: #BDBDBD;
+}
+
+box.dark-mode .card list row image.online {
+  color: #2D4E6F;
+}
+
+box.dark-mode .card list row:active, box.dark-mode .card list row:selected {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
+box.dark-mode .card box.header {
+  color: #ECECEC;
+  padding: 10px;
+}
+
+box.dark-mode .card box.header label.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+box.dark-mode .card box.header button {
+  background: transparent;
+  padding: 10px;
+  border-radius: 20px;
+  transition: all 0.4s ease 0s;
+}
+
+box.dark-mode .card box.header button label {
+  color: #ECECEC;
+}
+
+box.dark-mode .card box.header button:active {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
+box.dark-mode .card box.header button:active image {
+  color: #ECECEC;
+}
+
+box.dark-mode .card box.header button:checked {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
+box.dark-mode .card entry.textfield {
+  margin: 10px;
+}
+
+box.dark-mode .card box.head {
+  color: #ECECEC;
+  padding: 20px 10px;
+}
+
+box.dark-mode .card box.head label.title {
+  font-weight: bold;
+}
+
+box.dark-mode .card box.head label.subtitle {
+  font-weight: 400;
+}
+
+box.dark-mode .card box.head button {
+  background: transparent;
+  padding: 10px;
+  border-radius: 20px;
+  transition: all 0.4s ease 0s;
+}
+
+box.dark-mode .card box.head button label {
+  color: #ECECEC;
+}
+
+box.dark-mode .card box.head button:active {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
+box.dark-mode .card box.head button:active image {
+  color: #ECECEC;
+}
+
+box.dark-mode .card box.head button:checked {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
+box.dark-mode .card box.foot {
+  color: #1A1A1A;
+  padding: 10px;
+}
+
+box.dark-mode .card box.foot label.title {
+  font-weight: bold;
 }

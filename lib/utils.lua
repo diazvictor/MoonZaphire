@@ -63,6 +63,18 @@ function utils:addClass(widget, classname)
     return true
 end
 
+function utils:hasClass(widget, classname)
+	if (not widget) then
+		return false
+	end
+	local element = widget:get_style_context()
+    if element:has_class(classname) then
+		return true
+	else
+		return false
+	end
+end
+
 function utils:removeClass(widget, classname)
 	if (not widget) then
 		return false

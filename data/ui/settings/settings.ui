@@ -777,7 +777,7 @@
 			</packing>
 		</child>
 		<style>
-			<class name="moon-zaphire"/>
+			<class name="light-mode"/>
 		</style>
 	</template>
 </interface>
