@@ -12,8 +12,8 @@ MoonZaphire:class('Chat', Gtk.Stack)
 --- I require the modules belonging to Chat
 require('chat.chat_view')
 require('chat.chat_details')
-
--- local items, search_box
+require('chat.messages.message_to')
+require('chat.messages.message_from')
 
 --- At the beginning of the class
 function MoonZaphire.Chat:_class_init(klass)
