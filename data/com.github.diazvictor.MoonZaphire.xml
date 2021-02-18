@@ -2,6 +2,7 @@
 <gresources>
 	<gresource prefix="/com/github/diazvictor/MoonZaphire">
 		<file compressed="true">data/styles/custom.css</file>
+		<file compressed="true">data/icons/scalable/apps/com.github.diazvictor.MoonZaphire.svg</file>
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/window.ui</file>
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/start.ui</file>
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/login/auth_user.ui</file>

@@ -37,8 +37,9 @@ function MoonZaphire.Start:_init()
 		MoonZaphire.Start, 'logo'
 	)
 	--- I load the image and give it a specific size.
-	logo.pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(
-		'data/icons/scalable/apps/com.github.diazvictor.MoonZaphire.svg',
+	logo.pixbuf = GdkPixbuf.Pixbuf.new_from_resource_at_scale(
+		'/com/github/diazvictor/MoonZaphire/data/icons/scalable/apps/' ..
+		'com.github.diazvictor.MoonZaphire.svg',
 		250,
 		250
 	)
