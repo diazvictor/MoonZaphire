@@ -7,13 +7,39 @@
  @date      01.02.2021 16:47:50 -04
 ]]
 
+-- I require the libraries I depend on
+lgi = require 'lgi'
+local log = lgi.log.domain('MoonZaphire')
+log.message("'lgi' loaded successfully. (Thanks Pavouk!)")
+
+GObject = lgi.GObject
+log.message("'lgi.GObject' loaded successfully.")
+
+Gtk = lgi.require('Gtk', '3.0')
+log.message("'lgi.Gtk' loaded successfully.")
+
+Gio = lgi.Gio
+log.message("'lgi.Gio' loaded successfully.")
+
+GLib = lgi.GLib
+log.message("'lgi.GLib' loaded successfully.")
+
+Gdk = lgi.Gdk
+log.message("'lgi.Gdk' loaded successfully.")
+
+GdkPixbuf = lgi.GdkPixbuf
+log.message("'lgi.GdkPixbuf' loaded successfully.")
+
+Pango = lgi.Pango
+log.message("'lgi.Pango' loaded successfully.")
+
 json = require 'json'
-print("| 'json' loaded successfully.")
+log.message("'json' loaded successfully.")
 
 utils = require 'utils'
-print("| 'utils' loaded successfully.")
+log.message("'utils' loaded successfully.")
 
 -- Load the GResource file
 local Res = Gio.Resource.load("data/com.github.diazvictor.MoonZaphire.gresource")
 Gio.resources_register(Res)
-print("| 'Resources' loaded successfully.")
+log.message("'resources' loaded successfully.")

@@ -7,28 +7,7 @@
 ]]
 
 package.path = package.path .. ';lib/?.lua;src/?.lua'
-
--- I require the libraries I depend on
-print("Loading libraries:")
-lgi = require 'lgi'
-print("| 'lgi' loaded successfully. (Thanks Pavouk!)")
-GObject = lgi.GObject
-print("|----- 'lgi.GObject' loaded successfully.")
-Gtk = lgi.require('Gtk', '3.0')
-print("|----- 'lgi.Gtk' loaded successfully.")
-Gio = lgi.Gio
-print("|----- 'lgi.Gio' loaded successfully.")
-GLib = lgi.GLib
-print("|----- 'lgi.GLib' loaded successfully.")
-Gdk = lgi.Gdk
-print("|----- 'lgi.Gdk' loaded successfully.")
-GdkPixbuf 			= lgi.GdkPixbuf
-print("|----- 'lgi.GdkPixbuf' loaded successfully.")
-Pango = lgi.Pango
-print("|----- 'lgi.Pango' loaded successfully.")
-
 require 'init'
-print("Libraries loaded!\n")
 
 --- I create a namespace (master class)
 MoonZaphire = lgi.package("MoonZaphire")
