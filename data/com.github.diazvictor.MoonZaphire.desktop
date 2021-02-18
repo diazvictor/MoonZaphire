@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=MoonZaphire
+Type=Application
+Exec=MoonZaphire
+Icon=com.github.diazvictor.MoonZaphire
+Categories=Network;InstantMessaging;Chat;GTK;

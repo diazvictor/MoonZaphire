@@ -6,7 +6,7 @@
  @date      05.02.2021 00:09:36 -04
 ]]
 
-package.path = package.path .. ';lib/?.lua;src/?.lua'
+package.path = package.path .. ';../lib/?.lua;../src/?.lua'
 require 'init'
 
 --- I create a namespace (master class)

@@ -40,6 +40,6 @@ utils = require 'utils'
 log.message("'utils' loaded successfully.")
 
 -- Load the GResource file
-local Res = Gio.Resource.load("../data/com.github.diazvictor.MoonZaphire.gresource")
+local Res = Gio.Resource.load("@prefix@/@datadir@/MoonZaphire/data/com.github.diazvictor.MoonZaphire.gresource")
 Gio.resources_register(Res)
 log.message("'resources' loaded successfully.")
