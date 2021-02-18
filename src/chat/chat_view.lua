@@ -86,7 +86,7 @@ function MoonZaphire.ChatView:_init()
 	local send_message = function ()
 		local timeago = os.date('%H:%M')
 		if (buffer_message.text ~= '') then
-			MoonZaphire.ChatView:message {
+			MoonZaphire.ChatView:new_message {
 				type = 'to',
 				message = buffer_message.text,
 				time = timeago
