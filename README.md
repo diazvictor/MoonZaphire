@@ -9,21 +9,33 @@ MoonZaphire is a GTK3 client for MQTT (and others) written in Lua with a lot of 
 
 ## Dependencies
 
+- GTK+ 3.20+
+- GObject-Introspection
+- GLib 2.0+
+- GdkPixbuf 2.0+
+- Pango 1.0+
 - [Lua5.1+](https://www.lua.org/download.html) (or [LuaJIT 2.0+](https://luajit.org/))
 - [LGI](https://github.com/pavouk/lgi)
+- Meson 0.53.0+
 
-## Running steps
+## Building and Installation
 
-Before running MoonZaphire, you'll need compile the `data/com.github.diazvictor.MoonZaphire.xml` file:
+You can build and install MoonZaphire using Meson with Ninja:
 
+Run `meson` to configure the build environment and then `ninja install` to install
 ```
-glib-compile-resources data/com.github.diazvictor.MoonZaphire.xml
+meson build --prefix=/usr && cd build
+[sudo] ninja install
 ```
 
-Now all that remains is to run the application
-
+To run the application
 ```
-lua MoonZaphire.lua
+MoonZaphire
+```
+
+To run directly from source
+```
+cd src && lua MoonZaphire.lua
 ```
 
 ## Contributing
