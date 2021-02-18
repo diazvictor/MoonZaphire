@@ -11,6 +11,8 @@
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/chat/chat.ui</file>
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/chat/chat_view.ui</file>
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/chat/chat_details.ui</file>
+		<file compressed="true" preprocess="xml-stripblanks">data/ui/chat/messages/message_to.ui</file>
+		<file compressed="true" preprocess="xml-stripblanks">data/ui/chat/messages/message_from.ui</file>
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/settings/settings.ui</file>
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/settings/profile.ui</file>
 		<file compressed="true" preprocess="xml-stripblanks">data/ui/settings/new_group.ui</file>

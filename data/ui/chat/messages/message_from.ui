@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<!-- interface-requires gtk+ 3.8 -->
+	<template class="MoonZaphireMessageFrom" parent="GtkBox">
+		<property name="visible">True</property>
+		<property name="can_focus">False</property>
+		<property name="halign">start</property>
+		<property name="orientation">vertical</property>
+		<child>
+			<object class="GtkLabel" id="author">
+				<property name="visible">True</property>
+				<property name="can_focus">False</property>
+				<property name="halign">start</property>
+				<property name="label" translatable="yes">Fullname</property>
+				<property name="ellipsize">end</property>
+				<style>
+					<class name="title"/>
+				</style>
+			</object>
+			<packing>
+				<property name="expand">False</property>
+				<property name="fill">True</property>
+				<property name="position">0</property>
+			</packing>
+		</child>
+		<child>
+			<object class="GtkBox">
+				<property name="visible">True</property>
+				<property name="can_focus">False</property>
+				<child>
+					<object class="GtkImage" id="avatar">
+						<property name="visible">True</property>
+						<property name="can_focus">False</property>
+						<property name="valign">end</property>
+						<property name="icon_name">avatar-default-symbolic</property>
+						<property name="icon_size">5</property>
+						<style>
+							<class name="avatar"/><class name="icon"/>
+						</style>
+					</object>
+					<packing>
+						<property name="expand">False</property>
+						<property name="fill">True</property>
+						<property name="position">0</property>
+					</packing>
+				</child>
+				<child>
+					<object class="GtkBox">
+						<property name="visible">True</property>
+						<property name="can_focus">False</property>
+						<property name="orientation">vertical</property>
+						<child>
+							<object class="GtkLabel" id="message">
+								<property name="visible">True</property>
+								<property name="can_focus">False</property>
+								<property name="halign">start</property>
+								<property name="label" translatable="yes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse consequat turpis id dapibus euismod. In vehicula quis ex nec fermentum. Aliquam quis tempus lacus. Curabitur a porttitor erat. Nunc rhoncus pharetra elit eu rhoncus. Quisque volutpat diam ac arcu laoreet, convallis ultrices mauris sollicitudin. Vestibulum vel ipsum ultrices, efficitur nisl ut, euismod erat.</property>
+								<property name="wrap">True</property>
+								<property name="wrap_mode">char</property>
+								<property name="selectable">True</property>
+							</object>
+							<packing>
+								<property name="expand">False</property>
+								<property name="fill">True</property>
+								<property name="position">0</property>
+							</packing>
+						</child>
+						<style>
+							<class name="message"/>
+						</style>
+					</object>
+					<packing>
+						<property name="expand">False</property>
+						<property name="fill">True</property>
+						<property name="position">1</property>
+					</packing>
+				</child>
+			</object>
+			<packing>
+				<property name="expand">False</property>
+				<property name="fill">True</property>
+				<property name="position">1</property>
+			</packing>
+		</child>
+		<child>
+			<object class="GtkLabel" id="time">
+				<property name="visible">True</property>
+				<property name="can_focus">False</property>
+				<property name="halign">end</property>
+				<property name="label" translatable="yes">20min</property>
+				<property name="ellipsize">end</property>
+				<style>
+					<class name="time"/>
+				</style>
+			</object>
+			<packing>
+				<property name="expand">False</property>
+				<property name="fill">True</property>
+				<property name="position">2</property>
+			</packing>
+		</child>
+		<style>
+			<class name="message-from"/>
+		</style>
+</template>
+</interface>

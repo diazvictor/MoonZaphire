@@ -39,6 +39,10 @@ window.light-mode {
   background: #FFFFFF;
 }
 
+window.light-mode .placeholder text {
+  color: rgba(0, 0, 0, 0.6);
+}
+
 window.light-mode label {
   color: #2B2B2B;
 }
@@ -321,28 +325,106 @@ window.light-mode .main stack.content revealer > box.chat-details box.foot {
   margin-top: 20px;
 }
 
-window.light-mode box.my-message {
+window.light-mode box.message-box {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+window.light-mode box.message-box box.message-to {
+  margin-left: 100px;
+}
+
+window.light-mode box.message-box box.message-to box.message {
+  min-width: 50px;
   background-color: #1E90FF;
-  padding: 10px 15px;
-  border-radius: 20px;
+  padding: 10px;
+  border-radius: 10px 10px 0px 10px;
+  border-bottom: 2px solid #1E5EFF;
 }
 
-window.light-mode box.my-message label {
-  color: #1A1A1A;
-}
-
-window.light-mode box.message-for-me {
-  background-color: #BDBDBD;
-  padding: 10px 15px;
-  border-radius: 20px;
-}
-
-window.light-mode box.message-for-me label {
+window.light-mode box.message-box box.message-to box.message > label {
   color: #F1F1F1;
+}
+
+window.light-mode box.message-box box.message-to box.message > label selection {
+  background-color: rgba(0, 0, 0, 0.24);
+}
+
+window.light-mode box.message-box box.message-to box.message box.reply {
+  border-left: 2px solid rgba(0, 0, 0, 0.15);
+  padding-left: 5px;
+}
+
+window.light-mode box.message-box box.message-to box.message box.reply label.title {
+  font-weight: 500;
+}
+
+window.light-mode box.message-box box.message-to box.message box.reply label.title, window.light-mode box.message-box box.message-to box.message box.reply label {
+  color: #F1F1F1;
+}
+
+window.light-mode box.message-box box.message-to label.time {
+  color: #2B2B2B;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+window.light-mode box.message-box box.message-from {
+  margin-right: 100px;
+}
+
+window.light-mode box.message-box box.message-from > label.title {
+  color: #2B2B2B;
+  font-weight: 500;
+  margin-left: 36px;
+  margin-bottom: 8px;
+}
+
+window.light-mode box.message-box box.message-from box image.avatar {
+  margin-right: 5px;
+}
+
+window.light-mode box.message-box box.message-from box box.message {
+  min-width: 50px;
+  background-color: rgba(0, 0, 0, 0.08);
+  padding: 10px;
+  border-radius: 10px 10px 10px 0px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+window.light-mode box.message-box box.message-from box box.message > label {
+  color: #2B2B2B;
+}
+
+window.light-mode box.message-box box.message-from box box.message > label selection {
+  background-color: rgba(30, 144, 255, 0.24);
+}
+
+window.light-mode box.message-box box.message-from box box.message box.reply {
+  border-left: 2px solid rgba(0, 0, 0, 0.15);
+  padding-left: 5px;
+}
+
+window.light-mode box.message-box box.message-from box box.message box.reply label.title {
+  font-weight: 500;
+}
+
+window.light-mode box.message-box box.message-from box box.message box.reply label.title, window.light-mode box.message-box box.message-from box box.message box.reply label {
+  color: #2B2B2B;
+}
+
+window.light-mode box.message-box box.message-from label.time {
+  color: #2B2B2B;
+  font-weight: 500;
+  margin-top: 5px;
 }
 
 window.dark-mode {
   background: #232729;
+}
+
+window.dark-mode .placeholder text {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 window.dark-mode label {
@@ -627,24 +709,98 @@ window.dark-mode .main stack.content revealer > box.chat-details box.foot {
   margin-top: 20px;
 }
 
-window.dark-mode box.my-message {
-  background-color: #1E90FF;
-  padding: 10px 15px;
-  border-radius: 20px;
+window.dark-mode box.message-box {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-window.dark-mode box.my-message label {
-  color: #1A1A1A;
+window.dark-mode box.message-box box.message-to {
+  margin-left: 100px;
 }
 
-window.dark-mode box.message-for-me {
-  background-color: #BDBDBD;
-  padding: 10px 15px;
-  border-radius: 20px;
+window.dark-mode box.message-box box.message-to box.message {
+  min-width: 50px;
+  background-color: #2D4E6F;
+  padding: 10px;
+  border-radius: 10px 10px 0px 10px;
+  border-bottom: 2px solid #18395A;
 }
 
-window.dark-mode box.message-for-me label {
+window.dark-mode box.message-box box.message-to box.message > label {
   color: #F1F1F1;
+}
+
+window.dark-mode box.message-box box.message-to box.message > label selection {
+  background-color: rgba(0, 0, 0, 0.24);
+}
+
+window.dark-mode box.message-box box.message-to box.message box.reply {
+  border-left: 2px solid rgba(0, 0, 0, 0.15);
+  padding-left: 5px;
+}
+
+window.dark-mode box.message-box box.message-to box.message box.reply label.title {
+  font-weight: 500;
+}
+
+window.dark-mode box.message-box box.message-to box.message box.reply label.title, window.dark-mode box.message-box box.message-to box.message box.reply label {
+  color: #F1F1F1;
+}
+
+window.dark-mode box.message-box box.message-to label.time {
+  color: #ECECEC;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+window.dark-mode box.message-box box.message-from {
+  margin-right: 100px;
+}
+
+window.dark-mode box.message-box box.message-from > label.title {
+  color: #ECECEC;
+  font-weight: 500;
+  margin-left: 36px;
+  margin-bottom: 8px;
+}
+
+window.dark-mode box.message-box box.message-from box image.avatar {
+  margin-right: 5px;
+}
+
+window.dark-mode box.message-box box.message-from box box.message {
+  min-width: 50px;
+  background-color: rgba(0, 0, 0, 0.08);
+  padding: 10px;
+  border-radius: 10px 10px 10px 0px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+window.dark-mode box.message-box box.message-from box box.message > label {
+  color: #ECECEC;
+}
+
+window.dark-mode box.message-box box.message-from box box.message > label selection {
+  background-color: rgba(45, 78, 111, 0.24);
+}
+
+window.dark-mode box.message-box box.message-from box box.message box.reply {
+  border-left: 2px solid rgba(0, 0, 0, 0.15);
+  padding-left: 5px;
+}
+
+window.dark-mode box.message-box box.message-from box box.message box.reply label.title {
+  font-weight: 500;
+}
+
+window.dark-mode box.message-box box.message-from box box.message box.reply label.title, window.dark-mode box.message-box box.message-from box box.message box.reply label {
+  color: #ECECEC;
+}
+
+window.dark-mode box.message-box box.message-from label.time {
+  color: #ECECEC;
+  font-weight: 500;
+  margin-top: 5px;
 }
 
 box.alert-dialog {

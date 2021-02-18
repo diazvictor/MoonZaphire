@@ -147,7 +147,12 @@ window.light-mode {
 
 	$item: transparent;
 	$item-active: $secondary;
+
 	background: $bg-light;
+
+	.placeholder text {
+		color: rgba(0, 0, 0, 0.6);
+	}
 
 	label {
 		color: $color-text;
@@ -282,7 +287,7 @@ window.light-mode {
 		// - The chat container
 		// ===============================================
 
-		stack.content {	
+		stack.content {
 			box.toolbar {
 				box.header {
 					margin-top: 10px;
@@ -304,7 +309,7 @@ window.light-mode {
 			// - Actions for sending a message (input and buttons)
 			// ===============================================
 
-			box.chat-view {				
+			box.chat-view {
 				box.foot {
 					border-top: 1px solid rgba(0, 0, 0, 0.12);
 
@@ -418,23 +423,95 @@ window.light-mode {
 	// - Messages that are sent and received
 	// ===============================================
 
-	box.my-message {
-		background-color: #1E90FF;
-		padding: 10px 15px;
-		border-radius: 20px;
+	box.message-box {
+		padding-left: 10px;
+		padding-right: 10px;
 
-		label {
-			color: $color-black;
+		box.message-to {
+			margin-left: 100px;
+
+			box.message {
+				min-width: 50px;
+				background-color: $primary;
+				padding: 10px;
+				// top-left | top-right | bottom-right | bottom-left
+				border-radius: 10px 10px 0px 10px;
+				border-bottom: 2px solid $primary-active;
+
+				> label {
+					color: $color-white;
+					selection { background-color: rgba($secondary, 0.24); }
+				}
+
+				box.reply {
+					border-left: 2px solid $secondary-active;
+					padding-left: 5px;
+
+					label.title {
+						font-weight: 500;
+					}
+
+					label.title, label {
+						color: $color-white;
+					}
+				}
+			}
+
+			label.time {
+				color: $color-text;
+				font-weight: 500;
+				margin-top: 5px;
+			}
 		}
-	}
 
-	box.message-for-me {
-		background-color: $color-grey;
-		padding: 10px 15px;
-		border-radius: 20px;
+		box.message-from {
+			margin-right: 100px;
 
-		label {
-			color: $color-white;
+			> label.title {
+				color: $color-text;
+				font-weight: 500;
+				margin-left: 36px;
+				margin-bottom: 8px;
+			}
+
+			box {
+				image.avatar {
+					margin-right: 5px;
+				}
+
+				box.message {
+					min-width: 50px;
+					background-color: $secondary;
+					padding: 10px;
+					// top-left | top-right | bottom-right | bottom-left
+					border-radius: 10px 10px 10px 0px;
+					border-bottom: 2px solid $secondary-active;
+
+					> label {
+						color: $color-text;
+						selection { background-color: rgba($primary, 0.24); }
+					}
+
+					box.reply {
+						border-left: 2px solid $secondary-active;
+						padding-left: 5px;
+
+						label.title {
+							font-weight: 500;
+						}
+
+						label.title, label {
+							color: $color-text;
+						}
+					}
+				}
+			}
+
+			label.time {
+				color: $color-text;
+				font-weight: 500;
+				margin-top: 5px;
+			}
 		}
 	}
 }
@@ -463,6 +540,10 @@ window.dark-mode {
 	$item-active: $secondary;
 
 	background: $bg-dark;
+
+	.placeholder text {
+		color: rgba(255, 255, 255, 0.6);
+	}
 
 	label {
 		color: $color-text;
@@ -733,23 +814,95 @@ window.dark-mode {
 	// - Messages that are sent and received
 	// ===============================================
 
-	box.my-message {
-		background-color: #1E90FF;
-		padding: 10px 15px;
-		border-radius: 20px;
+	box.message-box {
+		padding-left: 10px;
+		padding-right: 10px;
 
-		label {
-			color: $color-black;
+		box.message-to {
+			margin-left: 100px;
+
+			box.message {
+				min-width: 50px;
+				background-color: $primary;
+				padding: 10px;
+				// top-left | top-right | bottom-right | bottom-left
+				border-radius: 10px 10px 0px 10px;
+				border-bottom: 2px solid $primary-active;
+
+				> label {
+					color: $color-white;
+					selection { background-color: rgba($secondary, 0.24); }
+				}
+
+				box.reply {
+					border-left: 2px solid $secondary-active;
+					padding-left: 5px;
+
+					label.title {
+						font-weight: 500;
+					}
+
+					label.title, label {
+						color: $color-white;
+					}
+				}
+			}
+
+			label.time {
+				color: $color-text;
+				font-weight: 500;
+				margin-top: 5px;
+			}
 		}
-	}
 
-	box.message-for-me {
-		background-color: $color-grey;
-		padding: 10px 15px;
-		border-radius: 20px;
+		box.message-from {
+			margin-right: 100px;
 
-		label {
-			color: $color-white;
+			> label.title {
+				color: $color-text;
+				font-weight: 500;
+				margin-left: 36px;
+				margin-bottom: 8px;
+			}
+
+			box {
+				image.avatar {
+					margin-right: 5px;
+				}
+
+				box.message {
+					min-width: 50px;
+					background-color: $secondary;
+					padding: 10px;
+					// top-left | top-right | bottom-right | bottom-left
+					border-radius: 10px 10px 10px 0px;
+					border-bottom: 2px solid $secondary-active;
+
+					> label {
+						color: $color-text;
+						selection { background-color: rgba($primary, 0.24); }
+					}
+
+					box.reply {
+						border-left: 2px solid $secondary-active;
+						padding-left: 5px;
+
+						label.title {
+							font-weight: 500;
+						}
+
+						label.title, label {
+							color: $color-text;
+						}
+					}
+				}
+			}
+
+			label.time {
+				color: $color-text;
+				font-weight: 500;
+				margin-top: 5px;
+			}
 		}
 	}
 }
