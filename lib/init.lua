@@ -12,27 +12,28 @@ lgi = require 'lgi'
 local log = lgi.log.domain('MoonZaphire')
 log.message("'lgi' loaded successfully. (Thanks Pavouk!)")
 
-GObject = lgi.GObject
+GObject = lgi.require('GObject', '2.0')
 log.message("'lgi.GObject' loaded successfully.")
 
 Gtk = lgi.require('Gtk', '3.0')
 log.message("'lgi.Gtk' loaded successfully.")
 
-Gio = lgi.Gio
+Gio = lgi.require('Gio', '2.0')
 log.message("'lgi.Gio' loaded successfully.")
 
-GLib = lgi.GLib
+GLib = lgi.require('GLib', '2.0')
 log.message("'lgi.GLib' loaded successfully.")
 
-Gdk = lgi.Gdk
+Gdk = lgi.require('Gdk', '3.0')
 log.message("'lgi.Gdk' loaded successfully.")
 
-GdkPixbuf = lgi.GdkPixbuf
+GdkPixbuf = lgi.require('GdkPixbuf', '2.0')
 log.message("'lgi.GdkPixbuf' loaded successfully.")
 
-Pango = lgi.Pango
+Pango = lgi.require('Pango', '1.0')
 log.message("'lgi.Pango' loaded successfully.")
 
+-- @FIXME: Correct paths for local libraries
 json = require 'json'
 log.message("'json' loaded successfully.")
 
