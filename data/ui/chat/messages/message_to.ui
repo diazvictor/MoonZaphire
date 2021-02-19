@@ -15,7 +15,7 @@
 					<object class="GtkLabel" id="message">
 						<property name="visible">True</property>
 						<property name="can_focus">False</property>
-						<property name="halign">start</property>
+						<property name="halign">end</property>
 						<property name="label" translatable="yes">Message</property>
 						<property name="wrap">True</property>
 						<property name="wrap_mode">char</property>

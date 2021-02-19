@@ -335,7 +335,6 @@ window.light-mode box.message-box box.message-to {
 }
 
 window.light-mode box.message-box box.message-to box.message {
-  min-width: 50px;
   background-color: #1E90FF;
   padding: 10px;
   border-radius: 10px 10px 0px 10px;
@@ -719,7 +718,6 @@ window.dark-mode box.message-box box.message-to {
 }
 
 window.dark-mode box.message-box box.message-to box.message {
-  min-width: 50px;
   background-color: #2D4E6F;
   padding: 10px;
   border-radius: 10px 10px 0px 10px;

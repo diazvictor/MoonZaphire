@@ -431,7 +431,6 @@ window.light-mode {
 			margin-left: 100px;
 
 			box.message {
-				min-width: 50px;
 				background-color: $primary;
 				padding: 10px;
 				// top-left | top-right | bottom-right | bottom-left
@@ -822,7 +821,6 @@ window.dark-mode {
 			margin-left: 100px;
 
 			box.message {
-				min-width: 50px;
 				background-color: $primary;
 				padding: 10px;
 				// top-left | top-right | bottom-right | bottom-left
