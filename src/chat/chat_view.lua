@@ -118,16 +118,22 @@ function MoonZaphire.ChatView:_init()
 	end
 end
 
---- Create a message
+--- This method creates a new message.
 -- @param t table: A table with the content of the message (author's name,
 -- type of message, the message and the date sent).
--- @return true or false
+-- @return true or false and an error message.
+-- @usage:
+-- MoonZaphire.ChatView:new_message({
+--     type = "from", -- or "to".
+--     author = "Johndoe", -- if "type" is "to" this property is not required.
+--     message = "Hi I'm johndoe",
+--     time = os.date('%H:%M:%S')
+-- })
 function MoonZaphire.ChatView:new_message(t)
 	local t, message = t or {}
 
 	if not t.type then
-		log.warning('Define a message type')
-		return false
+		return false, 'Define a message type'
 	end
 
 	if t.type == 'to' then
@@ -137,20 +143,19 @@ function MoonZaphire.ChatView:new_message(t)
 			time = t.time
 		}
 	elseif t.type == 'from' then
-		if t.author then
-			message = MoonZaphire.MessageFrom {
-				id = t.time,
-				author = t.author,
-				message = t.message,
-				time = t.time
-			}
+		if not t.author then
+			return false, 'The "author" property is required'
 		end
+		message = MoonZaphire.MessageFrom {
+			id = t.time,
+			author = t.author,
+			message = t.message,
+			time = t.time
+		}
 	else
-		log.warning('The message type is not valid')
-		return false
+		return false, 'The message type is not valid'
 	end
 
-	log.message('Successfully sent')
 	message_box:add(message)
 	message_box.on_size_allocate = function ()
 		local adj = scroll_box:get_vadjustment()

@@ -56,18 +56,18 @@ function MoonZaphire.MessageTo:_init()
 	self:init_template()
 
 	-- I load the template objects
-	self.priv.message = self:get_template_child(MoonZaphire.MessageTo, 'message')
-	self.priv.time = self:get_template_child(MoonZaphire.MessageTo, 'time')
+	local message = self:get_template_child(MoonZaphire.MessageTo, 'message')
+	local time = self:get_template_child(MoonZaphire.MessageTo, 'time')
 
 	GObject.Binding.bind_property(
 		self, 'message',
-		self.priv.message, 'label',
+		message, 'label',
 		GObject.BindingFlags.DEFAULT
 	)
 
 	GObject.Binding.bind_property(
 		self, 'time',
-		self.priv.time, 'label',
+		time, 'label',
 		GObject.BindingFlags.DEFAULT
 	)
 end
