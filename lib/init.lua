@@ -34,11 +34,15 @@ Pango = lgi.require('Pango', '1.0')
 log.message("'lgi.Pango' loaded successfully.")
 
 -- @FIXME: Correct paths for local libraries
-json = require 'json'
+json = require 'json4lua'
+--json = require 'cjson'
 log.message("'json' loaded successfully.")
 
 utils = require 'utils'
 log.message("'utils' loaded successfully.")
+
+class	= require('middleclass')
+log.message("'middleclass' loaded successfully.")
 
 -- Load the GResource file
 local Res = Gio.Resource.load("../data/com.github.diazvictor.MoonZaphire.gresource")
