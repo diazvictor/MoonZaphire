@@ -1,61 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-	<!-- interface-requires gtk+ 3.8 -->
-	<template class="MoonZaphireMessageTo" parent="GtkBox">
-		<property name="visible">True</property>
-		<property name="can_focus">False</property>
-		<property name="halign">end</property>
-		<property name="orientation">vertical</property>
-		<child>
-			<object class="GtkBox">
-				<property name="visible">True</property>
-				<property name="can_focus">False</property>
-				<property name="orientation">vertical</property>
-				<child>
-					<object class="GtkLabel" id="message">
-						<property name="visible">True</property>
-						<property name="can_focus">False</property>
-						<property name="halign">end</property>
-						<property name="label" translatable="yes">Message</property>
-						<property name="wrap">True</property>
-						<property name="wrap_mode">char</property>
-						<property name="selectable">True</property>
-					</object>
-					<packing>
-						<property name="expand">False</property>
-						<property name="fill">True</property>
-						<property name="position">0</property>
-					</packing>
-				</child>
-				<style>
-					<class name="message"/>
-				</style>
-			</object>
-			<packing>
-				<property name="expand">False</property>
-				<property name="fill">True</property>
-				<property name="position">0</property>
-			</packing>
-		</child>
-		<child>
-			<object class="GtkLabel" id="time">
-				<property name="visible">True</property>
-				<property name="can_focus">False</property>
-				<property name="halign">end</property>
-				<property name="label" translatable="yes">20min</property>
-				<property name="ellipsize">end</property>
-				<style>
-					<class name="time"/>
-				</style>
-			</object>
-			<packing>
-				<property name="expand">False</property>
-				<property name="fill">True</property>
-				<property name="position">1</property>
-			</packing>
-		</child>
-		<style>
-			<class name="message-to"/>
-		</style>
-	</template>
+    <!-- interface-requires gtk+ 3.8 -->
+    <template class="MoonZaphireMessageTo" parent="GtkListBoxRow">
+        <property name="width_request">0</property>
+        <property name="height_request">0</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <child>
+            <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                    <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">end</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                            <object class="GtkLabel" id="message">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="halign">end</property>
+                                <property name="label" translatable="yes">Message</property>
+                                <property name="wrap">True</property>
+                                <property name="wrap_mode">char</property>
+                                <property name="selectable">True</property>
+                            </object>
+                            <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="pack_type">end</property>
+                                <property name="position">0</property>
+                            </packing>
+                        </child>
+                        <style>
+                            <class name="message"/>
+                        </style>
+                    </object>
+                    <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                    </packing>
+                </child>
+                <child>
+                    <object class="GtkLabel" id="time">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">end</property>
+                        <property name="label" translatable="yes">20min</property>
+                        <property name="ellipsize">end</property>
+                        <style>
+                            <class name="time"/>
+                        </style>
+                    </object>
+                    <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="pack_type">end</property>
+                        <property name="position">1</property>
+                    </packing>
+                </child>
+            </object>
+        </child>
+        <style>
+            <class name="message-to"/>
+        </style>
+    </template>
 </interface>

@@ -159,9 +159,10 @@ function MoonZaphire.ChatView:new_message(t)
 	end
 
 	message_box:add(message)
-	message_box.on_size_allocate = function ()
-		local adj = scroll_box:get_vadjustment()
-		adj:set_value(adj.upper - adj.page_size)
-	end
+	-- @FIXME: Big bug when scrolling down when sending or receiving a message.
+	-- message_box.on_size_allocate = function ()
+		-- local adj = scroll_box:get_vadjustment()
+		-- adj:set_value(adj.upper - adj.page_size)
+	-- end
 	return true
 end

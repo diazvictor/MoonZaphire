@@ -66,12 +66,12 @@ scrolledwindow {
 	&:active {
 		background: $bg-active;
 		transition: all 0.4s ease 0s;
-	
+
 		image{
 			color: $color;
 		}
 	}
-	
+
 	&:checked {
 		background: $bg-active;
 		transition: all 0.4s ease 0s;
@@ -159,7 +159,7 @@ window.light-mode {
 		link {
 			color: $primary;
 			&:hover {
-				color: $primary-active;					
+				color: $primary-active;
 			}
 		}
 	}
@@ -173,7 +173,7 @@ window.light-mode {
 	// = Buttons
 	// ===============================================
 
-	button { 
+	button {
 		@include button($primary, $primary-active, $color-white, 3px)
 		image.icon {
 			color: $color-white;
@@ -335,10 +335,10 @@ window.light-mode {
 							-gtk-icon-shadow: none;
 							color: $icon-color;
 						}
-						
+
 						&:active {
 							background: $primary-active;
-							
+
 							image {
 								color: $color-white;
 							}
@@ -423,11 +423,12 @@ window.light-mode {
 	// - Messages that are sent and received
 	// ===============================================
 
-	box.message-box {
+	list.message-box {
 		padding-left: 10px;
 		padding-right: 10px;
 
-		box.message-to {
+		row.message-to {
+			margin-top: 10px;
 			margin-left: 100px;
 
 			box.message {
@@ -463,10 +464,11 @@ window.light-mode {
 			}
 		}
 
-		box.message-from {
+		row.message-from {
+			margin-top: 10px;
 			margin-right: 100px;
 
-			> label.title {
+			box > label.title {
 				color: $color-text;
 				font-weight: 500;
 				margin-left: 36px;
@@ -506,7 +508,7 @@ window.light-mode {
 				}
 			}
 
-			label.time {
+			box > label.time {
 				color: $color-text;
 				font-weight: 500;
 				margin-top: 5px;
@@ -549,7 +551,7 @@ window.dark-mode {
 		link {
 			color: $primary;
 			&:hover {
-				color: $primary-active;					
+				color: $primary-active;
 			}
 		}
 	}
@@ -563,7 +565,7 @@ window.dark-mode {
 	// = Buttons
 	// ===============================================
 
-	button { 
+	button {
 		@include button($primary, $primary-active, $color-white, 3px)
 		image.icon {
 			color: $color-white;
@@ -614,7 +616,7 @@ window.dark-mode {
 				padding-left: 10px;
 				padding-right: 10px;
 			}
-			
+
 			entry.textfield {
 				margin-top: -10px;
 				margin-left: 10px;
@@ -671,13 +673,13 @@ window.dark-mode {
 				}
 			}
 		}
-		
+
 		// ===============================================
 		// = Chat View
 		// - The chat container
 		// ===============================================
-	
-		stack.content {	
+
+		stack.content {
 			box.toolbar {
 				box.header {
 					margin-top: 10px;
@@ -690,7 +692,7 @@ window.dark-mode {
 						font-size: 20px;
 					}
 				}
-				
+
 				separator {}
 			}
 
@@ -699,7 +701,7 @@ window.dark-mode {
 			// - Actions for sending a message (input and buttons)
 			// ===============================================
 
-			box.chat-view {				
+			box.chat-view {
 				box.foot {
 					border-top: 1px solid rgba(0, 0, 0, 0.12);
 
@@ -813,11 +815,12 @@ window.dark-mode {
 	// - Messages that are sent and received
 	// ===============================================
 
-	box.message-box {
+	list.message-box {
 		padding-left: 10px;
 		padding-right: 10px;
 
-		box.message-to {
+		row.message-to {
+			margin-top: 10px;
 			margin-left: 100px;
 
 			box.message {
@@ -853,10 +856,11 @@ window.dark-mode {
 			}
 		}
 
-		box.message-from {
+		row.message-from {
+			margin-top: 10px;
 			margin-right: 100px;
 
-			> label.title {
+			box > label.title {
 				color: $color-text;
 				font-weight: 500;
 				margin-left: 36px;
@@ -896,7 +900,7 @@ window.dark-mode {
 				}
 			}
 
-			label.time {
+			box > label.time {
 				color: $color-text;
 				font-weight: 500;
 				margin-top: 5px;
@@ -1002,7 +1006,7 @@ box.light-mode {
 				font-size: 20px;
 				font-weight: bold;
 			}
-			
+
 			button { @include button(transparent, $secondary, $color-black, 20px)}
 		}
 
@@ -1109,7 +1113,7 @@ box.dark-mode {
 				font-size: 20px;
 				font-weight: bold;
 			}
-			
+
 			button { @include button(transparent, $secondary, $color-text, 20px)}
 		}
 

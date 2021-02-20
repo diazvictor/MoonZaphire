@@ -7,7 +7,7 @@
 ]]
 
 --- I create the MessageFrom subclass of MoonZaphire
-MoonZaphire:class('MessageFrom', Gtk.Box)
+MoonZaphire:class('MessageFrom', Gtk.ListBoxRow)
 
 --- At the beginning of the class
 function MoonZaphire.MessageFrom:_class_init(klass)
