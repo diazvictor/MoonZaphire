@@ -1,6 +1,6 @@
 
 ---@see https://github.com/flukso/lua-mosquitto
-local mosquitto	= require('mosquitto')  
+local mosquitto	= require('mosquitto')
 local Mqtt 		= class('Mqtt')
 local client 	= nil
 
@@ -41,7 +41,7 @@ function Mqtt:connect()
       -- can be called in some side thread and Gtk might not like to
       -- be controlled from other than main thread on some platforms.
       --GLib.idle_add(GLib.PRIORITY_DEFAULT, function()
-			
+
 			--return GLib.SOURCE_REMOVE
       --end)
 
@@ -58,23 +58,24 @@ end
 
 
 function Mqtt:send()
-	MoonZaphire.ChatView:new_message {
+	MoonZaphire.ChatView:new_message({
 		['type'] = 'to',
 		message = self.msg.message,
 		time = os.date('%H:%M:%S')
-	}
+	})
 	client:publish(self.topic, self.msg_js)
 end
 
 
 function Mqtt:receive(topic,msg)
-	MoonZaphire.ChatView:new_message({
+	if (msg.message and msg.username) then
+		MoonZaphire.ChatView:new_message({
 			['type'] 	= 'from',
 			author   	=  msg.username,
 			message 	=  msg.message,
 			time 		=  os.date('%H:%M:%S')
-	})
-	collectgarbage()
+		})
+	end
 end
 
 function Mqtt:disconnect()

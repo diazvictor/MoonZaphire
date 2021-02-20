@@ -1,6 +1,6 @@
 
 ---@see https://github.com/zaherm/lua-mosquitto.git
-local mosquitto	= require('mosquitto')  
+local mosquitto	= require('mosquitto')
 local Mqtt 		= class('Mqtt')
 local main_loop, client 	= nil
 
@@ -55,29 +55,27 @@ end
 
 
 function Mqtt:send()
-	MoonZaphire.ChatView:new_message {
+	MoonZaphire.ChatView:new_message({
 		['type'] = 'to',
 		message = self.msg.message,
 		time = os.date('%H:%M:%S')
-	}
+	})
 	client:publish(self.topic, self.msg_js, 1, false)
 end
 
 
 function Mqtt:receive(topic,msg)
 	MoonZaphire.ChatView:new_message({
-			['type'] 	= 'from',
-			author   	=  msg.username,
-			message 	=  msg.message,
-			time 		=  os.date('%H:%M:%S')
+		['type'] 	= 'from',
+		author   	=  msg.username,
+		message 	=  msg.message,
+		time 		=  os.date('%H:%M:%S')
 	})
-	collectgarbage()
 end
 
 
 function Mqtt:disconnect()
 	client:disconnect()
-	collectgarbage()
 end
 
 return Mqtt

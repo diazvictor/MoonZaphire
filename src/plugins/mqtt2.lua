@@ -1,6 +1,6 @@
 
 ---@see https://github.com/tacigar/lua-mqtt.git
-local mqtt		= require('mqtt')  
+local mqtt		= require('mqtt')
 local Mqtt 		= class('Mqtt')
 local client 	= nil
 local buffer	= nil
@@ -82,13 +82,14 @@ end
 
 
 function Mqtt:receive(topic,msg)
-	MoonZaphire.ChatView:new_message({
+	if (msg.message and msg.username) then
+		MoonZaphire.ChatView:new_message({
 			['type'] 	= 'from',
 			author   	=  msg.username,
 			message 	=  msg.message,
 			time 		=  os.date('%H:%M:%S')
-	})
-	collectgarbage()
+		})
+	end
 end
 
 

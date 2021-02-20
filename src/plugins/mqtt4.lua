@@ -2,7 +2,7 @@
 socket = require('socket')
 ---@see https://git.eclipse.org/r/paho/org.eclipse.paho.mqtt.lua.git
 local mqtt = require 'paho.mqtt'
- 
+
 local Mqtt 		= class('Mqtt')
 local client 	= nil
 
@@ -52,22 +52,23 @@ function Mqtt:composer(message)
 end
 
 function Mqtt:send()
-	MoonZaphire.ChatView:new_message {
+	MoonZaphire.ChatView:new_message({
 		['type'] = 'to',
 		message = self.msg.message,
 		time = os.date('%H:%M:%S')
-	}
+	})
 	client:publish(self.topic, self.msg_js)
 end
 
 function Mqtt:receive(topic,msg)
-	MoonZaphire.ChatView:new_message({
+	if (msg.message and msg.username) then
+		MoonZaphire.ChatView:new_message({
 			['type'] 	= 'from',
 			author   	=  msg.username,
 			message 	=  msg.message,
 			time 		=  os.date('%H:%M:%S')
-	})
-	collectgarbage()
+		})
+	end
 end
 
 function Mqtt:disconnect()
