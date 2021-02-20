@@ -34,8 +34,8 @@ Pango = lgi.require('Pango', '1.0')
 log.message("'lgi.Pango' loaded successfully.")
 
 -- @FIXME: Correct paths for local libraries
-json = require 'json4lua'
---json = require 'cjson'
+-- json = require 'json'
+json = require 'cjson.safe'
 log.message("'json' loaded successfully.")
 
 utils = require 'utils'
