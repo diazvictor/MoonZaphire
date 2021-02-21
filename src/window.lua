@@ -9,12 +9,11 @@
 --- I create the Window subclass of MoonZaphire
 MoonZaphire:class("Window", Gtk.Window)
 
-
---Mqtt = require('plugins.mqtt1')
+Mqtt = require('plugins.mqtt1')
 --Mqtt = require('plugins.mqtt2')
 --Mqtt = require('plugins.mqtt3')
-Mqtt = require('plugins.mqtt4')
-mzmqtt = Mqtt:new('vitronic','vitronic','ispcore.com.ve','users/chat')
+-- Mqtt = require('plugins.mqtt4')
+mzmqtt = Mqtt:new('diazvictor','password','ispcore.com.ve','users/chat')
 mzmqtt:connect()
 
 
