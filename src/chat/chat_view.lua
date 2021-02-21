@@ -139,24 +139,144 @@ function MoonZaphire.ChatView:new_message(t)
 	end
 
 	if t.type == 'to' then
-		message = MoonZaphire.MessageTo {
-			id = t.time,
-			message = t.message,
-			time = t.time
+		-- @FIXME: There is a serious bug with the message widget (created using
+		-- templates), something that does not happen when I create it using the code
+		-- message = MoonZaphire.MessageTo {
+			-- id = t.time,
+			-- message = t.message,
+			-- time = t.time
+		-- }
+		message = Gtk.ListBoxRow {
+			visible = true,
+			activatable = false,
+			selectable = false,
+			Gtk.Box {
+				visible = true,
+				can_focus = false,
+				halign = Gtk.Align.END,
+				orientation = Gtk.Orientation.VERTICAL,
+				{
+					Gtk.Box {
+						id = 'message',
+						visible = true,
+						can_focus = false,
+						halign = Gtk.Align.END,
+						orientation = Gtk.Orientation.HORIZONTAL,
+						Gtk.Label {
+							visible = true,
+							halign = Gtk.Align.END,
+							label = t.message,
+							use_markup = true,
+							selectable = true
+						}
+					},
+					expand = false,
+					fill = true,
+					position = 0
+				},
+				{
+					Gtk.Label {
+						id = 'time',
+						visible = true,
+						halign = Gtk.Align.END,
+						label = t.time
+					},
+					expand = false,
+					fill = true,
+					position = 1
+				},
+			}
 		}
+		-- I add the css styles
+		message:get_style_context():add_class('message-to')
 	elseif t.type == 'from' then
 		if not t.author then
 			return false, 'The "author" property is required'
 		end
-		message = MoonZaphire.MessageFrom {
-			id = t.time,
-			author = t.author,
-			message = t.message,
-			time = t.time
+		-- message = MoonZaphire.MessageFrom {
+			-- id = t.time,
+			-- author = t.author,
+			-- message = t.message,
+			-- time = t.time
+		-- }
+		message = Gtk.ListBoxRow {
+			visible = true,
+			activatable = false,
+			selectable = false,
+			Gtk.Box {
+				visible = true,
+				can_focus = false,
+				halign = Gtk.Align.START,
+				orientation = Gtk.Orientation.VERTICAL,
+				{
+					Gtk.Label {
+						id = 'author',
+						visible = true,
+						halign = Gtk.Align.START,
+						label = t.author
+					},
+					expand = false,
+					fill = true,
+					position = 0
+				},
+				{
+					Gtk.Box {
+						visible = true,
+						can_focus = false,
+						orientation = Gtk.Orientation.HORIZONTAL,
+						{
+							Gtk.Image {
+								id = 'avatar',
+								visible = true,
+								valign = Gtk.Align.END,
+								icon_name = 'avatar-default-symbolic',
+								icon_size = 5
+							}
+						},
+						{
+							Gtk.Box {
+								id = 'message',
+								visible = true,
+								can_focus = false,
+								orientation = Gtk.Orientation.HORIZONTAL,
+								Gtk.Label {
+									visible = true,
+									label = t.message,
+									use_markup = true,
+									selectable = true
+								}
+							}
+						}
+					},
+					expand = false,
+					fill = true,
+					position = 1
+				},
+				{
+					Gtk.Label {
+						id = 'time',
+						visible = true,
+						halign = Gtk.Align.END,
+						label = t.time
+					},
+					expand = false,
+					fill = true,
+					position = 2
+				},
+			}
 		}
+		-- I add the css styles
+		message:get_style_context():add_class('message-from')
+		message.child.author:get_style_context():add_class('title')
+		message.child.avatar:get_style_context():add_class('icon')
+		message.child.avatar:get_style_context():add_class('avatar')
 	else
 		return false, 'The message type is not valid'
 	end
+
+	-- I add the css styles
+	message.child.message:get_style_context():add_class('message')
+	message.child.time:get_style_context():add_class('time')
 
 	message_box:add(message)
 	-- @FIXME: Big bug when scrolling down when sending or receiving a message.
