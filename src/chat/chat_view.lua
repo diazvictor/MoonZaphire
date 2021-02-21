@@ -189,6 +189,11 @@ function MoonZaphire.ChatView:new_message(t)
 		}
 		-- I add the css styles
 		message:get_style_context():add_class('message-to')
+
+		message_box.on_size_allocate = function ()
+			local adj = scroll_box:get_vadjustment()
+			adj:set_value(adj.upper - adj.page_size)
+		end
 	elseif t.type == 'from' then
 		if not t.author then
 			return false, 'The "author" property is required'
