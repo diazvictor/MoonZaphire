@@ -1,8 +1,11 @@
 
 ---@see https://github.com/flukso/lua-mosquitto
-local mosquitto	= require('mosquitto')
+local mosquitto	= require('mosquitto')  
 local Mqtt 		= class('Mqtt')
 local client 	= nil
+local QoS		= 2
+local keep_alive= 60
+local port		= 1883
 
 --- At the beginning of the class
 function Mqtt:initialize(username,password,broker,topic)
@@ -13,38 +16,35 @@ function Mqtt:initialize(username,password,broker,topic)
 end
 
 function Mqtt:connect()
-	client = mosquitto.new( self.username, false )
-	client:connect_async(self.broker,1883,60)
-
+	client = mosquitto.new( self.username , false)
 	client.ON_MESSAGE = function ( mid, topic, payload )
 		local msg = json.decode( payload )
 		if ( msg.username == self.username ) then return end
-		Mqtt:receive(topic,msg)
+		if ( msg.message and msg.username ) then
+			Mqtt:receive(topic,msg)
+		end
 	end
-	client:subscribe( 'users/chat', 2 )
+
+	client.ON_CONNECT = function ()
+		print("connected")
+		client:subscribe(self.topic, QoS)
+	end
+
+	client.ON_DISCONNECT = function ()
+		if (client:reconnect()) then
+			print("REconnecting ..")
+		end
+	end
+
+	client:connect(self.broker,port,keep_alive)
 
 	GLib.timeout_add(
 		GLib.PRIORITY_DEFAULT, 300,
 		function ()
-			client:loop_read()
+			client:loop(1)
 			return true
 		end
 	)
-
-	--GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 1,function()
-		--client:loop_read()
-		--return true
-	--end)
-
-      -- Set up sensitive state on buttons according to current state.
-      -- Note that this is forwarded to mainloop, because bus callback
-      -- can be called in some side thread and Gtk might not like to
-      -- be controlled from other than main thread on some platforms.
-      --GLib.idle_add(GLib.PRIORITY_DEFAULT, function()
-
-			--return GLib.SOURCE_REMOVE
-      --end)
-
 end
 
 
@@ -68,14 +68,15 @@ end
 
 
 function Mqtt:receive(topic,msg)
-	if (msg.message and msg.username) then
+	if ( msg.message and msg.username ) then
 		MoonZaphire.ChatView:new_message({
-			['type'] 	= 'from',
-			author   	=  msg.username,
-			message 	=  msg.message,
-			time 		=  os.date('%H:%M:%S')
+				['type'] 	= 'from',
+				author   	=  msg.username,
+				message 	=  msg.message,
+				time 		=  os.date('%H:%M:%S')
 		})
 	end
+	collectgarbage('collect')
 end
 
 function Mqtt:disconnect()
