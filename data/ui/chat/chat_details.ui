@@ -36,14 +36,14 @@
 						<property name="can_focus">False</property>
 						<property name="orientation">vertical</property>
 						<child>
-							<object class="GtkLabel" id="fullname">
+							<object class="GtkLabel" id="chatname">
 								<property name="visible">True</property>
 								<property name="can_focus">False</property>
 								<property name="halign">center</property>
-								<property name="label" translatable="yes">Fullname</property>
+								<property name="label" translatable="yes">Chatname</property>
 								<property name="ellipsize">end</property>
 								<style>
-									<class name="title"/>
+									<class name="chatname"/>
 								</style>
 							</object>
 							<packing>
@@ -61,7 +61,7 @@
 								<property name="use_markup">True</property>
 								<property name="ellipsize">end</property>
 								<style>
-									<class name="subtitle"/>
+									<class name="nickname"/>
 								</style>
 							</object>
 							<packing>

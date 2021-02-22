@@ -10,7 +10,7 @@
 MoonZaphire:class('ChatView', Gtk.Box)
 
 -- Global variables in this scope
-local message_box, scroll_box, log
+local message_box, scroll_box, log, scroll_down
 
 -- Debugging messages
 log = lgi.log.domain('ChatView')
@@ -113,6 +113,10 @@ function MoonZaphire.ChatView:_init()
 		return true
 	end
 
+	message_box.on_size_allocate = function ()
+		MoonZaphire.ChatView:scroll_down()
+	end
+
 	--- By pressing the button you sent the message
 	btn_send.on_clicked = function (self)
 		send_message()
@@ -160,13 +164,14 @@ function MoonZaphire.ChatView:new_message(t)
 						id = 'message',
 						visible = true,
 						can_focus = false,
-						halign = Gtk.Align.END,
-						orientation = Gtk.Orientation.HORIZONTAL,
+						orientation = Gtk.Orientation.VERTICAL,
+						width_request = 70,
 						Gtk.Label {
 							visible = true,
 							halign = Gtk.Align.END,
 							label = t.message,
-							use_markup = true,
+							wrap = true,
+							wrap_mode = Gtk.WrapMode.CHAR,
 							selectable = true
 						}
 					},
@@ -189,11 +194,7 @@ function MoonZaphire.ChatView:new_message(t)
 		}
 		-- I add the css styles
 		message:get_style_context():add_class('message-to')
-
-		message_box.on_size_allocate = function ()
-			local adj = scroll_box:get_vadjustment()
-			adj:set_value(adj.upper - adj.page_size)
-		end
+		scroll_down = true
 	elseif t.type == 'from' then
 		if not t.author then
 			return false, 'The "author" property is required'
@@ -218,6 +219,7 @@ function MoonZaphire.ChatView:new_message(t)
 						id = 'author',
 						visible = true,
 						halign = Gtk.Align.START,
+						ellipsize = Pango.EllipsizeMode.END,
 						label = t.author
 					},
 					expand = false,
@@ -243,11 +245,14 @@ function MoonZaphire.ChatView:new_message(t)
 								id = 'message',
 								visible = true,
 								can_focus = false,
-								orientation = Gtk.Orientation.HORIZONTAL,
+								orientation = Gtk.Orientation.VERTICAL,
+								width_request = 70,
 								Gtk.Label {
 									visible = true,
 									label = t.message,
-									use_markup = true,
+									halign = Gtk.Align.START,
+									wrap = true,
+									wrap_mode = Gtk.WrapMode.CHAR,
 									selectable = true
 								}
 							}
@@ -272,7 +277,7 @@ function MoonZaphire.ChatView:new_message(t)
 		}
 		-- I add the css styles
 		message:get_style_context():add_class('message-from')
-		message.child.author:get_style_context():add_class('title')
+		message.child.author:get_style_context():add_class('author')
 		message.child.avatar:get_style_context():add_class('icon')
 		message.child.avatar:get_style_context():add_class('avatar')
 	else
@@ -284,10 +289,14 @@ function MoonZaphire.ChatView:new_message(t)
 	message.child.time:get_style_context():add_class('time')
 
 	message_box:add(message)
-	-- @FIXME: Big bug when scrolling down when sending or receiving a message.
-	-- message_box.on_size_allocate = function ()
-		-- local adj = scroll_box:get_vadjustment()
-		-- adj:set_value(adj.upper - adj.page_size)
-	-- end
 	return true
+end
+
+--- This method scrolls the chat down.
+function MoonZaphire.ChatView:scroll_down()
+	if scroll_down then
+		local adj = scroll_box:get_vadjustment()
+		adj:set_value(adj.upper - adj.page_size)
+		scroll_down = false
+	end
 end

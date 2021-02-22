@@ -10,10 +10,11 @@
 MoonZaphire:class("Window", Gtk.Window)
 
 Mqtt = require('plugins.mqtt1')
---Mqtt = require('plugins.mqtt2')
---Mqtt = require('plugins.mqtt3')
--- Mqtt = require('plugins.mqtt4')
+--  Mqtt = require('plugins.mqtt2')
+--  Mqtt = require('plugins.mqtt3')
+--  Mqtt = require('plugins.mqtt4')
 mzmqtt = Mqtt:new('diazvictor','password','ispcore.com.ve','users/chat')
+-- mzmqtt = Mqtt:new('diazvictor','password','broker.mqtt.cool','/chat/moonsteal')
 mzmqtt:connect()
 
 
@@ -68,6 +69,8 @@ function MoonZaphire.Window:_init()
 		end
 	end
 
+	-- I set the subject on which I apply the styles
+	settings.gtk_theme_name = 'Adwaita'
 	-- I load my css styles
 	local styles = Gtk.CssProvider()
 	styles:load_from_resource(
@@ -85,27 +88,18 @@ end
 function MoonZaphire.Window:toggle_theme(theme)
 	local str = type(theme)
 	local message = ('A boolean was expected and %s was passed.'):format(str)
+
 	if type(theme) == 'boolean' then
 		-- @TODO: make a toggleClas method
 		if theme then
-			if not utils:hasClass(background.child.Settings, 'dark-mode') then
-				utils:removeClass(background.child.Settings, 'light-mode')
-				utils:addClass(background.child.Settings, 'dark-mode')
-
-				utils:removeClass(window, 'light-mode')
-				utils:addClass(window, 'dark-mode')
-			end
+			utils:removeClass(window, 'light-mode')
+			utils:addClass(window, 'dark-mode')
 		else
-			if not utils:hasClass(background.child.Settings, 'light-mode') then
-				utils:removeClass(background.child.Settings, 'dark-mode')
-				utils:addClass(background.child.Settings, 'light-mode')
-
-				utils:removeClass(window, 'dark-mode')
-				utils:addClass(window, 'light-mode')
-			end
+			utils:removeClass(window, 'dark-mode')
+			utils:addClass(window, 'light-mode')
 		end
 		return true
 	end
-	utils:show_log('THEME', 'warning', message)
-	return false
+
+	return false, message
 end

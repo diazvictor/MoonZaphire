@@ -7,7 +7,6 @@
  */
 * {
   font-family: 'Open Sans', 'Roboto';
-  all: unset;
 }
 
 separator {
@@ -39,8 +38,18 @@ window.light-mode {
   background: #FFFFFF;
 }
 
-window.light-mode .placeholder text {
-  color: rgba(0, 0, 0, 0.6);
+window.light-mode .badge.blue {
+  background: #1E90FF;
+  min-width: 26px;
+  margin-left: 37px;
+  padding: 3px;
+  border-radius: 50px;
+}
+
+window.light-mode .badge.blue label {
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #F1F1F1;
 }
 
 window.light-mode label {
@@ -62,12 +71,21 @@ window.light-mode image.icon {
 
 window.light-mode button {
   background: #1E90FF;
-  padding: 10px;
+  box-shadow: none;
+  text-shadow: none;
+  border: none;
+  outline: none;
+  padding: 6px 10px 6px 10px;
   border-radius: 3px;
   transition: all 0.4s ease 0s;
 }
 
 window.light-mode button label {
+  color: #F1F1F1;
+}
+
+window.light-mode button image {
+  -gtk-icon-shadow: none;
   color: #F1F1F1;
 }
 
@@ -106,6 +124,7 @@ window.light-mode switch image {
 }
 
 window.light-mode switch slider {
+  all: unset;
   transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
   min-width: 20px;
   min-height: 20px;
@@ -138,6 +157,7 @@ window.light-mode switch:checked {
 }
 
 window.light-mode entry {
+  all: unset;
   min-height: 36px;
   padding: 0 8px;
   border-radius: 3px 3px 0 0;
@@ -159,6 +179,36 @@ window.light-mode entry:drop(active) {
 
 window.light-mode entry selection {
   background-color: rgba(30, 144, 255, 0.24);
+  color: #2B2B2B;
+}
+
+window.light-mode menu {
+  all: unset;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+window.light-mode menu separator {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+window.light-mode menu menuitem label {
+  color: #2B2B2B;
+}
+
+window.light-mode menu menuitem:disabled label {
+  color: rgba(0, 0, 0, 0.15);
+}
+
+window.light-mode menu menuitem:hover {
+  background: #1E90FF;
+}
+
+window.light-mode menu menuitem:hover label {
+  color: #F1F1F1;
 }
 
 window.light-mode .main box.drawer-left box.head {
@@ -182,39 +232,36 @@ window.light-mode .main box.drawer-left list.chat-list {
   background: transparent;
 }
 
-window.light-mode .main box.drawer-left list.chat-list row {
+window.light-mode .main box.drawer-left list.chat-list row.chat {
   background: transparent;
   transition: all 0.4s ease 0s;
 }
 
-window.light-mode .main box.drawer-left list.chat-list row box.content {
+window.light-mode .main box.drawer-left list.chat-list row.chat box.content {
   padding-left: 10px;
   padding-right: 10px;
 }
 
-window.light-mode .main box.drawer-left list.chat-list row image.avatar {
+window.light-mode .main box.drawer-left list.chat-list row.chat image.avatar {
   color: #2B2B2B;
 }
 
-window.light-mode .main box.drawer-left list.chat-list row label.title {
+window.light-mode .main box.drawer-left list.chat-list row.chat label.chatname {
   color: #2B2B2B;
   font-weight: bold;
+  margin-right: 4px;
 }
 
-window.light-mode .main box.drawer-left list.chat-list row label.subtitle {
+window.light-mode .main box.drawer-left list.chat-list row.chat label.last_message {
   color: #2B2B2B;
-  font-weight: 400;
 }
 
-window.light-mode .main box.drawer-left list.chat-list row label.text {
+window.light-mode .main box.drawer-left list.chat-list row.chat label.time {
   color: #BDBDBD;
 }
 
-window.light-mode .main box.drawer-left list.chat-list row image.online {
-  color: #1E90FF;
-}
-
-window.light-mode .main box.drawer-left list.chat-list row:active, window.light-mode .main box.drawer-left list.chat-list row:selected {
+window.light-mode .main box.drawer-left list.chat-list row.chat:active, window.light-mode .main box.drawer-left list.chat-list row.chat:selected {
+  box-shadow: none;
   background: rgba(0, 0, 0, 0.08);
   transition: all 0.4s ease 0s;
 }
@@ -225,10 +272,118 @@ window.light-mode .main stack.content box.toolbar box.header {
   padding-right: 10px;
 }
 
-window.light-mode .main stack.content box.toolbar box.header label.title {
+window.light-mode .main stack.content box.toolbar box.header label.chatname {
   color: #2B2B2B;
   font-weight: bold;
   font-size: 20px;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row {
+  outline: none;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row:hover {
+  background-color: transparent;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row:active {
+  box-shadow: none;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row.message-to {
+  margin-top: 10px;
+  padding-left: 100px;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row.message-to box.message {
+  background-color: #1E90FF;
+  padding: 10px;
+  border-radius: 10px 10px 0px 10px;
+  border-bottom: 2px solid #1E5EFF;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row.message-to box.message > label {
+  color: #F1F1F1;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row.message-to box.message > label selection {
+  background-color: rgba(0, 0, 0, 0.24);
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row.message-to box.message box.reply {
+  border-left: 2px solid rgba(0, 0, 0, 0.15);
+  padding-left: 5px;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row.message-to box.message box.reply label.author {
+  font-weight: 600;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row.message-to box.message box.reply label.author, window.light-mode .main stack.content box.chat-view list.message-box row.message-to box.message box.reply label {
+  color: #F1F1F1;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row.message-to label.time {
+  color: #2B2B2B;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row.message-from {
+  margin-top: 10px;
+  padding-right: 100px;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row.message-from box > label.author {
+  color: #2B2B2B;
+  font-weight: 600;
+  margin-left: 36px;
+  margin-bottom: 8px;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row.message-from box image.avatar {
+  margin-right: 5px;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message {
+  min-width: 50px;
+  background-color: rgba(0, 0, 0, 0.08);
+  padding: 10px;
+  border-radius: 10px 10px 10px 0px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message > label {
+  color: #2B2B2B;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message > label selection {
+  background-color: rgba(30, 144, 255, 0.24);
+  color: #2B2B2B;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply {
+  border-left: 2px solid rgba(0, 0, 0, 0.15);
+  padding-left: 5px;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply label.author {
+  font-weight: 600;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply label.author, window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply label {
+  color: #2B2B2B;
+}
+
+window.light-mode .main stack.content box.chat-view list.message-box row.message-from box > label.time {
+  color: #2B2B2B;
+  font-weight: 600;
+  margin-top: 5px;
 }
 
 window.light-mode .main stack.content box.chat-view box.foot {
@@ -236,22 +391,31 @@ window.light-mode .main stack.content box.chat-view box.foot {
 }
 
 window.light-mode .main stack.content box.chat-view box.foot scrolledwindow textview {
-  padding: 15px 10px;
-  background: #FFFFFF;
-  color: #2B2B2B;
   caret-color: #2B2B2B;
 }
 
-window.light-mode .main stack.content box.chat-view box.foot scrolledwindow textview selection {
+window.light-mode .main stack.content box.chat-view box.foot scrolledwindow textview.placeholder text {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+window.light-mode .main stack.content box.chat-view box.foot scrolledwindow textview text {
+  background: #FFFFFF;
+  color: #2B2B2B;
+}
+
+window.light-mode .main stack.content box.chat-view box.foot scrolledwindow textview text selection {
   background-color: rgba(30, 144, 255, 0.24);
+  color: #2B2B2B;
 }
 
 window.light-mode .main stack.content box.chat-view box.foot button {
+  all: unset;
   padding: 15px;
   border-radius: 0px;
   background: #FFFFFF;
   box-shadow: none;
   border-color: transparent;
+  transition: all 0.4s ease 0s;
 }
 
 window.light-mode .main stack.content box.chat-view box.foot button image {
@@ -261,6 +425,7 @@ window.light-mode .main stack.content box.chat-view box.foot button image {
 
 window.light-mode .main stack.content box.chat-view box.foot button:active {
   background: #1E5EFF;
+  transition: all 0.4s ease 0s;
 }
 
 window.light-mode .main stack.content box.chat-view box.foot button:active image {
@@ -276,12 +441,12 @@ window.light-mode .main stack.content revealer > box.chat-details box.head {
   margin-top: 50px;
 }
 
-window.light-mode .main stack.content revealer > box.chat-details box.head box.info label.title {
+window.light-mode .main stack.content revealer > box.chat-details box.head box.info label.chatname {
   color: #2B2B2B;
   font-weight: bold;
 }
 
-window.light-mode .main stack.content revealer > box.chat-details box.head box.info label.subtitle {
+window.light-mode .main stack.content revealer > box.chat-details box.head box.info label.nickname {
   color: #BDBDBD;
   text-decoration: underline;
 }
@@ -314,6 +479,7 @@ window.light-mode .main stack.content revealer > box.chat-details list.actions r
 }
 
 window.light-mode .main stack.content revealer > box.chat-details list.actions row.action:active, window.light-mode .main stack.content revealer > box.chat-details list.actions row.action:selected {
+  box-shadow: none;
   background: rgba(0, 0, 0, 0.15);
   transition: all 0.4s ease 0s;
 }
@@ -325,107 +491,222 @@ window.light-mode .main stack.content revealer > box.chat-details box.foot {
   margin-top: 20px;
 }
 
-window.light-mode list.message-box {
+window.light-mode box.card {
+  border-radius: 3px;
+  background-color: #FFFFFF;
+}
+
+window.light-mode box.card list {
+  background: transparent;
+}
+
+window.light-mode box.card list row {
+  background: transparent;
+  transition: all 0.4s ease 0s;
+}
+
+window.light-mode box.card list row switch {
+  transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
+  margin: 6px 0;
+  padding: 0 2px;
+  border: 5px solid transparent;
+  border-radius: 9999px;
+  background-color: rgba(0, 0, 0, 0.26);
+  background-clip: padding-box;
+  font-size: 0;
+}
+
+window.light-mode box.card list row switch image {
+  margin: -8px;
+  -gtk-icon-transform: scale(0);
+}
+
+window.light-mode box.card list row switch slider {
+  all: unset;
+  transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
+  min-width: 20px;
+  min-height: 20px;
+  margin: -3px -2px;
+  border-radius: 9999px;
+  outline: none;
+  box-shadow: 0 0 0 10px transparent, 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background-color: #F1F1F1;
+}
+
+window.light-mode box.card list row switch:focus slider {
+  box-shadow: 0 0 0 10px alpha(currentColor, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+window.light-mode box.card list row switch:hover slider {
+  box-shadow: 0 0 0 10px alpha(currentColor, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+window.light-mode box.card list row switch:focus:hover slider {
+  box-shadow: 0 0 0 10px alpha(currentColor, 0.16), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+window.light-mode box.card list row switch:checked slider {
+  background-color: #1E90FF;
+  color: #1E5EFF;
+}
+
+window.light-mode box.card list row switch:checked {
+  background-color: rgba(26, 115, 232, 0.5);
+}
+
+window.light-mode box.card list row box.content {
   padding-left: 10px;
   padding-right: 10px;
 }
 
-window.light-mode list.message-box row.message-to {
-  margin-top: 10px;
-  margin-left: 100px;
+window.light-mode box.card list row image.avatar {
+  color: #2B2B2B;
 }
 
-window.light-mode list.message-box row.message-to box.message {
-  background-color: #1E90FF;
+window.light-mode box.card list row label.title {
+  color: #2B2B2B;
+  font-weight: bold;
+}
+
+window.light-mode box.card list row label.subtitle {
+  color: #2B2B2B;
+  font-weight: 400;
+}
+
+window.light-mode box.card list row label.text {
+  color: #BDBDBD;
+}
+
+window.light-mode box.card list row image.online {
+  color: #1E90FF;
+}
+
+window.light-mode box.card list row:active, window.light-mode box.card list row:selected {
+  box-shadow: none;
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
+window.light-mode box.card box.header {
+  color: #2B2B2B;
   padding: 10px;
-  border-radius: 10px 10px 0px 10px;
-  border-bottom: 2px solid #1E5EFF;
 }
 
-window.light-mode list.message-box row.message-to box.message > label {
-  color: #F1F1F1;
+window.light-mode box.card box.header label.title {
+  font-size: 20px;
+  font-weight: bold;
 }
 
-window.light-mode list.message-box row.message-to box.message > label selection {
-  background-color: rgba(0, 0, 0, 0.24);
+window.light-mode box.card box.header button {
+  background: transparent;
+  box-shadow: none;
+  text-shadow: none;
+  border: none;
+  outline: none;
+  padding: 6px 10px 6px 10px;
+  border-radius: 20px;
+  transition: all 0.4s ease 0s;
 }
 
-window.light-mode list.message-box row.message-to box.message box.reply {
-  border-left: 2px solid rgba(0, 0, 0, 0.15);
-  padding-left: 5px;
+window.light-mode box.card box.header button label {
+  color: #1A1A1A;
 }
 
-window.light-mode list.message-box row.message-to box.message box.reply label.title {
-  font-weight: 500;
+window.light-mode box.card box.header button image {
+  -gtk-icon-shadow: none;
+  color: #1A1A1A;
 }
 
-window.light-mode list.message-box row.message-to box.message box.reply label.title, window.light-mode list.message-box row.message-to box.message box.reply label {
-  color: #F1F1F1;
+window.light-mode box.card box.header button:active {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
 }
 
-window.light-mode list.message-box row.message-to label.time {
+window.light-mode box.card box.header button:active image {
+  color: #1A1A1A;
+}
+
+window.light-mode box.card box.header button:checked {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
+window.light-mode box.card entry.textfield {
+  margin: 10px;
+}
+
+window.light-mode box.card box.head {
   color: #2B2B2B;
-  font-weight: 500;
-  margin-top: 5px;
+  padding: 20px 10px;
 }
 
-window.light-mode list.message-box row.message-from {
-  margin-top: 10px;
-  margin-right: 100px;
+window.light-mode box.card box.head label.title {
+  font-weight: bold;
 }
 
-window.light-mode list.message-box row.message-from box > label.title {
-  color: #2B2B2B;
-  font-weight: 500;
-  margin-left: 36px;
-  margin-bottom: 8px;
+window.light-mode box.card box.head label.subtitle {
+  font-weight: 400;
 }
 
-window.light-mode list.message-box row.message-from box image.avatar {
-  margin-right: 5px;
+window.light-mode box.card box.head button {
+  background: transparent;
+  box-shadow: none;
+  text-shadow: none;
+  border: none;
+  outline: none;
+  padding: 6px 10px 6px 10px;
+  border-radius: 20px;
+  transition: all 0.4s ease 0s;
 }
 
-window.light-mode list.message-box row.message-from box box.message {
-  min-width: 50px;
-  background-color: rgba(0, 0, 0, 0.08);
+window.light-mode box.card box.head button label {
+  color: #1A1A1A;
+}
+
+window.light-mode box.card box.head button image {
+  -gtk-icon-shadow: none;
+  color: #1A1A1A;
+}
+
+window.light-mode box.card box.head button:active {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
+window.light-mode box.card box.head button:active image {
+  color: #1A1A1A;
+}
+
+window.light-mode box.card box.head button:checked {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
+window.light-mode box.card box.foot {
+  color: #1A1A1A;
   padding: 10px;
-  border-radius: 10px 10px 10px 0px;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.15);
 }
 
-window.light-mode list.message-box row.message-from box box.message > label {
-  color: #2B2B2B;
-}
-
-window.light-mode list.message-box row.message-from box box.message > label selection {
-  background-color: rgba(30, 144, 255, 0.24);
-}
-
-window.light-mode list.message-box row.message-from box box.message box.reply {
-  border-left: 2px solid rgba(0, 0, 0, 0.15);
-  padding-left: 5px;
-}
-
-window.light-mode list.message-box row.message-from box box.message box.reply label.title {
-  font-weight: 500;
-}
-
-window.light-mode list.message-box row.message-from box box.message box.reply label.title, window.light-mode list.message-box row.message-from box box.message box.reply label {
-  color: #2B2B2B;
-}
-
-window.light-mode list.message-box row.message-from box > label.time {
-  color: #2B2B2B;
-  font-weight: 500;
-  margin-top: 5px;
+window.light-mode box.card box.foot label.title {
+  font-weight: bold;
 }
 
 window.dark-mode {
   background: #232729;
 }
 
-window.dark-mode .placeholder text {
-  color: rgba(255, 255, 255, 0.6);
+window.dark-mode .badge.blue {
+  background: #1E90FF;
+  min-width: 26px;
+  margin-left: 37px;
+  padding: 3px;
+  border-radius: 50px;
+}
+
+window.dark-mode .badge.blue label {
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #F1F1F1;
 }
 
 window.dark-mode label {
@@ -447,12 +728,21 @@ window.dark-mode image.icon {
 
 window.dark-mode button {
   background: #2D4E6F;
-  padding: 10px;
+  box-shadow: none;
+  text-shadow: none;
+  border: none;
+  outline: none;
+  padding: 6px 10px 6px 10px;
   border-radius: 3px;
   transition: all 0.4s ease 0s;
 }
 
 window.dark-mode button label {
+  color: #F1F1F1;
+}
+
+window.dark-mode button image {
+  -gtk-icon-shadow: none;
   color: #F1F1F1;
 }
 
@@ -491,6 +781,7 @@ window.dark-mode switch image {
 }
 
 window.dark-mode switch slider {
+  all: unset;
   transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
   min-width: 20px;
   min-height: 20px;
@@ -498,7 +789,7 @@ window.dark-mode switch slider {
   border-radius: 9999px;
   outline: none;
   box-shadow: 0 0 0 10px transparent, 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background-color: #ECECEC;
+  background-color: #F1F1F1;
 }
 
 window.dark-mode switch:focus slider {
@@ -523,6 +814,7 @@ window.dark-mode switch:checked {
 }
 
 window.dark-mode entry {
+  all: unset;
   min-height: 36px;
   padding: 0 8px;
   border-radius: 3px 3px 0 0;
@@ -544,6 +836,36 @@ window.dark-mode entry:drop(active) {
 
 window.dark-mode entry selection {
   background-color: rgba(45, 78, 111, 0.24);
+  color: #ECECEC;
+}
+
+window.dark-mode menu {
+  all: unset;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+window.dark-mode menu separator {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+window.dark-mode menu menuitem label {
+  color: #ECECEC;
+}
+
+window.dark-mode menu menuitem:disabled label {
+  color: rgba(0, 0, 0, 0.15);
+}
+
+window.dark-mode menu menuitem:hover {
+  background: #2D4E6F;
+}
+
+window.dark-mode menu menuitem:hover label {
+  color: #F1F1F1;
 }
 
 window.dark-mode .main box.drawer-left box.head {
@@ -567,39 +889,36 @@ window.dark-mode .main box.drawer-left list.chat-list {
   background: transparent;
 }
 
-window.dark-mode .main box.drawer-left list.chat-list row {
+window.dark-mode .main box.drawer-left list.chat-list row.chat {
   background: transparent;
   transition: all 0.4s ease 0s;
 }
 
-window.dark-mode .main box.drawer-left list.chat-list row box.content {
+window.dark-mode .main box.drawer-left list.chat-list row.chat box.content {
   padding-left: 10px;
   padding-right: 10px;
 }
 
-window.dark-mode .main box.drawer-left list.chat-list row image.avatar {
+window.dark-mode .main box.drawer-left list.chat-list row.chat image.avatar {
   color: #ECECEC;
 }
 
-window.dark-mode .main box.drawer-left list.chat-list row label.title {
+window.dark-mode .main box.drawer-left list.chat-list row.chat label.chatname {
   color: #ECECEC;
   font-weight: bold;
+  margin-right: 4px;
 }
 
-window.dark-mode .main box.drawer-left list.chat-list row label.subtitle {
+window.dark-mode .main box.drawer-left list.chat-list row.chat label.last_message {
   color: #ECECEC;
-  font-weight: 400;
 }
 
-window.dark-mode .main box.drawer-left list.chat-list row label.text {
+window.dark-mode .main box.drawer-left list.chat-list row.chat label.time {
   color: #BDBDBD;
 }
 
-window.dark-mode .main box.drawer-left list.chat-list row image.online {
-  color: #2D4E6F;
-}
-
-window.dark-mode .main box.drawer-left list.chat-list row:active, window.dark-mode .main box.drawer-left list.chat-list row:selected {
+window.dark-mode .main box.drawer-left list.chat-list row.chat:active, window.dark-mode .main box.drawer-left list.chat-list row.chat:selected {
+  box-shadow: none;
   background: rgba(0, 0, 0, 0.08);
   transition: all 0.4s ease 0s;
 }
@@ -610,10 +929,118 @@ window.dark-mode .main stack.content box.toolbar box.header {
   padding-right: 10px;
 }
 
-window.dark-mode .main stack.content box.toolbar box.header label.title {
+window.dark-mode .main stack.content box.toolbar box.header label.chatname {
   color: #ECECEC;
   font-weight: bold;
   font-size: 20px;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box {
+  background: transparent;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row {
+  outline: none;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row:hover {
+  background-color: transparent;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row:active {
+  box-shadow: none;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-to {
+  margin-top: 10px;
+  padding-left: 100px;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-to box.message {
+  background-color: #2D4E6F;
+  padding: 10px;
+  border-radius: 10px 10px 0px 10px;
+  border-bottom: 2px solid #18395A;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-to box.message > label {
+  color: #F1F1F1;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-to box.message > label selection {
+  background-color: rgba(0, 0, 0, 0.24);
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-to box.message box.reply {
+  border-left: 2px solid rgba(0, 0, 0, 0.15);
+  padding-left: 5px;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-to box.message box.reply label.author {
+  font-weight: 600;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-to box.message box.reply label.author, window.dark-mode .main stack.content box.chat-view list.message-box row.message-to box.message box.reply label {
+  color: #F1F1F1;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-to label.time {
+  color: #ECECEC;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-from {
+  margin-top: 10px;
+  padding-right: 100px;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box > label.author {
+  color: #ECECEC;
+  font-weight: 600;
+  margin-left: 36px;
+  margin-bottom: 8px;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box image.avatar {
+  margin-right: 5px;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message {
+  background-color: rgba(0, 0, 0, 0.08);
+  padding: 10px;
+  border-radius: 10px 10px 10px 0px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message > label {
+  color: #ECECEC;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message > label selection {
+  background-color: rgba(45, 78, 111, 0.24);
+  color: #ECECEC;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply {
+  border-left: 2px solid rgba(0, 0, 0, 0.15);
+  padding-left: 5px;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply label.author {
+  font-weight: 600;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply label.author, window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply label {
+  color: #ECECEC;
+}
+
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box > label.time {
+  color: #ECECEC;
+  font-weight: 600;
+  margin-top: 5px;
 }
 
 window.dark-mode .main stack.content box.chat-view box.foot {
@@ -621,22 +1048,31 @@ window.dark-mode .main stack.content box.chat-view box.foot {
 }
 
 window.dark-mode .main stack.content box.chat-view box.foot scrolledwindow textview {
-  padding: 15px 10px;
-  background: #232729;
-  color: #ECECEC;
   caret-color: #ECECEC;
 }
 
-window.dark-mode .main stack.content box.chat-view box.foot scrolledwindow textview selection {
+window.dark-mode .main stack.content box.chat-view box.foot scrolledwindow textview.placeholder text {
+  color: rgba(236, 236, 236, 0.24);
+}
+
+window.dark-mode .main stack.content box.chat-view box.foot scrolledwindow textview text {
+  background: #232729;
+  color: #ECECEC;
+}
+
+window.dark-mode .main stack.content box.chat-view box.foot scrolledwindow textview text selection {
   background-color: rgba(45, 78, 111, 0.24);
+  color: #ECECEC;
 }
 
 window.dark-mode .main stack.content box.chat-view box.foot button {
+  all: unset;
   padding: 15px;
   border-radius: 0px;
   background: #232729;
   box-shadow: none;
   border-color: transparent;
+  transition: all 0.4s ease 0s;
 }
 
 window.dark-mode .main stack.content box.chat-view box.foot button image {
@@ -646,6 +1082,7 @@ window.dark-mode .main stack.content box.chat-view box.foot button image {
 
 window.dark-mode .main stack.content box.chat-view box.foot button:active {
   background: #18395A;
+  transition: all 0.4s ease 0s;
 }
 
 window.dark-mode .main stack.content box.chat-view box.foot button:active image {
@@ -661,12 +1098,12 @@ window.dark-mode .main stack.content revealer > box.chat-details box.head {
   margin-top: 50px;
 }
 
-window.dark-mode .main stack.content revealer > box.chat-details box.head box.info label.title {
+window.dark-mode .main stack.content revealer > box.chat-details box.head box.info label.chatname {
   color: #ECECEC;
   font-weight: bold;
 }
 
-window.dark-mode .main stack.content revealer > box.chat-details box.head box.info label.subtitle {
+window.dark-mode .main stack.content revealer > box.chat-details box.head box.info label.nickname {
   color: #BDBDBD;
   text-decoration: underline;
 }
@@ -699,6 +1136,7 @@ window.dark-mode .main stack.content revealer > box.chat-details list.actions ro
 }
 
 window.dark-mode .main stack.content revealer > box.chat-details list.actions row.action:active, window.dark-mode .main stack.content revealer > box.chat-details list.actions row.action:selected {
+  box-shadow: none;
   background: rgba(0, 0, 0, 0.15);
   transition: all 0.4s ease 0s;
 }
@@ -710,99 +1148,204 @@ window.dark-mode .main stack.content revealer > box.chat-details box.foot {
   margin-top: 20px;
 }
 
-window.dark-mode list.message-box {
+window.dark-mode box.card {
+  border-radius: 3px;
+  background-color: #232729;
+}
+
+window.dark-mode box.card list {
+  background: transparent;
+}
+
+window.dark-mode box.card list row {
+  background: transparent;
+  transition: all 0.4s ease 0s;
+}
+
+window.dark-mode box.card list row switch {
+  transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
+  margin: 6px 0;
+  padding: 0 2px;
+  border: 5px solid transparent;
+  border-radius: 9999px;
+  background-color: rgba(0, 0, 0, 0.26);
+  background-clip: padding-box;
+  font-size: 0;
+}
+
+window.dark-mode box.card list row switch image {
+  margin: -8px;
+  -gtk-icon-transform: scale(0);
+}
+
+window.dark-mode box.card list row switch slider {
+  all: unset;
+  transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
+  min-width: 20px;
+  min-height: 20px;
+  margin: -3px -2px;
+  border-radius: 9999px;
+  outline: none;
+  box-shadow: 0 0 0 10px transparent, 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background-color: #ECECEC;
+}
+
+window.dark-mode box.card list row switch:focus slider {
+  box-shadow: 0 0 0 10px alpha(currentColor, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+window.dark-mode box.card list row switch:hover slider {
+  box-shadow: 0 0 0 10px alpha(currentColor, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+window.dark-mode box.card list row switch:focus:hover slider {
+  box-shadow: 0 0 0 10px alpha(currentColor, 0.16), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+window.dark-mode box.card list row switch:checked slider {
+  background-color: #2D4E6F;
+  color: #18395A;
+}
+
+window.dark-mode box.card list row switch:checked {
+  background-color: rgba(26, 115, 232, 0.5);
+}
+
+window.dark-mode box.card list row box.content {
   padding-left: 10px;
   padding-right: 10px;
 }
 
-window.dark-mode list.message-box row.message-to {
-  margin-top: 10px;
-  margin-left: 100px;
+window.dark-mode box.card list row image.avatar {
+  color: #ECECEC;
 }
 
-window.dark-mode list.message-box row.message-to box.message {
-  background-color: #2D4E6F;
+window.dark-mode box.card list row label.title {
+  color: #ECECEC;
+  font-weight: bold;
+}
+
+window.dark-mode box.card list row label.subtitle {
+  color: #ECECEC;
+  font-weight: 400;
+}
+
+window.dark-mode box.card list row label.text {
+  color: #BDBDBD;
+}
+
+window.dark-mode box.card list row image.online {
+  color: #2D4E6F;
+}
+
+window.dark-mode box.card list row:active, window.dark-mode box.card list row:selected {
+  box-shadow: none;
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
+window.dark-mode box.card box.header {
+  color: #ECECEC;
   padding: 10px;
-  border-radius: 10px 10px 0px 10px;
-  border-bottom: 2px solid #18395A;
 }
 
-window.dark-mode list.message-box row.message-to box.message > label {
-  color: #F1F1F1;
+window.dark-mode box.card box.header label.title {
+  font-size: 20px;
+  font-weight: bold;
 }
 
-window.dark-mode list.message-box row.message-to box.message > label selection {
-  background-color: rgba(0, 0, 0, 0.24);
+window.dark-mode box.card box.header button {
+  background: transparent;
+  box-shadow: none;
+  text-shadow: none;
+  border: none;
+  outline: none;
+  padding: 6px 10px 6px 10px;
+  border-radius: 20px;
+  transition: all 0.4s ease 0s;
 }
 
-window.dark-mode list.message-box row.message-to box.message box.reply {
-  border-left: 2px solid rgba(0, 0, 0, 0.15);
-  padding-left: 5px;
-}
-
-window.dark-mode list.message-box row.message-to box.message box.reply label.title {
-  font-weight: 500;
-}
-
-window.dark-mode list.message-box row.message-to box.message box.reply label.title, window.dark-mode list.message-box row.message-to box.message box.reply label {
-  color: #F1F1F1;
-}
-
-window.dark-mode list.message-box row.message-to label.time {
+window.dark-mode box.card box.header button label {
   color: #ECECEC;
-  font-weight: 500;
-  margin-top: 5px;
 }
 
-window.dark-mode list.message-box row.message-from {
-  margin-top: 10px;
-  margin-right: 100px;
-}
-
-window.dark-mode list.message-box row.message-from box > label.title {
+window.dark-mode box.card box.header button image {
+  -gtk-icon-shadow: none;
   color: #ECECEC;
-  font-weight: 500;
-  margin-left: 36px;
-  margin-bottom: 8px;
 }
 
-window.dark-mode list.message-box row.message-from box image.avatar {
-  margin-right: 5px;
+window.dark-mode box.card box.header button:active {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
 }
 
-window.dark-mode list.message-box row.message-from box box.message {
-  min-width: 50px;
-  background-color: rgba(0, 0, 0, 0.08);
+window.dark-mode box.card box.header button:active image {
+  color: #ECECEC;
+}
+
+window.dark-mode box.card box.header button:checked {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
+window.dark-mode box.card entry.textfield {
+  margin: 10px;
+}
+
+window.dark-mode box.card box.head {
+  color: #ECECEC;
+  padding: 20px 10px;
+}
+
+window.dark-mode box.card box.head label.title {
+  font-weight: bold;
+}
+
+window.dark-mode box.card box.head label.subtitle {
+  font-weight: 400;
+}
+
+window.dark-mode box.card box.head button {
+  background: transparent;
+  box-shadow: none;
+  text-shadow: none;
+  border: none;
+  outline: none;
+  padding: 6px 10px 6px 10px;
+  border-radius: 20px;
+  transition: all 0.4s ease 0s;
+}
+
+window.dark-mode box.card box.head button label {
+  color: #ECECEC;
+}
+
+window.dark-mode box.card box.head button image {
+  -gtk-icon-shadow: none;
+  color: #ECECEC;
+}
+
+window.dark-mode box.card box.head button:active {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
+window.dark-mode box.card box.head button:active image {
+  color: #ECECEC;
+}
+
+window.dark-mode box.card box.head button:checked {
+  background: rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease 0s;
+}
+
+window.dark-mode box.card box.foot {
+  color: #1A1A1A;
   padding: 10px;
-  border-radius: 10px 10px 10px 0px;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.15);
 }
 
-window.dark-mode list.message-box row.message-from box box.message > label {
-  color: #ECECEC;
-}
-
-window.dark-mode list.message-box row.message-from box box.message > label selection {
-  background-color: rgba(45, 78, 111, 0.24);
-}
-
-window.dark-mode list.message-box row.message-from box box.message box.reply {
-  border-left: 2px solid rgba(0, 0, 0, 0.15);
-  padding-left: 5px;
-}
-
-window.dark-mode list.message-box row.message-from box box.message box.reply label.title {
-  font-weight: 500;
-}
-
-window.dark-mode list.message-box row.message-from box box.message box.reply label.title, window.dark-mode list.message-box row.message-from box box.message box.reply label {
-  color: #ECECEC;
-}
-
-window.dark-mode list.message-box row.message-from box > label.time {
-  color: #ECECEC;
-  font-weight: 500;
-  margin-top: 5px;
+window.dark-mode box.card box.foot label.title {
+  font-weight: bold;
 }
 
 box.alert-dialog {
@@ -819,364 +1362,4 @@ box.alert-dialog > label.title {
 box.alert-dialog > label.subtitle {
   color: #2B2B2B;
   font-size: 15px;
-}
-
-box.light-mode .card {
-  border-radius: 3px;
-  background-color: #FFFFFF;
-}
-
-box.light-mode .card list {
-  background: transparent;
-}
-
-box.light-mode .card list row {
-  background: transparent;
-  transition: all 0.4s ease 0s;
-}
-
-box.light-mode .card list row switch {
-  transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
-  margin: 6px 0;
-  padding: 0 2px;
-  border: 5px solid transparent;
-  border-radius: 9999px;
-  background-color: rgba(0, 0, 0, 0.26);
-  background-clip: padding-box;
-  font-size: 0;
-}
-
-box.light-mode .card list row switch image {
-  margin: -8px;
-  -gtk-icon-transform: scale(0);
-}
-
-box.light-mode .card list row switch slider {
-  transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
-  min-width: 20px;
-  min-height: 20px;
-  margin: -3px -2px;
-  border-radius: 9999px;
-  outline: none;
-  box-shadow: 0 0 0 10px transparent, 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background-color: #F1F1F1;
-}
-
-box.light-mode .card list row switch:focus slider {
-  box-shadow: 0 0 0 10px alpha(currentColor, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-box.light-mode .card list row switch:hover slider {
-  box-shadow: 0 0 0 10px alpha(currentColor, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-box.light-mode .card list row switch:focus:hover slider {
-  box-shadow: 0 0 0 10px alpha(currentColor, 0.16), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-box.light-mode .card list row switch:checked slider {
-  background-color: #1E90FF;
-  color: #1E5EFF;
-}
-
-box.light-mode .card list row switch:checked {
-  background-color: rgba(26, 115, 232, 0.5);
-}
-
-box.light-mode .card list row box.content {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-box.light-mode .card list row image.avatar {
-  color: #2B2B2B;
-}
-
-box.light-mode .card list row label.title {
-  color: #2B2B2B;
-  font-weight: bold;
-}
-
-box.light-mode .card list row label.subtitle {
-  color: #2B2B2B;
-  font-weight: 400;
-}
-
-box.light-mode .card list row label.text {
-  color: #BDBDBD;
-}
-
-box.light-mode .card list row image.online {
-  color: #1E90FF;
-}
-
-box.light-mode .card list row:active, box.light-mode .card list row:selected {
-  background: rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease 0s;
-}
-
-box.light-mode .card box.header {
-  color: #2B2B2B;
-  padding: 10px;
-}
-
-box.light-mode .card box.header label.title {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-box.light-mode .card box.header button {
-  background: transparent;
-  padding: 10px;
-  border-radius: 20px;
-  transition: all 0.4s ease 0s;
-}
-
-box.light-mode .card box.header button label {
-  color: #1A1A1A;
-}
-
-box.light-mode .card box.header button:active {
-  background: rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease 0s;
-}
-
-box.light-mode .card box.header button:active image {
-  color: #1A1A1A;
-}
-
-box.light-mode .card box.header button:checked {
-  background: rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease 0s;
-}
-
-box.light-mode .card entry.textfield {
-  margin: 10px;
-}
-
-box.light-mode .card box.head {
-  color: #2B2B2B;
-  padding: 20px 10px;
-}
-
-box.light-mode .card box.head label.title {
-  font-weight: bold;
-}
-
-box.light-mode .card box.head label.subtitle {
-  font-weight: 400;
-}
-
-box.light-mode .card box.head button {
-  background: transparent;
-  padding: 10px;
-  border-radius: 20px;
-  transition: all 0.4s ease 0s;
-}
-
-box.light-mode .card box.head button label {
-  color: #1A1A1A;
-}
-
-box.light-mode .card box.head button:active {
-  background: rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease 0s;
-}
-
-box.light-mode .card box.head button:active image {
-  color: #1A1A1A;
-}
-
-box.light-mode .card box.head button:checked {
-  background: rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease 0s;
-}
-
-box.light-mode .card box.foot {
-  color: #1A1A1A;
-  padding: 10px;
-}
-
-box.light-mode .card box.foot label.title {
-  font-weight: bold;
-}
-
-box.dark-mode .card {
-  border-radius: 3px;
-  background-color: #232729;
-}
-
-box.dark-mode .card list {
-  background: transparent;
-}
-
-box.dark-mode .card list row {
-  background: transparent;
-  transition: all 0.4s ease 0s;
-}
-
-box.dark-mode .card list row switch {
-  transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
-  margin: 6px 0;
-  padding: 0 2px;
-  border: 5px solid transparent;
-  border-radius: 9999px;
-  background-color: rgba(0, 0, 0, 0.26);
-  background-clip: padding-box;
-  font-size: 0;
-}
-
-box.dark-mode .card list row switch image {
-  margin: -8px;
-  -gtk-icon-transform: scale(0);
-}
-
-box.dark-mode .card list row switch slider {
-  transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
-  min-width: 20px;
-  min-height: 20px;
-  margin: -3px -2px;
-  border-radius: 9999px;
-  outline: none;
-  box-shadow: 0 0 0 10px transparent, 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background-color: #ECECEC;
-}
-
-box.dark-mode .card list row switch:focus slider {
-  box-shadow: 0 0 0 10px alpha(currentColor, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-box.dark-mode .card list row switch:hover slider {
-  box-shadow: 0 0 0 10px alpha(currentColor, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-box.dark-mode .card list row switch:focus:hover slider {
-  box-shadow: 0 0 0 10px alpha(currentColor, 0.16), 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-box.dark-mode .card list row switch:checked slider {
-  background-color: #2D4E6F;
-  color: #18395A;
-}
-
-box.dark-mode .card list row switch:checked {
-  background-color: rgba(26, 115, 232, 0.5);
-}
-
-box.dark-mode .card list row box.content {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-box.dark-mode .card list row image.avatar {
-  color: #ECECEC;
-}
-
-box.dark-mode .card list row label.title {
-  color: #ECECEC;
-  font-weight: bold;
-}
-
-box.dark-mode .card list row label.subtitle {
-  color: #ECECEC;
-  font-weight: 400;
-}
-
-box.dark-mode .card list row label.text {
-  color: #BDBDBD;
-}
-
-box.dark-mode .card list row image.online {
-  color: #2D4E6F;
-}
-
-box.dark-mode .card list row:active, box.dark-mode .card list row:selected {
-  background: rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease 0s;
-}
-
-box.dark-mode .card box.header {
-  color: #ECECEC;
-  padding: 10px;
-}
-
-box.dark-mode .card box.header label.title {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-box.dark-mode .card box.header button {
-  background: transparent;
-  padding: 10px;
-  border-radius: 20px;
-  transition: all 0.4s ease 0s;
-}
-
-box.dark-mode .card box.header button label {
-  color: #ECECEC;
-}
-
-box.dark-mode .card box.header button:active {
-  background: rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease 0s;
-}
-
-box.dark-mode .card box.header button:active image {
-  color: #ECECEC;
-}
-
-box.dark-mode .card box.header button:checked {
-  background: rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease 0s;
-}
-
-box.dark-mode .card entry.textfield {
-  margin: 10px;
-}
-
-box.dark-mode .card box.head {
-  color: #ECECEC;
-  padding: 20px 10px;
-}
-
-box.dark-mode .card box.head label.title {
-  font-weight: bold;
-}
-
-box.dark-mode .card box.head label.subtitle {
-  font-weight: 400;
-}
-
-box.dark-mode .card box.head button {
-  background: transparent;
-  padding: 10px;
-  border-radius: 20px;
-  transition: all 0.4s ease 0s;
-}
-
-box.dark-mode .card box.head button label {
-  color: #ECECEC;
-}
-
-box.dark-mode .card box.head button:active {
-  background: rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease 0s;
-}
-
-box.dark-mode .card box.head button:active image {
-  color: #ECECEC;
-}
-
-box.dark-mode .card box.head button:checked {
-  background: rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease 0s;
-}
-
-box.dark-mode .card box.foot {
-  color: #1A1A1A;
-  padding: 10px;
-}
-
-box.dark-mode .card box.foot label.title {
-  font-weight: bold;
 }

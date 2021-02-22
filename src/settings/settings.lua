@@ -84,8 +84,8 @@ function MoonZaphire.Settings:_init()
 	end
 
 	--- With this I can know if the dark variant of the current gtk theme is being used.
-	-- local dark_mode = settings.gtk_application_prefer_dark_theme
-	-- switch_dark_mode.active = dark_mode
+	local dark_mode = settings.gtk_application_prefer_dark_theme
+	switch_dark_mode.active = dark_mode
 
 	--- Events for the menu
 	items.on_row_activated = function (self, listboxrow)
@@ -104,8 +104,6 @@ function MoonZaphire.Settings:_init()
 			title.label = 'General'
 		elseif (item == 3) then
 			--- Toggle dark mode
-			-- @FIXME: Doing the toggle from here is more time consuming than
-			-- expected (For a second it gives a slow effect).
 			local dark_mode = not switch_dark_mode.active
 			switch_dark_mode:set_state(dark_mode)
 		elseif (item == 4) then

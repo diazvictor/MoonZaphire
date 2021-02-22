@@ -36,11 +36,16 @@ function MoonZaphire.ChatList:_init()
 	search_box = self:get_template_child(MoonZaphire.ChatList, 'search_box')
 	search = self:get_template_child(MoonZaphire.ChatList, 'search')
 
+	local i = 0
 	search.on_key_release_event = function (self, env)
 		if ( env.keyval  == Gdk.KEY_Return ) then
 			if (self.text ~= '') then
-				local id_member = tostring(os.time())
-				local member = MoonZaphire.ChatList:add_member(id_member)
+				i = i + 1
+				local id_member = tostring(i)
+				local member = MoonZaphire.ChatList:new_chat({
+					id = id_member,
+					chatname = 'Johndoe #' .. i
+				})
 			end
 		end
 	end
@@ -68,12 +73,77 @@ function MoonZaphire.ChatList:show_search(state)
 	return false
 end
 
-function MoonZaphire.ChatList:add_member (id_member)
+
+--- Creates a new chat
+-- @param t table: this table contains the values of the chat (such as, name
+-- and id).
+-- @return the widget or false and an error message.
+-- @usage:
+-- local member = MoonZaphire.ChatList:new_chat({
+--     id = 1,
+--     chatname = 'Johndoe'
+-- })
+function MoonZaphire.ChatList:new_chat(t)
+	local t = t or {}
+
+	if not t.id then
+		return false, 'Chat id is required'
+	end
+
+	if not t.chatname then
+		return false, 'Chat name is required'
+	end
+
 	local member = MoonZaphire.ChatListItem {
-		id = id_member
+		id = t.id
 	}
+	member.priv.chatname.label = t.chatname
+
 	items:add(member)
-	member.priv.fullname.label = ('User %s'):format(id_member)
-	member.priv.last_message.label = 'Lorem ipsum dolor sit amet, consectetur'
 	return member
+end
+
+--- Update a chat
+-- @param t table: this table contains the values of the chat (
+-- such as the name, the last message, the time of the message and
+-- the number of unread messages).
+-- @return t or false and an error message.
+-- @usage:
+-- MoonZaphire.ChatList:update_chat({
+--     id = member.id,
+--     chatname = 'Janedoe',
+--     message_number = 1,
+--     last_message = 'Hi I'm janedoe',
+--     time = os.date('%H:%M')
+-- })
+function MoonZaphire.ChatList:update_chat(t)
+	local t, state = t or {}
+	local member = items.child[t.id]
+
+	state = (t.chatname ~= nil)
+	if (state) then
+		member.priv.chatname.label = t.chatname
+	end
+
+	state = (t.message_number ~= nil)
+	if (state) then
+		member.priv.box_message_number.visible = true
+		member.priv.message_number.label = tostring(t.message_number)
+	end
+
+	state = (t.time ~= nil)
+	if (not state) then
+		return false, 'time is required'
+	end
+
+	state = (t.last_message ~= nil)
+	if (not state) then
+		return false, 'the last_mensage is required'
+	end
+
+	member.priv.last_message.label = t.last_message
+	member.priv.time.visible = true
+	member.priv.time.label = t.time
+
+	return t
 end

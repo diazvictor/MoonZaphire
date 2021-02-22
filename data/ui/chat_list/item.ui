@@ -42,13 +42,14 @@
 								<property name="visible">True</property>
 								<property name="can_focus">False</property>
 								<child>
-									<object class="GtkLabel" id="fullname">
+									<object class="GtkLabel" id="chatname">
 										<property name="visible">True</property>
 										<property name="can_focus">False</property>
 										<property name="halign">start</property>
-										<property name="label" translatable="yes"></property>
+										<property name="ellipsize">end</property>
+										<property name="label" translatable="yes">Chatname</property>
 										<style>
-											<class name="title"/>
+											<class name="chatname"/>
 										</style>
 									</object>
 									<packing>
@@ -58,13 +59,27 @@
 									</packing>
 								</child>
 								<child>
-									<object class="GtkImage" id="online">
-										<property name="visible">True</property>
+									<object class="GtkBox" id="box_message_number">
+										<property name="height_request">0</property>
+										<property name="visible">False</property>
 										<property name="can_focus">False</property>
-										<property name="valign">center</property>
-										<property name="icon_name">media-record-symbolic</property>
+										<property name="orientation">vertical</property>
+										<child>
+											<object class="GtkLabel" id="message_number">
+												<property name="visible">True</property>
+												<property name="can_focus">False</property>
+												<property name="halign">center</property>
+												<property name="label" translatable="yes">1024</property>
+												<property name="ellipsize">end</property>
+											</object>
+											<packing>
+												<property name="expand">False</property>
+												<property name="fill">True</property>
+												<property name="position">0</property>
+											</packing>
+										</child>
 										<style>
-											<class name="online"/>
+											<class name="badge"/><class name="blue"/>
 										</style>
 									</object>
 									<packing>
@@ -92,7 +107,7 @@
 										<property name="label" translatable="yes"></property>
 										<property name="ellipsize">end</property>
 										<style>
-											<class name="subtitle"/>
+											<class name="last_message"/>
 										</style>
 									</object>
 									<packing>
@@ -102,12 +117,12 @@
 									</packing>
 								</child>
 								<child>
-									<object class="GtkLabel" id="message_hour">
-										<property name="visible">True</property>
+									<object class="GtkLabel" id="time">
+										<property name="visible">False</property>
 										<property name="can_focus">False</property>
 										<property name="label" translatable="yes"></property>
 										<style>
-											<class name="text"/>
+											<class name="time"/>
 										</style>
 									</object>
 									<packing>
@@ -137,7 +152,7 @@
 			</object>
 		</child>
 		<style>
-			<class name="item"/>
+			<class name="chat"/>
 		</style>
 	</template>
 </interface>
