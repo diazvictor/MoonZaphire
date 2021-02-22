@@ -1,14 +1,13 @@
-#!/usr/bin/lua
 --[[--
  @package   MoonZaphire
- @filename  MoonZaphire.lua
+ @filename  src/init.lua
  @version   1.0
  @author    Díaz Urbaneja Víctor Eduardo Diex <victor.vector008@gmail.com>
- @date      05.02.2021 00:09:36 -04
+ @date      22.02.2021 10:09:59 -04
 ]]
 
-package.path = package.path .. ';@prefix@/@datadir@/MoonZaphire/lib/?.lua;@prefix@/@datadir@/MoonZaphire/src/?.lua'
-require 'init'
+package.path = package.path .. ';./?/init.lua;lib/?.lua'
+require 'lib'
 
 --- I create a namespace (master class)
 MoonZaphire = lgi.package("MoonZaphire")
@@ -16,11 +15,10 @@ MoonZaphire = lgi.package("MoonZaphire")
 -- I require my modules
 require('app')
 require('start')
-require('login.auth_user')
-require('login.auth_host')
-require('settings.settings')
-require('chat_list.chat_list')
-require('chat.chat')
+require('login')
+require('settings')
+require('chat_list')
+require('chat')
 require('window')
 
 --- Start the application

@@ -9,9 +9,6 @@
 --- I create the ChatList subclass of MoonZaphire
 MoonZaphire:class('ChatList', Gtk.Box)
 
---- I require the modules belonging to ChatList
-require('chat_list.item')
-
 local items, search_box, search
 
 --- At the beginning of the class

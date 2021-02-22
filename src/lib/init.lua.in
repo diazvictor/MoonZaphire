@@ -33,11 +33,16 @@ log.message("'lgi.GdkPixbuf' loaded successfully.")
 Pango = lgi.Pango
 log.message("'lgi.Pango' loaded successfully.")
 
-json = require 'json'
+-- @FIXME: Correct paths for local libraries
+-- json = require 'json'
+json = require 'cjson.safe'
 log.message("'json' loaded successfully.")
 
 utils = require 'utils'
 log.message("'utils' loaded successfully.")
+
+class = require('middleclass')
+log.message("'middleclass' loaded successfully.")
 
 -- Load the GResource file
 local Res = Gio.Resource.load("@prefix@/@datadir@/MoonZaphire/data/com.github.diazvictor.MoonZaphire.gresource")

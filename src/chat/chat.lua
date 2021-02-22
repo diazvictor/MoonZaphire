@@ -9,12 +9,6 @@
 --- I create the Chat subclass of MoonZaphire
 MoonZaphire:class('Chat', Gtk.Stack)
 
---- I require the modules belonging to Chat
-require('chat.chat_view')
-require('chat.chat_details')
-require('chat.messages.message_to')
-require('chat.messages.message_from')
-
 --- At the beginning of the class
 function MoonZaphire.Chat:_class_init(klass)
 	--- I load the template

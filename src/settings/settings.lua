@@ -9,14 +9,6 @@
 --- I create the Settings subclass of MoonZaphire
 MoonZaphire:class('Settings', Gtk.Box)
 
---- I require the modules belonging to Settings
-require('settings.general')
-require('settings.new_group')
-require('settings.languages')
-require('settings.contacts')
-require('settings.about')
-require('settings.profile')
-
 --- At the beginning of the class
 function MoonZaphire.Settings:_class_init(klass)
 	--- I load the template

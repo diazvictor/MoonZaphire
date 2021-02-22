@@ -41,7 +41,7 @@ log.message("'json' loaded successfully.")
 utils = require 'utils'
 log.message("'utils' loaded successfully.")
 
-class	= require('middleclass')
+class = require('middleclass')
 log.message("'middleclass' loaded successfully.")
 
 -- Load the GResource file

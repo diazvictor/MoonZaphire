@@ -35,7 +35,7 @@ MoonZaphire
 
 To run directly from source
 ```
-cd src && lua MoonZaphire.lua
+cd src && lua init.lua
 ```
 
 ## Contributing
