@@ -1,6 +1,6 @@
 
 ---@see https://github.com/flukso/lua-mosquitto
-local mosquitto	= require('mosquitto')  
+local mqtt		= require('mosquitto')  
 local Mqtt 		= class('Mqtt')
 local client 	= nil
 local QoS		= 2
@@ -16,31 +16,44 @@ function Mqtt:initialize(username,password,broker,topic)
 end
 
 function Mqtt:connect()
-	client = mosquitto.new( self.username , false)
+	client=mqtt.new( self.username , false)
+	client:will_set( 'users/disconnect', self.username , 0) -- borador
+	--Suport to V5
+	--client:option(
+		--mqtt.OPT_PROTOCOL_VERSION,
+		--mqtt.MQTT_PROTOCOL_V5
+	--)
+
 	client.ON_MESSAGE = function ( mid, topic, payload )
 		local msg = json.decode( payload )
+		if not msg then return end
 		if ( msg.username == self.username ) then return end
 		if ( msg.message and msg.username ) then
 			Mqtt:receive(topic,msg)
 		end
+		collectgarbage('collect')
 	end
 
 	client.ON_CONNECT = function ()
-		print("connected")
+		io.write("connected\n")
 		client:subscribe(self.topic, QoS)
 	end
 
 	client.ON_DISCONNECT = function ()
-		if (client:reconnect()) then
-			print("REconnecting ..")
-		end
+		local ok, errno, errmsg
+		repeat
+			ok, errno, errmsg = client:reconnect()
+			if (not ok) then
+				io.write('ERROR ',errno, errmsg, "\n")
+			else
+				io.write("REconnecting ..\n")
+			end
+		until(ok == true)
 	end
 
 	client:connect(self.broker,port,keep_alive)
 
-	GLib.timeout_add(
-		GLib.PRIORITY_DEFAULT, 300,
-		function ()
+	GLib.timeout_add(GLib.PRIORITY_DEFAULT, 300,function ()
 			client:loop(1)
 			return true
 		end
@@ -76,7 +89,6 @@ function Mqtt:receive(topic,msg)
 				time 		=  os.date('%H:%M:%S')
 		})
 	end
-	collectgarbage('collect')
 end
 
 function Mqtt:disconnect()
