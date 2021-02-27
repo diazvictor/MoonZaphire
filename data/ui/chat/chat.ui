@@ -6,12 +6,14 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="transition_type">slide-up-down</property>
+<!--
         <child>
             <object class="MoonZaphireChatView"></object>
             <packing>
                 <property name="name">id_member</property>
             </packing>
         </child>
+-->
         <child>
             <object class="GtkLabel">
                 <property name="visible">True</property>
