@@ -10,7 +10,8 @@
 MoonZaphire:class('ChatView', Gtk.Box)
 
 -- Global variables in this scope
-local message_box, scroll_box, log, scroll_down
+-- local message_box, scroll_box, log, scroll_down
+local log, scroll_down
 
 -- Debugging messages
 log = lgi.log.domain('ChatView')
@@ -22,6 +23,7 @@ function MoonZaphire.ChatView:_class_init(klass)
 		'/com/github/diazvictor/MoonZaphire/data/ui/chat/chat_view.ui'
 	)
 	--- I add the desired elements to the template
+	klass:bind_template_child_full('chatname', true, 0)
 	klass:bind_template_child_full('btn_search', true, 0)
 	klass:bind_template_child_full('switch_details', true, 0)
 	klass:bind_template_child_full('chat_details', true, 0)
@@ -40,16 +42,20 @@ function MoonZaphire.ChatView:_init()
 	self:init_template()
 
 	-- I load the template objects
-	btn_search = self:get_template_child(MoonZaphire.ChatView, 'btn_search')
-	switch_details = self:get_template_child(MoonZaphire.ChatView, 'switch_details')
-	chat_details = self:get_template_child(MoonZaphire.ChatView, 'chat_details')
+	self.priv.chatname = self:get_template_child(MoonZaphire.ChatView, 'chatname')
+	local btn_search = self:get_template_child(MoonZaphire.ChatView, 'btn_search')
+	local switch_details = self:get_template_child(MoonZaphire.ChatView, 'switch_details')
+	local chat_details = self:get_template_child(MoonZaphire.ChatView, 'chat_details')
 
-	scroll_box = self:get_template_child(MoonZaphire.ChatView, 'scroll_box')
-	message_box = self:get_template_child(MoonZaphire.ChatView, 'message_box')
-	message_scroll = self:get_template_child(MoonZaphire.ChatView, 'message_scroll')
-	buffer_message = self:get_template_child(MoonZaphire.ChatView, 'buffer_message')
-	message_text = self:get_template_child(MoonZaphire.ChatView, 'message_text')
-	btn_send = self:get_template_child(MoonZaphire.ChatView, 'btn_send')
+	self.priv.scroll_box = self:get_template_child(MoonZaphire.ChatView, 'scroll_box')
+	self.priv.message_box = self:get_template_child(MoonZaphire.ChatView, 'message_box')
+	local message_scroll = self:get_template_child(MoonZaphire.ChatView, 'message_scroll')
+	local buffer_message = self:get_template_child(MoonZaphire.ChatView, 'buffer_message')
+	local message_text = self:get_template_child(MoonZaphire.ChatView, 'message_text')
+	local btn_send = self:get_template_child(MoonZaphire.ChatView, 'btn_send')
+
+	self.priv.scroll_box.id = 'scroll_box'
+	self.priv.message_box.id = 'message_box'
 
 	--- By clicking I search a chat list
 	btn_search.on_toggled = function (self)
@@ -67,7 +73,9 @@ function MoonZaphire.ChatView:_init()
 
 	--- By losing the focus I eliminate the placeholder
 	message_text.on_focus_in_event = function (self, event)
-		if (buffer_message:get_text(buffer_message:get_start_iter(), buffer_message:get_end_iter(), true) == placeholder_str) then
+		if (buffer_message:get_text(buffer_message:get_start_iter(),
+			buffer_message:get_end_iter(), true) == placeholder_str)
+		then
 			buffer_message.text = ''
 		end
 		utils:removeClass(self, 'placeholder')
@@ -76,14 +84,18 @@ function MoonZaphire.ChatView:_init()
 	--- By having the focus I add the placeholder
 	placeholder_str = 'Write a message...'
 	message_text.on_focus_out_event = function (self, event)
-		if (buffer_message:get_text(buffer_message:get_start_iter(), buffer_message:get_end_iter(), true) == '') then
+		if (buffer_message:get_text(buffer_message:get_start_iter(),
+			buffer_message:get_end_iter(), true) == '')
+		then
 			buffer_message.text = placeholder_str
 		end
 		utils:addClass(self, 'placeholder')
 	end
 
+
 	--- Send a message.
 	local send_message = function ()
+		local current_chat = chat:get_visible_child_name()
 		local timeago = os.date('%H:%M')
 		if (buffer_message.text ~= '') then
 			--MoonZaphire.ChatView:new_message {
@@ -92,7 +104,7 @@ function MoonZaphire.ChatView:_init()
 				--time = timeago
 			--}
 			mzmqtt:composer(buffer_message.text)
-			mzmqtt:send()
+			mzmqtt:send(current_chat)
 			buffer_message.text = ''
 		else
 			return false
@@ -113,7 +125,7 @@ function MoonZaphire.ChatView:_init()
 		return true
 	end
 
-	message_box.on_size_allocate = function ()
+	self.priv.message_box.on_size_allocate = function ()
 		MoonZaphire.ChatView:scroll_down()
 	end
 
@@ -130,163 +142,52 @@ end
 -- @return true or false and an error message.
 -- @usage:
 -- MoonZaphire.ChatView:new_message({
+--     id = 'message-1',
 --     type = "from", -- or "to".
+--     from = '/chat/user/johndoe/'
 --     author = "Johndoe", -- if "type" is "to" this property is not required.
 --     message = "Hi I'm johndoe",
---     time = os.date('%H:%M:%S')
+--     time = os.time()
 -- })
 function MoonZaphire.ChatView:new_message(t)
-	local t, message = t or {}
+	local t, message, message_box = t or {}
 
 	if not t.type then
 		return false, 'Define a message type'
 	end
 
+	local current_time = os.date("%H:%M:%S", t.time)
+	-- local current_time = os.date("*t", t.time)
+	-- {year = 1998, month = 9, day = 16, yday = 259, wday = 4,
+    -- hour = 23, min = 48, sec = 10, isdst = false}
+
 	if t.type == 'to' then
-		-- @FIXME: There is a serious bug with the message widget (created using
-		-- templates), something that does not happen when I create it using the code
-		-- message = MoonZaphire.MessageTo {
-			-- id = t.time,
-			-- message = t.message,
-			-- time = t.time
-		-- }
-		message = Gtk.ListBoxRow {
-			visible = true,
-			activatable = false,
-			selectable = false,
-			Gtk.Box {
-				visible = true,
-				can_focus = false,
-				halign = Gtk.Align.END,
-				orientation = Gtk.Orientation.VERTICAL,
-				{
-					Gtk.Box {
-						id = 'message',
-						visible = true,
-						can_focus = false,
-						orientation = Gtk.Orientation.VERTICAL,
-						width_request = 70,
-						Gtk.Label {
-							visible = true,
-							halign = Gtk.Align.END,
-							label = t.message,
-							wrap = true,
-							wrap_mode = Gtk.WrapMode.CHAR,
-							selectable = true
-						}
-					},
-					expand = false,
-					fill = true,
-					position = 0
-				},
-				{
-					Gtk.Label {
-						id = 'time',
-						visible = true,
-						halign = Gtk.Align.END,
-						label = t.time
-					},
-					expand = false,
-					fill = true,
-					position = 1
-				},
-			}
+		message = MoonZaphire.MessageTo {
+			id = t.id
 		}
-		-- I add the css styles
-		message:get_style_context():add_class('message-to')
+		message.priv.message.label = t.message
+		message.priv.time.label = current_time
+
 		scroll_down = true
+		message_box = chat:get_visible_child().child.message_box
 	elseif t.type == 'from' then
 		if not t.author then
-			return false, 'The "author" property is required'
+			return false, '"author" property is required'
 		end
-		-- message = MoonZaphire.MessageFrom {
-			-- id = t.time,
-			-- author = t.author,
-			-- message = t.message,
-			-- time = t.time
-		-- }
-		message = Gtk.ListBoxRow {
-			visible = true,
-			activatable = false,
-			selectable = false,
-			Gtk.Box {
-				visible = true,
-				can_focus = false,
-				halign = Gtk.Align.START,
-				orientation = Gtk.Orientation.VERTICAL,
-				{
-					Gtk.Label {
-						id = 'author',
-						visible = true,
-						halign = Gtk.Align.START,
-						ellipsize = Pango.EllipsizeMode.END,
-						label = t.author
-					},
-					expand = false,
-					fill = true,
-					position = 0
-				},
-				{
-					Gtk.Box {
-						visible = true,
-						can_focus = false,
-						orientation = Gtk.Orientation.HORIZONTAL,
-						{
-							Gtk.Image {
-								id = 'avatar',
-								visible = true,
-								valign = Gtk.Align.END,
-								icon_name = 'avatar-default-symbolic',
-								icon_size = 5
-							}
-						},
-						{
-							Gtk.Box {
-								id = 'message',
-								visible = true,
-								can_focus = false,
-								orientation = Gtk.Orientation.VERTICAL,
-								width_request = 70,
-								Gtk.Label {
-									visible = true,
-									label = t.message,
-									halign = Gtk.Align.START,
-									wrap = true,
-									wrap_mode = Gtk.WrapMode.CHAR,
-									selectable = true
-								}
-							}
-						}
-					},
-					expand = false,
-					fill = true,
-					position = 1
-				},
-				{
-					Gtk.Label {
-						id = 'time',
-						visible = true,
-						halign = Gtk.Align.END,
-						label = t.time
-					},
-					expand = false,
-					fill = true,
-					position = 2
-				},
-			}
+		if not t.from then
+			return false, '"from" property is required'
+		end
+		message = MoonZaphire.MessageFrom {
+			id = t.id
 		}
-		-- I add the css styles
-		message:get_style_context():add_class('message-from')
-		message.child.author:get_style_context():add_class('author')
-		message.child.avatar:get_style_context():add_class('icon')
-		message.child.avatar:get_style_context():add_class('avatar')
+		message.priv.author.label = t.author
+		message.priv.message.label = t.message
+		message.priv.time.label = current_time
+
+		message_box = chat:get_child_by_name(t.from).child.message_box
 	else
 		return false, 'The message type is not valid'
 	end
-
-	-- I add the css styles
-	message.child.message:get_style_context():add_class('message')
-	message.child.time:get_style_context():add_class('time')
 
 	message_box:add(message)
 	return true
@@ -295,6 +196,7 @@ end
 --- This method scrolls the chat down.
 function MoonZaphire.ChatView:scroll_down()
 	if scroll_down then
+		local scroll_box = chat:get_visible_child().child.scroll_box
 		local adj = scroll_box:get_vadjustment()
 		adj:set_value(adj.upper - adj.page_size)
 		scroll_down = false

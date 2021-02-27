@@ -19,35 +19,35 @@ function MoonZaphire.MessageTo:_class_init(klass)
 	klass:bind_template_child_full('message', true, 0)
 	klass:bind_template_child_full('time', true, 0)
 
-	function klass:set_property (id, value, pspec)
-		if id == 1 then
-			self.priv.message = value:get_string()
-		elseif id == 2 then
-			self.priv.time = value:get_string()
-		else
-			GObject.OBJECT_WARN_INVALID_PROPERTY_ID(self, id, pspec)
-		end
-	end
+	-- function klass:set_property (id, value, pspec)
+		-- if id == 1 then
+			-- self.priv.message = value:get_string()
+		-- elseif id == 2 then
+			-- self.priv.time = value:get_string()
+		-- else
+			-- GObject.OBJECT_WARN_INVALID_PROPERTY_ID(self, id, pspec)
+		-- end
+	-- end
 
-	function klass:get_property(id, value, pspec)
-		if id == 1 then
-			value:set_string(self.priv.message)
-		elseif id == 2 then
-			value:set_string(self.priv.time)
-		else
-			GObject.OBJECT_WARN_INVALID_PROPERTY_ID(self, id, pspec)
-		end
-	end
+	-- function klass:get_property(id, value, pspec)
+		-- if id == 1 then
+			-- value:set_string(self.priv.message)
+		-- elseif id == 2 then
+			-- value:set_string(self.priv.time)
+		-- else
+			-- GObject.OBJECT_WARN_INVALID_PROPERTY_ID(self, id, pspec)
+		-- end
+	-- end
 
-	klass:install_property(1, GObject.ParamSpecString (
-		'message', 'Message', 'Message text', '',
-		{ GObject.ParamFlags.READWRITE }
-	))
+	-- klass:install_property(1, GObject.ParamSpecString (
+		-- 'message', 'Message', 'Message text', '',
+		-- { GObject.ParamFlags.READWRITE }
+	-- ))
 
-	klass:install_property(2, GObject.ParamSpecString (
-		'time', 'Time', 'Message time', '',
-		{ GObject.ParamFlags.READWRITE }
-	))
+	-- klass:install_property(2, GObject.ParamSpecString (
+		-- 'time', 'Time', 'Message time', '',
+		-- { GObject.ParamFlags.READWRITE }
+	-- ))
 end
 
 --- When building the class
@@ -56,18 +56,18 @@ function MoonZaphire.MessageTo:_init()
 	self:init_template()
 
 	-- I load the template objects
-	local message = self:get_template_child(MoonZaphire.MessageTo, 'message')
-	local time = self:get_template_child(MoonZaphire.MessageTo, 'time')
+	self.priv.message = self:get_template_child(MoonZaphire.MessageTo, 'message')
+	self.priv.time = self:get_template_child(MoonZaphire.MessageTo, 'time')
 
-	GObject.Binding.bind_property(
-		self, 'message',
-		message, 'label',
-		GObject.BindingFlags.DEFAULT
-	)
+	-- GObject.Binding.bind_property(
+		-- self, 'message',
+		-- message, 'label',
+		-- GObject.BindingFlags.DEFAULT
+	-- )
 
-	GObject.Binding.bind_property(
-		self, 'time',
-		time, 'label',
-		GObject.BindingFlags.DEFAULT
-	)
+	-- GObject.Binding.bind_property(
+		-- self, 'time',
+		-- time, 'label',
+		-- GObject.BindingFlags.DEFAULT
+	-- )
 end

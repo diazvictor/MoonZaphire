@@ -1,6 +1,6 @@
 
 ---@see https://github.com/flukso/lua-mosquitto
-local mqtt		= require('mosquitto')  
+local mqtt		= require('mosquitto')
 local Mqtt 		= class('Mqtt')
 local client 	= nil
 local QoS		= 2
@@ -70,25 +70,38 @@ function Mqtt:composer(message)
 end
 
 
-function Mqtt:send()
+function Mqtt:send(topic)
+	local current_time = os.time()
 	MoonZaphire.ChatView:new_message({
-		['type'] = 'to',
-		message = self.msg.message,
-		time = os.date('%H:%M:%S')
+		id 		 	= ('%s-%s'):format(self.msg.username, current_time),
+		['type'] 	=  'to',
+		to 		 	=  self.msg.username,
+		from 	 	=  topic,
+		message  	=  self.msg.message,
+		time 	 	=  current_time
 	})
-	client:publish(self.topic, self.msg_js)
+	client:publish(topic, self.msg_js)
+	print(topic .. ' -> ' .. self.msg_js)
 end
 
 
 function Mqtt:receive(topic,msg)
 	if ( msg.message and msg.username ) then
+		local current_time = os.time()
 		MoonZaphire.ChatView:new_message({
-				['type'] 	= 'from',
-				author   	=  msg.username,
-				message 	=  msg.message,
-				time 		=  os.date('%H:%M:%S')
+			id			= ('%s-%s'):format(msg.username, current_time),
+			['type'] 	=  'from',
+			to 			=  msg.username,
+			from 		=  topic,
+			author   	=  msg.username,
+			message 	=  msg.message,
+			time 		=  current_time
 		})
 	end
+end
+
+function Mqtt:subscribe(topic)
+	client:subscribe(topic, QoS)
 end
 
 function Mqtt:disconnect()
