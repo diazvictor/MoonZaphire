@@ -32,6 +32,9 @@ function MoonZaphire.ChatList:_init()
 	items = self:get_template_child(MoonZaphire.ChatList, 'items')
 	search_box = self:get_template_child(MoonZaphire.ChatList, 'search_box')
 	search = self:get_template_child(MoonZaphire.ChatList, 'search')
+	items.on_row_activated = function (self, listboxrow)
+		MoonZaphire.Chat:new_chat(listboxrow.id)
+	end
 
 	local i = 0
 	search.on_key_release_event = function (self, env)
@@ -71,7 +74,7 @@ function MoonZaphire.ChatList:show_search(state)
 end
 
 
---- Creates a new chat
+--- Create a new chat in the list
 -- @param t table: this table contains the values of the chat (such as, name
 -- and id).
 -- @return the widget or false and an error message.
@@ -92,7 +95,7 @@ function MoonZaphire.ChatList:new_chat(t)
 	end
 
 	local member = MoonZaphire.ChatListItem {
-		id = t.id
+		id = ('/chat/%s'):format(t.id)
 	}
 	member.priv.chatname.label = t.chatname
 
