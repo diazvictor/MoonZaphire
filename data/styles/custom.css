@@ -278,7 +278,13 @@ window.light-mode .main stack.content box.toolbar box.header label.chatname {
   font-size: 20px;
 }
 
+window.light-mode .main stack.content box.chat-view scrolledwindow viewport {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 window.light-mode .main stack.content box.chat-view list.message-box {
+  background: transparent;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -287,7 +293,7 @@ window.light-mode .main stack.content box.chat-view list.message-box row {
   outline: none;
 }
 
-window.light-mode .main stack.content box.chat-view list.message-box row:hover {
+window.light-mode .main stack.content box.chat-view list.message-box row:hover, window.light-mode .main stack.content box.chat-view list.message-box row:selected {
   background-color: transparent;
 }
 
@@ -296,8 +302,7 @@ window.light-mode .main stack.content box.chat-view list.message-box row:active 
 }
 
 window.light-mode .main stack.content box.chat-view list.message-box row.message-to {
-  margin-top: 10px;
-  padding-left: 100px;
+  padding-left: 200px;
 }
 
 window.light-mode .main stack.content box.chat-view list.message-box row.message-to box.message {
@@ -335,22 +340,20 @@ window.light-mode .main stack.content box.chat-view list.message-box row.message
 }
 
 window.light-mode .main stack.content box.chat-view list.message-box row.message-from {
-  margin-top: 10px;
-  padding-right: 100px;
+  padding-right: 200px;
 }
 
-window.light-mode .main stack.content box.chat-view list.message-box row.message-from box > label.author {
+window.light-mode .main stack.content box.chat-view list.message-box row.message-from box label.author, window.light-mode .main stack.content box.chat-view list.message-box row.message-from grid label.author {
   color: #2B2B2B;
   font-weight: 600;
-  margin-left: 36px;
-  margin-bottom: 8px;
 }
 
-window.light-mode .main stack.content box.chat-view list.message-box row.message-from box image.avatar {
-  margin-right: 5px;
+window.light-mode .main stack.content box.chat-view list.message-box row.message-from box label.time, window.light-mode .main stack.content box.chat-view list.message-box row.message-from grid label.time {
+  color: #2B2B2B;
+  font-weight: 600;
 }
 
-window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message {
+window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message, window.light-mode .main stack.content box.chat-view list.message-box row.message-from grid box.message {
   min-width: 50px;
   background-color: rgba(0, 0, 0, 0.08);
   padding: 10px;
@@ -358,32 +361,26 @@ window.light-mode .main stack.content box.chat-view list.message-box row.message
   border-bottom: 2px solid rgba(0, 0, 0, 0.15);
 }
 
-window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message > label {
+window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message > label, window.light-mode .main stack.content box.chat-view list.message-box row.message-from grid box.message > label {
   color: #2B2B2B;
 }
 
-window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message > label selection {
+window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message > label selection, window.light-mode .main stack.content box.chat-view list.message-box row.message-from grid box.message > label selection {
   background-color: rgba(30, 144, 255, 0.24);
   color: #2B2B2B;
 }
 
-window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply {
+window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply, window.light-mode .main stack.content box.chat-view list.message-box row.message-from grid box.message box.reply {
   border-left: 2px solid rgba(0, 0, 0, 0.15);
   padding-left: 5px;
 }
 
-window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply label.author {
+window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply label.author, window.light-mode .main stack.content box.chat-view list.message-box row.message-from grid box.message box.reply label.author {
   font-weight: 600;
 }
 
-window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply label.author, window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply label {
+window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply label.author, window.light-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply label, window.light-mode .main stack.content box.chat-view list.message-box row.message-from grid box.message box.reply label.author, window.light-mode .main stack.content box.chat-view list.message-box row.message-from grid box.message box.reply label {
   color: #2B2B2B;
-}
-
-window.light-mode .main stack.content box.chat-view list.message-box row.message-from box > label.time {
-  color: #2B2B2B;
-  font-weight: 600;
-  margin-top: 5px;
 }
 
 window.light-mode .main stack.content box.chat-view box.foot {
@@ -839,32 +836,37 @@ window.dark-mode entry selection {
   color: #ECECEC;
 }
 
-window.dark-mode menu {
+window.dark-mode menu, window.dark-mode .menu {
   all: unset;
-  background: #FFFFFF;
+  background-color: #232729;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.08);
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
-window.dark-mode menu separator {
+window.dark-mode menu separator, window.dark-mode .menu separator {
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
-window.dark-mode menu menuitem label {
+window.dark-mode menu menuitem, window.dark-mode .menu menuitem {
+  transition: background-color 75ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+window.dark-mode menu menuitem label, window.dark-mode .menu menuitem label {
   color: #ECECEC;
 }
 
-window.dark-mode menu menuitem:disabled label {
+window.dark-mode menu menuitem:disabled label, window.dark-mode .menu menuitem:disabled label {
   color: rgba(0, 0, 0, 0.15);
 }
 
-window.dark-mode menu menuitem:hover {
+window.dark-mode menu menuitem:hover, window.dark-mode .menu menuitem:hover {
   background: #2D4E6F;
 }
 
-window.dark-mode menu menuitem:hover label {
+window.dark-mode menu menuitem:hover label, window.dark-mode .menu menuitem:hover label {
   color: #F1F1F1;
 }
 
@@ -935,6 +937,11 @@ window.dark-mode .main stack.content box.toolbar box.header label.chatname {
   font-size: 20px;
 }
 
+window.dark-mode .main stack.content box.chat-view scrolledwindow viewport {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 window.dark-mode .main stack.content box.chat-view list.message-box {
   background: transparent;
   padding-left: 10px;
@@ -945,7 +952,7 @@ window.dark-mode .main stack.content box.chat-view list.message-box row {
   outline: none;
 }
 
-window.dark-mode .main stack.content box.chat-view list.message-box row:hover {
+window.dark-mode .main stack.content box.chat-view list.message-box row:hover, window.dark-mode .main stack.content box.chat-view list.message-box row:selected {
   background-color: transparent;
 }
 
@@ -954,8 +961,7 @@ window.dark-mode .main stack.content box.chat-view list.message-box row:active {
 }
 
 window.dark-mode .main stack.content box.chat-view list.message-box row.message-to {
-  margin-top: 10px;
-  padding-left: 100px;
+  padding-left: 200px;
 }
 
 window.dark-mode .main stack.content box.chat-view list.message-box row.message-to box.message {
@@ -993,54 +999,47 @@ window.dark-mode .main stack.content box.chat-view list.message-box row.message-
 }
 
 window.dark-mode .main stack.content box.chat-view list.message-box row.message-from {
-  margin-top: 10px;
-  padding-right: 100px;
+  padding-right: 200px;
 }
 
-window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box > label.author {
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box label.author, window.dark-mode .main stack.content box.chat-view list.message-box row.message-from grid label.author {
   color: #ECECEC;
   font-weight: 600;
-  margin-left: 36px;
-  margin-bottom: 8px;
 }
 
-window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box image.avatar {
-  margin-right: 5px;
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box label.time, window.dark-mode .main stack.content box.chat-view list.message-box row.message-from grid label.time {
+  color: #ECECEC;
+  font-weight: 600;
 }
 
-window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message {
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message, window.dark-mode .main stack.content box.chat-view list.message-box row.message-from grid box.message {
+  min-width: 50px;
   background-color: rgba(0, 0, 0, 0.08);
   padding: 10px;
   border-radius: 10px 10px 10px 0px;
   border-bottom: 2px solid rgba(0, 0, 0, 0.15);
 }
 
-window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message > label {
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message > label, window.dark-mode .main stack.content box.chat-view list.message-box row.message-from grid box.message > label {
   color: #ECECEC;
 }
 
-window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message > label selection {
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message > label selection, window.dark-mode .main stack.content box.chat-view list.message-box row.message-from grid box.message > label selection {
   background-color: rgba(45, 78, 111, 0.24);
   color: #ECECEC;
 }
 
-window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply {
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply, window.dark-mode .main stack.content box.chat-view list.message-box row.message-from grid box.message box.reply {
   border-left: 2px solid rgba(0, 0, 0, 0.15);
   padding-left: 5px;
 }
 
-window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply label.author {
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply label.author, window.dark-mode .main stack.content box.chat-view list.message-box row.message-from grid box.message box.reply label.author {
   font-weight: 600;
 }
 
-window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply label.author, window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply label {
+window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply label.author, window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box box.message box.reply label, window.dark-mode .main stack.content box.chat-view list.message-box row.message-from grid box.message box.reply label.author, window.dark-mode .main stack.content box.chat-view list.message-box row.message-from grid box.message box.reply label {
   color: #ECECEC;
-}
-
-window.dark-mode .main stack.content box.chat-view list.message-box row.message-from box > label.time {
-  color: #ECECEC;
-  font-weight: 600;
-  margin-top: 5px;
 }
 
 window.dark-mode .main stack.content box.chat-view box.foot {

@@ -411,18 +411,24 @@ window.light-mode {
 			// ===============================================
 
 			box.chat-view {
+				scrolledwindow viewport {
+					padding-top: 10px;
+					padding-bottom: 10px;
+				}
+
 				// ===============================================
 				// = Messages
 				// - Messages that are sent and received
 				// ===============================================
 
 				list.message-box {
+					background: transparent;
 					padding-left: 10px;
 					padding-right: 10px;
 
 					row {
 						outline: none;
-						&:hover {
+						&:hover, &:selected {
 							background-color: transparent;
 						}
 						&:active {
@@ -431,8 +437,7 @@ window.light-mode {
 					}
 
 					row.message-to {
-						margin-top: 10px;
-						padding-left: 100px;
+						padding-left: 200px;
 
 						box.message {
 							background-color: $primary;
@@ -470,19 +475,20 @@ window.light-mode {
 					}
 
 					row.message-from {
-						margin-top: 10px;
-						padding-right: 100px;
+						padding-right: 200px;
 
-						box > label.author {
-							color: $color-text;
-							font-weight: 600;
-							margin-left: 36px;
-							margin-bottom: 8px;
-						}
+						box, grid {
+							label.author {
+								color: $color-text;
+								font-weight: 600;
+							}
 
-						box {
 							image.avatar {
-								margin-right: 5px;
+							}
+
+							label.time {
+								color: $color-text;
+								font-weight: 600;
 							}
 
 							box.message {
@@ -514,12 +520,6 @@ window.light-mode {
 									}
 								}
 							}
-						}
-
-						box > label.time {
-							color: $color-text;
-							font-weight: 600;
-							margin-top: 5px;
 						}
 					}
 				}
@@ -840,7 +840,7 @@ window.dark-mode {
 
 	menu {
 		all: unset;
-		background: $bg-light;
+		background: $bg-dark;
 		border: 1px solid $secondary;
 		padding-top: 5px;
 		padding-bottom: 5px;
@@ -966,6 +966,11 @@ window.dark-mode {
 			// ===============================================
 
 			box.chat-view {
+				scrolledwindow viewport {
+					padding-top: 10px;
+					padding-bottom: 10px;
+				}
+
 				// ===============================================
 				// = Messages
 				// - Messages that are sent and received
@@ -978,7 +983,7 @@ window.dark-mode {
 
 					row {
 						outline: none;
-						&:hover {
+						&:hover, &:selected {
 							background-color: transparent;
 						}
 						&:active {
@@ -987,8 +992,7 @@ window.dark-mode {
 					}
 
 					row.message-to {
-						margin-top: 10px;
-						padding-left: 100px;
+						padding-left: 200px;
 
 						box.message {
 							background-color: $primary;
@@ -1026,22 +1030,24 @@ window.dark-mode {
 					}
 
 					row.message-from {
-						margin-top: 10px;
-						padding-right: 100px;
+						padding-right: 200px;
 
-						box > label.author {
-							color: $color-text;
-							font-weight: 600;
-							margin-left: 36px;
-							margin-bottom: 8px;
-						}
+						box, grid {
+							label.author {
+								color: $color-text;
+								font-weight: 600;
+							}
 
-						box {
 							image.avatar {
-								margin-right: 5px;
+							}
+
+							label.time {
+								color: $color-text;
+								font-weight: 600;
 							}
 
 							box.message {
+								min-width: 50px;
 								background-color: $secondary;
 								padding: 10px;
 								// top-left | top-right | bottom-right | bottom-left
@@ -1069,12 +1075,6 @@ window.dark-mode {
 									}
 								}
 							}
-						}
-
-						box > label.time {
-							color: $color-text;
-							font-weight: 600;
-							margin-top: 5px;
 						}
 					}
 				}
