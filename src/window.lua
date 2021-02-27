@@ -98,6 +98,7 @@ function MoonZaphire.Window:toggle_theme(theme)
 			utils:removeClass(window, 'dark-mode')
 			utils:addClass(window, 'light-mode')
 		end
+		settings.gtk_application_prefer_dark_theme = theme
 		return true
 	end
 

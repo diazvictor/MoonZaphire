@@ -96,8 +96,9 @@ function MoonZaphire.Settings:_init()
 			title.label = 'General'
 		elseif (item == 3) then
 			--- Toggle dark mode
-			local dark_mode = not switch_dark_mode.active
-			switch_dark_mode:set_state(dark_mode)
+			-- @FIXME: Doing the toggle from here is more time consuming than
+			-- expected (For a second it gives a slow effect).
+			switch_dark_mode.active = not switch_dark_mode.active
 		elseif (item == 4) then
 			settings_pages:set_visible_child_name('languages')
 			btn_back.visible = true
