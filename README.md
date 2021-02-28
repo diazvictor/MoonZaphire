@@ -4,7 +4,7 @@
 
 <p align="center">
 	<img alt="GitHub last commit (branch)" src="https://img.shields.io/github/last-commit/diazvictor/MoonZaphire/dev">
-	<img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/diazvictor/MoonZaphire?label=last%20release">
+	<img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/diazvictor/MoonZaphire?label=last%20tag">
 	<a href="https://github.com/diazvictor/MoonZaphire/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/diazvictor/MoonZaphire"></a>
 </p>
 
